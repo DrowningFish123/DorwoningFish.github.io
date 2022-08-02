@@ -18,9 +18,9 @@
 <meta property="og:description" content="进程和线程  进程就是系统最终正在执行的应用程序.  比如运行一个Java程序 , 启动我们的JVM这个进程.实际上也会自动启动俩个线程.  main线程 - 负责执行main方法 GC线程 - 负责回收垃圾对象[没有任何引用指向的对象]    线程是运行在进程内部的.因此线程又是可以共享进程内部资源的. 但是进程与进程之间的资源是独立的.  进程是系统进行资源调度和分配的基本单位.  线程是cp">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/jmm.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/thread_life.png">
+<meta property="og:image" content="d:/PerfLogs/source_posts/imgs/thread_life.png">
 <meta property="article:published_time" content="2022-08-02T11:52:39.000Z">
-<meta property="article:modified_time" content="2022-08-02T11:53:08.444Z">
+<meta property="article:modified_time" content="2022-08-02T11:59:21.375Z">
 <meta property="article:author" content="Drowning Fish">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:/苏州/dy-corejava-tech/note/imgs/jmm.png">
@@ -775,7 +775,7 @@
 </ol>
 <p>这四种策略各有优劣，比较常用的是<code>DiscardPolicy</code>，但是这种策略有一个弊端就是任务执行的轨迹不会被记录下来。</p>
 </blockquote>
-<h1 id="线程的生命周期-状态"><a href="#线程的生命周期-状态" class="headerlink" title="线程的生命周期(状态)"></a>线程的生命周期(状态)</h1><p><img src="D:/苏州/dy-corejava-tech/note/imgs/thread_life.png"> </p>
+<h1 id="线程的生命周期-状态"><a href="#线程的生命周期-状态" class="headerlink" title="线程的生命周期(状态)"></a>线程的生命周期(状态)</h1><p> <img src="D:\PerfLogs\source_posts\imgs\thread_life.png" alt="thread_life"></p>
 <blockquote>
 <ol>
 <li><p>瞬态 - new</p>
