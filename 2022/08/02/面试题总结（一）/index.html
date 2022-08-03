@@ -19,8 +19,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.examplebank.com/withdraw?account=Alice&amount=1000&for=Badman">
 <meta property="article:published_time" content="2022-08-02T13:09:42.000Z">
-<meta property="article:modified_time" content="2022-08-02T13:10:38.194Z">
+<meta property="article:modified_time" content="2022-08-03T08:51:05.994Z">
 <meta property="article:author" content="Drowning Fish">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://www.examplebank.com/withdraw?account=Alice&amount=1000&for=Badman">
   
@@ -83,9 +84,7 @@
 			
 				<li><a href="/DorwoningFish.github.io/archives/index.html" target="_blank">归档</a></li>
 			
-				<li><a href="/DorwoningFish.github.io/grjl/ft5_94_profile/index.html" target="_blank">个人简历</a></li>
-			
-				<li><a href="/DorwoningFish.github.io/categories" target="_blank">分类</a></li>
+				<li><a href="/DorwoningFish.github.io/categories" target="_blank">个人简历</a></li>
 			
 			</ul>
 		</nav>
@@ -161,8 +160,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -185,17 +182,15 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/">主页</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="https://drowningfish123.github.io/DorwoningFish.github.io/index/">技术笔记</a></li>
+					<li style="width: 20%"><a href="https://drowningfish123.github.io/DorwoningFish.github.io/index/">技术笔记</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/tags">随笔</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/tags">随笔</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/archives/index.html">归档</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/archives/index.html">归档</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/grjl/ft5_94_profile/index.html">个人简历</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/categories">分类</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/categories">个人简历</a></li>
 		        
 				</ul>
 			</nav>
@@ -1402,12 +1397,12 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <li><p>监听器<br> *&#x2F;<br>public class ExcelModelListener extends AnalysisEventListener<ExcelMode> {</p>
 <p>&#x2F;**</p>
 <ul>
-<li>每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收<br> *&#x2F;<br> private static final int BATCH_COUNT &#x3D; 5;<br> List<ExcelMode> list &#x3D; new ArrayList<ExcelMode>();<br> private static int count &#x3D; 1;<br> @Override<br> public void invoke(ExcelMode data, AnalysisContext context) {<br> System.out.println(“解析到一条数据:{ “+ data.toString() +” }”);<br> list.add(data);<br> count ++;<br> if (list.size() &gt;&#x3D; BATCH_COUNT) {<br> saveData( count );<br> list.clear();<br> }<br> }</li>
+<li>每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收<br> *&#x2F;<br>  private static final int BATCH_COUNT &#x3D; 5;<br>  List<ExcelMode> list &#x3D; new ArrayList<ExcelMode>();<br>  private static int count &#x3D; 1;<br>  @Override<br>  public void invoke(ExcelMode data, AnalysisContext context) {<br> System.out.println(“解析到一条数据:{ “+ data.toString() +” }”);<br> list.add(data);<br> count ++;<br> if (list.size() &gt;&#x3D; BATCH_COUNT) {<br> saveData( count );<br> list.clear();<br> }<br>  }</li>
 </ul>
 <p>@Override<br>public void doAfterAllAnalysed(AnalysisContext context) {<br>    saveData( count );<br>    System.out.println(“所有数据解析完成！”);<br>    System.out.println(“ count ：” + count);<br>}</p>
 <p>&#x2F;**</p>
 <ul>
-<li>加上存储数据库<br> *&#x2F;<br> private void saveData(int count) {<br> System.out.println(“{ “+ count +” }条数据，开始存储数据库！” + list.size());<br> System.out.println(“存储数据库成功！”);<br> }</li>
+<li>加上存储数据库<br> *&#x2F;<br>  private void saveData(int count) {<br> System.out.println(“{ “+ count +” }条数据，开始存储数据库！” + list.size());<br> System.out.println(“存储数据库成功！”);<br>  }</li>
 </ul>
 </li>
 </ul>
@@ -1760,6 +1755,17 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -1999,6 +2005,22 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

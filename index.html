@@ -81,9 +81,7 @@
 			
 				<li><a href="/DorwoningFish.github.io/archives/index.html" target="_blank">归档</a></li>
 			
-				<li><a href="/DorwoningFish.github.io/grjl/ft5_94_profile/index.html" target="_blank">个人简历</a></li>
-			
-				<li><a href="/DorwoningFish.github.io/categories" target="_blank">分类</a></li>
+				<li><a href="/DorwoningFish.github.io/categories" target="_blank">个人简历</a></li>
 			
 			</ul>
 		</nav>
@@ -159,8 +157,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -183,17 +179,15 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/">主页</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="https://drowningfish123.github.io/DorwoningFish.github.io/index/">技术笔记</a></li>
+					<li style="width: 20%"><a href="https://drowningfish123.github.io/DorwoningFish.github.io/index/">技术笔记</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/tags">随笔</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/tags">随笔</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/archives/index.html">归档</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/archives/index.html">归档</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/grjl/ft5_94_profile/index.html">个人简历</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/DorwoningFish.github.io/categories">分类</a></li>
+					<li style="width: 20%"><a href="/DorwoningFish.github.io/categories">个人简历</a></li>
 		        
 				</ul>
 			</nav>
@@ -1379,12 +1373,12 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <li><p>监听器<br> *&#x2F;<br>public class ExcelModelListener extends AnalysisEventListener<ExcelMode> {</p>
 <p>&#x2F;**</p>
 <ul>
-<li>每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收<br> *&#x2F;<br> private static final int BATCH_COUNT &#x3D; 5;<br> List<ExcelMode> list &#x3D; new ArrayList<ExcelMode>();<br> private static int count &#x3D; 1;<br> @Override<br> public void invoke(ExcelMode data, AnalysisContext context) {<br> System.out.println(“解析到一条数据:{ “+ data.toString() +” }”);<br> list.add(data);<br> count ++;<br> if (list.size() &gt;&#x3D; BATCH_COUNT) {<br> saveData( count );<br> list.clear();<br> }<br> }</li>
+<li>每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收<br> *&#x2F;<br>  private static final int BATCH_COUNT &#x3D; 5;<br>  List<ExcelMode> list &#x3D; new ArrayList<ExcelMode>();<br>  private static int count &#x3D; 1;<br>  @Override<br>  public void invoke(ExcelMode data, AnalysisContext context) {<br> System.out.println(“解析到一条数据:{ “+ data.toString() +” }”);<br> list.add(data);<br> count ++;<br> if (list.size() &gt;&#x3D; BATCH_COUNT) {<br> saveData( count );<br> list.clear();<br> }<br>  }</li>
 </ul>
 <p>@Override<br>public void doAfterAllAnalysed(AnalysisContext context) {<br>    saveData( count );<br>    System.out.println(“所有数据解析完成！”);<br>    System.out.println(“ count ：” + count);<br>}</p>
 <p>&#x2F;**</p>
 <ul>
-<li>加上存储数据库<br> *&#x2F;<br> private void saveData(int count) {<br> System.out.println(“{ “+ count +” }条数据，开始存储数据库！” + list.size());<br> System.out.println(“存储数据库成功！”);<br> }</li>
+<li>加上存储数据库<br> *&#x2F;<br>  private void saveData(int count) {<br> System.out.println(“{ “+ count +” }条数据，开始存储数据库！” + list.size());<br> System.out.println(“存储数据库成功！”);<br>  }</li>
 </ul>
 </li>
 </ul>
@@ -1685,6 +1679,17 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -1905,7 +1910,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <li><p>修饰静态方法 - “类锁” - 该类下的不同的对象竞争的是同一把”锁”</p>
 </li>
 <li><p>修饰代码块 - 同步代码块 - 允许出现多次的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(class实例)&#123;</span><br><span class="line">  <span class="comment">//类锁</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">synchronized</span>(<span class="built_in">this</span>)&#123;</span><br><span class="line">  <span class="comment">//对象锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(class实例)&#123;</span><br><span class="line">  <span class="comment">//类锁</span></span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">synchronized</span>(<span class="built_in">this</span>)&#123;</span><br><span class="line">  <span class="comment">//对象锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h2 id="synchronized底层浅析"><a href="#synchronized底层浅析" class="headerlink" title="synchronized底层浅析"></a>synchronized底层浅析</h2><blockquote>
@@ -1930,7 +1935,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在某个时刻,只能由一个线程进入同步代码执行</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>可重入性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一个线程如果已经竞争到<span class="string">&quot;锁资源&quot;</span>,那么它是可以继续竞争<span class="string">&quot;锁资源&quot;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;  <span class="comment">// monitor + 1</span></span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="built_in">this</span>)&#123;  <span class="comment">// monitor + 1</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一个线程如果已经竞争到<span class="string">&quot;锁资源&quot;</span>,那么它是可以继续竞争<span class="string">&quot;锁资源&quot;</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;  <span class="comment">// monitor + 1</span></span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="built_in">this</span>)&#123;  <span class="comment">// monitor + 1</span></span><br><span class="line">  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </blockquote>
 <h1 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h1><blockquote>
@@ -2243,7 +2248,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <p>任务过来,corePoolSize(核心的活跃线程)先启用,如果活跃的线程数不够用.那么就会将这个任务放入到任务队列中.</p>
 <p>如果任务队列也塞满了.那么非核心线程才会启用.</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">corePoolSize=<span class="number">10</span>,maximumPoolSize=<span class="number">20</span>,queueSize=<span class="number">10</span>[任务队列 - 只能存储<span class="number">10</span>个任务]</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> <span class="number">20</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">10</span>个</span><br><span class="line">   a. 启用<span class="number">10</span>个活跃线程 - 执行其中<span class="number">10</span>个任务,还有<span class="number">10</span>个任务放入到任务队列中[队列满了]</span><br><span class="line">      原先的核心<span class="number">10</span>个线程会在接下来继续从任务队列中取出任务进行执行.</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> <span class="number">21</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">11</span>个</span><br><span class="line">    a. 启用<span class="number">10</span>个活跃线程 - 执行其中<span class="number">10</span>个任务,还有<span class="number">10</span>个任务放入到任务队列中[队列满了]</span><br><span class="line">    b. 多了<span class="number">1</span>个任务.启用了非核心线程,需要在线程池中创建一个新的线程</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> <span class="number">30</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">20</span>个</span><br><span class="line">   corePoolSize(<span class="number">10</span>个)和queueSize(<span class="number">10</span>个任务)都满了 - 启动核心线程,启动了<span class="number">10</span>个 =&gt; 活跃的线程最大只能到达<span class="number">20</span>个</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> <span class="number">31</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">20</span>个</span><br><span class="line">   线程池满了(<span class="number">20</span>个) + 任务队列(<span class="number">10</span>) + 还多出<span class="number">1</span>个 =&gt; 触发它的拒绝策略.</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">corePoolSize=<span class="number">10</span>,maximumPoolSize=<span class="number">20</span>,queueSize=<span class="number">10</span>[任务队列 - 只能存储<span class="number">10</span>个任务]</span><br><span class="line">  </span><br><span class="line"><span class="number">1.</span> <span class="number">20</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">10</span>个</span><br><span class="line">   a. 启用<span class="number">10</span>个活跃线程 - 执行其中<span class="number">10</span>个任务,还有<span class="number">10</span>个任务放入到任务队列中[队列满了]</span><br><span class="line">      原先的核心<span class="number">10</span>个线程会在接下来继续从任务队列中取出任务进行执行.</span><br><span class="line">  </span><br><span class="line"><span class="number">2.</span> <span class="number">21</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">11</span>个</span><br><span class="line">    a. 启用<span class="number">10</span>个活跃线程 - 执行其中<span class="number">10</span>个任务,还有<span class="number">10</span>个任务放入到任务队列中[队列满了]</span><br><span class="line">    b. 多了<span class="number">1</span>个任务.启用了非核心线程,需要在线程池中创建一个新的线程</span><br><span class="line">  </span><br><span class="line"><span class="number">3.</span> <span class="number">30</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">20</span>个</span><br><span class="line">   corePoolSize(<span class="number">10</span>个)和queueSize(<span class="number">10</span>个任务)都满了 - 启动核心线程,启动了<span class="number">10</span>个 =&gt; 活跃的线程最大只能到达<span class="number">20</span>个</span><br><span class="line">  </span><br><span class="line"><span class="number">4.</span> <span class="number">31</span>个并发任务过来,当前线程池中会有多少个活跃的线程? -&gt; <span class="number">20</span>个</span><br><span class="line">   线程池满了(<span class="number">20</span>个) + 任务队列(<span class="number">10</span>) + 还多出<span class="number">1</span>个 =&gt; 触发它的拒绝策略.</span><br></pre></td></tr></table></figure></li>
 </ul>
 </blockquote>
 <h2 id="线程的拒绝策略"><a href="#线程的拒绝策略" class="headerlink" title="线程的拒绝策略"></a>线程的拒绝策略</h2><blockquote>
@@ -2298,6 +2303,21 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -3062,7 +3082,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <p>去破坏父类定义好的结构.</p>
 </li>
 <li><p>合成复用原则 - 由于继承带来代码的侵入性.鼓励使用合成复用原则来替代继承的写法.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">原先使用继承 - 提高代码的复用性.</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RootV1</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//功能1...  会走</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//机器人二代 - 延续机器人一代的功能,能够扩展新的功能</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//聚合 - 整体和部分 - 强度弱,比如 计算机(整体)-局部部分(鼠标,键盘,cpu,主板)</span></span><br><span class="line"><span class="comment">//组合 - 整体和部分 - 强度强,整体和部分不能分割 - 人(整体) - 局部(胳膊,大腿)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RootV2</span>&#123;</span><br><span class="line">   <span class="keyword">private</span> RootV1 rootV1;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">RootV2</span><span class="params">()</span>&#123;</span><br><span class="line">     <span class="built_in">this</span>.rootV1 = <span class="keyword">new</span> <span class="title class_">RootV1</span>(); <span class="comment">// 组合</span></span><br><span class="line">     <span class="comment">//聚合 - 带参构造</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123; <span class="comment">// 走,跑</span></span><br><span class="line">     <span class="built_in">this</span>.rootV1.run(); <span class="comment">// 实现了代码的复用,功能的拓展.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//版本升级 - 会跑的业务</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">原先使用继承 - 提高代码的复用性.</span><br><span class="line">   </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RootV1</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//功能1...  会走</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">//机器人二代 - 延续机器人一代的功能,能够扩展新的功能</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">//聚合 - 整体和部分 - 强度弱,比如 计算机(整体)-局部部分(鼠标,键盘,cpu,主板)</span></span><br><span class="line"><span class="comment">//组合 - 整体和部分 - 强度强,整体和部分不能分割 - 人(整体) - 局部(胳膊,大腿)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RootV2</span>&#123;</span><br><span class="line">   <span class="keyword">private</span> RootV1 rootV1;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">RootV2</span><span class="params">()</span>&#123;</span><br><span class="line">     <span class="built_in">this</span>.rootV1 = <span class="keyword">new</span> <span class="title class_">RootV1</span>(); <span class="comment">// 组合</span></span><br><span class="line">     <span class="comment">//聚合 - 带参构造</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123; <span class="comment">// 走,跑</span></span><br><span class="line">     <span class="built_in">this</span>.rootV1.run(); <span class="comment">// 实现了代码的复用,功能的拓展.</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">//版本升级 - 会跑的业务</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><blockquote>
@@ -3115,7 +3135,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <li><p>基于质数31来进行计算的 -&gt; 实验 - 产生哈希冲突概率最少的.</p>
 </li>
 <li><p>Set[I]集合有一个实现类HashSet[C] - 无序不可重复.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day07;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 理解hashCode的一个作用</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/7/26 10:02 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//无序不可重复</span></span><br><span class="line">        <span class="type">Book</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">1</span>,<span class="string">&quot;红楼梦&quot;</span>,<span class="number">100.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">2</span>,<span class="string">&quot;三国演义&quot;</span>,<span class="number">50.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">3</span>,<span class="string">&quot;james&quot;</span>,<span class="number">80.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">3</span>,<span class="string">&quot;james&quot;</span>,<span class="number">90.0d</span>);</span><br><span class="line"></span><br><span class="line">        Set&lt;Book&gt; sets = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//原理:</span></span><br><span class="line">        <span class="comment">//1. 将一个对象加入到容器之前,先去调用该对象的hashCode方法 -&gt; 得到哈希值</span></span><br><span class="line">        <span class="comment">//2. 如果这个哈希值曾经木有出现过,说明容器中的这块地址没有被其他对象占用,就可以直接放入</span></span><br><span class="line">        <span class="comment">//3. 如果这个哈希值曾经出现过 - 产生了哈希碰撞(哈希冲突),此时还不能说明哈希冲突的俩个对象是同一个对象</span></span><br><span class="line">        <span class="comment">//4. 继续调用equals方法.如果返回true,才说明是同一个对象,则拒绝添加入到容器</span></span><br><span class="line">        sets.add(b1);</span><br><span class="line">        sets.add(b2);</span><br><span class="line">        sets.add(b3);</span><br><span class="line">        sets.add(b4);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Book b : sets) &#123;</span><br><span class="line">            System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day07;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 理解hashCode的一个作用</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/7/26 10:02 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SetDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//无序不可重复</span></span><br><span class="line">        <span class="type">Book</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">1</span>,<span class="string">&quot;红楼梦&quot;</span>,<span class="number">100.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">2</span>,<span class="string">&quot;三国演义&quot;</span>,<span class="number">50.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">3</span>,<span class="string">&quot;james&quot;</span>,<span class="number">80.0d</span>);</span><br><span class="line">        <span class="type">Book</span> <span class="variable">b4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Book</span>(<span class="number">3</span>,<span class="string">&quot;james&quot;</span>,<span class="number">90.0d</span>);</span><br><span class="line">   </span><br><span class="line">        Set&lt;Book&gt; sets = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">   </span><br><span class="line">        <span class="comment">//原理:</span></span><br><span class="line">        <span class="comment">//1. 将一个对象加入到容器之前,先去调用该对象的hashCode方法 -&gt; 得到哈希值</span></span><br><span class="line">        <span class="comment">//2. 如果这个哈希值曾经木有出现过,说明容器中的这块地址没有被其他对象占用,就可以直接放入</span></span><br><span class="line">        <span class="comment">//3. 如果这个哈希值曾经出现过 - 产生了哈希碰撞(哈希冲突),此时还不能说明哈希冲突的俩个对象是同一个对象</span></span><br><span class="line">        <span class="comment">//4. 继续调用equals方法.如果返回true,才说明是同一个对象,则拒绝添加入到容器</span></span><br><span class="line">        sets.add(b1);</span><br><span class="line">        sets.add(b2);</span><br><span class="line">        sets.add(b3);</span><br><span class="line">        sets.add(b4);</span><br><span class="line">   </span><br><span class="line">        <span class="keyword">for</span> (Book b : sets) &#123;</span><br><span class="line">            System.out.println(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h2 id="重写clone方法"><a href="#重写clone方法" class="headerlink" title="重写clone方法"></a>重写clone方法</h2><blockquote>
@@ -3338,7 +3358,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <p>stu_age &#x3D;&gt; stuAge </p>
 </li>
 <li><p>不要超过5位</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入<span class="number">123</span></span><br><span class="line">输出:壹佰贰拾叁</span><br><span class="line"></span><br><span class="line">输入<span class="number">10005.03</span></span><br><span class="line">输出:壹萬零伍圆</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入<span class="number">123</span></span><br><span class="line">输出:壹佰贰拾叁</span><br><span class="line">   </span><br><span class="line">输入<span class="number">10005.03</span></span><br><span class="line">输出:壹萬零伍圆</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h1 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h1><blockquote>
@@ -3381,6 +3401,21 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -3818,7 +3853,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <li><p>泛型类</p>
 </li>
 <li><p>泛型方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">find</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T <span class="title function_">get</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">  <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">find2</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">find</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">&#125;</span><br><span class="line">      </span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T <span class="title function_">get</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">  <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line">      </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">find2</span><span class="params">(T t)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;find:&quot;</span>+t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h2 id="泛型好处"><a href="#泛型好处" class="headerlink" title="泛型好处"></a>泛型好处</h2><blockquote>
@@ -3865,6 +3900,17 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -4007,6 +4053,17 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -4122,7 +4179,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <ol start="3">
 <li><p>检测是否配置成功</p>
 <p>win+r - 终端,直接输入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">   </span><br><span class="line">admindeMacBook-Pro:~ admin$ java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_66&quot;</span></span><br><span class="line">Java(TM) SE Runtime <span class="title function_">Environment</span> <span class="params">(build <span class="number">1.8</span><span class="number">.0_66</span>-b17)</span></span><br><span class="line">Java <span class="title function_">HotSpot</span><span class="params">(TM)</span> <span class="number">64</span>-Bit Server <span class="title function_">VM</span> <span class="params">(build <span class="number">25.66</span>-b17, mixed mode)</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">            </span><br><span class="line">admindeMacBook-Pro:~ admin$ java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_66&quot;</span></span><br><span class="line">Java(TM) SE Runtime <span class="title function_">Environment</span> <span class="params">(build <span class="number">1.8</span><span class="number">.0_66</span>-b17)</span></span><br><span class="line">Java <span class="title function_">HotSpot</span><span class="params">(TM)</span> <span class="number">64</span>-Bit Server <span class="title function_">VM</span> <span class="params">(build <span class="number">25.66</span>-b17, mixed mode)</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <h1 id="java执行原理"><a href="#java执行原理" class="headerlink" title="java执行原理"></a>java执行原理</h1><blockquote>
@@ -4232,7 +4289,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 </li>
 <li><p>隐式转换</p>
 <p>3-1. L&#x2F;l</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="variable">o</span> <span class="operator">=</span> <span class="number">123L</span>;<span class="comment">//int-&gt;long</span></span><br><span class="line">思考</span><br><span class="line"><span class="type">long</span> <span class="variable">o1</span> <span class="operator">=</span> <span class="number">123</span>;<span class="comment">//ok</span></span><br><span class="line">   </span><br><span class="line">未来学习java.util.Date类型,构造函数</span><br><span class="line">Date(<span class="type">long</span> time);<span class="comment">//1658126857417</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="variable">o</span> <span class="operator">=</span> <span class="number">123L</span>;<span class="comment">//int-&gt;long</span></span><br><span class="line">思考</span><br><span class="line"><span class="type">long</span> <span class="variable">o1</span> <span class="operator">=</span> <span class="number">123</span>;<span class="comment">//ok</span></span><br><span class="line">            </span><br><span class="line">未来学习java.util.Date类型,构造函数</span><br><span class="line">Date(<span class="type">long</span> time);<span class="comment">//1658126857417</span></span><br></pre></td></tr></table></figure>
 
 <p>3-2. F&#x2F;f</p>
 <p>3-3. D&#x2F;d</p>
@@ -4418,7 +4475,7 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure>
 </li>
 <li><p>根据下标进行删除</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">      </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               </span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
 <blockquote>
@@ -4546,7 +4603,29 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/DorwoningFish.github.io/categories/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
     <p class="article-more-link">
@@ -4974,6 +5053,22 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
