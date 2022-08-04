@@ -6,28 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://drowningfish123.github.io/DorwoningFish.github.io">
-  <title>LRU | 溺水的鱼的博客</title>
+  <title>Tag: JVM | 溺水的鱼的博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="LRU前言LRU算法和LFU算法是属于页面置换的一种算法，或者更通俗的说，就是缓存如何淘汰的一种策略。 我们通常在设计一个系统的时候，由于数据库的读取速度远小于内存的读取速度，所以为了加快读取速度，会将一部分数据放到内存中，称为缓存。 但是内存容量是有限的，当你要缓存的数据超出容量，就得有部分数据删除，这时候哪些数据删除，哪些数据保留，就是LRU算法和LFU算法要干的事。 什么是LRU算法LRU算">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LRU">
-<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/2022/07/31/LRU/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="溺水的鱼的博客">
+<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/tags/JVM/index.html">
 <meta property="og:site_name" content="溺水的鱼的博客">
-<meta property="og:description" content="LRU前言LRU算法和LFU算法是属于页面置换的一种算法，或者更通俗的说，就是缓存如何淘汰的一种策略。 我们通常在设计一个系统的时候，由于数据库的读取速度远小于内存的读取速度，所以为了加快读取速度，会将一部分数据放到内存中，称为缓存。 但是内存容量是有限的，当你要缓存的数据超出容量，就得有部分数据删除，这时候哪些数据删除，哪些数据保留，就是LRU算法和LFU算法要干的事。 什么是LRU算法LRU算">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.isolves.com/d/file/p/2020/11-04/17ab0871e4f4efb99378611ca4950e06.jpg">
-<meta property="og:image" content="https://www.isolves.com/d/file/p/2020/11-04/6ddb864e98b5a996932319225d1973c8.jpg">
-<meta property="og:image" content="https://www.isolves.com/d/file/p/2020/11-04/349d00130e19aa40b4f3b0b6e542369f.jpg">
-<meta property="og:image" content="https://labuladong.gitee.io/algo/images/LRU%e7%ae%97%e6%b3%95/4.jpg">
-<meta property="og:image" content="https://labuladong.gitee.io/algo/images/LRU%e7%ae%97%e6%b3%95/put.jpg">
-<meta property="article:published_time" content="2022-07-31T14:28:12.000Z">
-<meta property="article:modified_time" content="2022-08-03T08:50:17.536Z">
 <meta property="article:author" content="Drowning Fish">
-<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.isolves.com/d/file/p/2020/11-04/17ab0871e4f4efb99378611ca4950e06.jpg">
   
     <link rel="alternative" href="/DorwoningFish.github.io/atom.xml" title="溺水的鱼的博客" type="application/atom+xml">
   
@@ -210,324 +199,65 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LRU" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/DorwoningFish.github.io/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/DorwoningFish.github.io/2022/08/04/JVM/" class="archive-article-date">
+        <time datetime="2022-08-04T11:17:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-04</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/DorwoningFish.github.io/2022/08/04/JVM/" target="_blank">JVM</a>
   
-    <h1 class="article-title" itemprop="name">
-      LRU
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/DorwoningFish.github.io/2022/07/31/LRU/" class="archive-article-date">
-        <time datetime="2022-07-31T14:28:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-31</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">11分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>LRU算法和LFU算法是属于<strong>页面置换</strong>的一种算法，或者更通俗的说，就是<strong>缓存如何淘汰</strong>的一种策略。</p>
-<p>我们通常在<a target="_blank" rel="noopener" href="https://www.isolves.com/it/rj/ps/">设计</a>一个系统的时候，由于数据库的读取速度远小于<a target="_blank" rel="noopener" href="https://www.isolves.com/it/yj/nc/">内存</a>的读取速度，所以为了加快读取速度，会将一部分数据放到内存中，称为<strong>缓存</strong>。</p>
-<p>但是<strong>内存容量是有限</strong>的，当你要缓存的数据超出容量，就得有部分数据删除，这时候<strong>哪些数据删除，哪些数据保留</strong>，就是LRU算法和LFU算法要干的事。</p>
-<h1 id="什么是LRU算法"><a href="#什么是LRU算法" class="headerlink" title="什么是LRU算法"></a>什么是LRU算法</h1><p>LRU算法，全称Least recently used，即<strong>最近最少使用</strong>。LRU算法的思想是如果数据<strong>最近</strong>被访问过，那么将来被访问的概率也会很高。</p>
-<p>根据这个思想，我们可以想到，实现LRU算法肯定会用到<strong>列表&#x2F;链表</strong>，目的是<strong>保证有序</strong>；还有一个是用到哈希表，这是因为缓存经常是key-value键值对的形式。</p>
-<p>比较简单的做法是使用列表+哈希表，但是这种方式查询和插入的时间复杂度都是O(n)，还有一种做法是使用双向链表+哈希表，查询和插入的时间复杂度都是O(1)，但是耗费的空间资源比较多。</p>
-<h1 id="列表-哈希表的实现"><a href="#列表-哈希表的实现" class="headerlink" title="列表+哈希表的实现"></a>列表+哈希表的实现</h1><p><img src="https://www.isolves.com/d/file/p/2020/11-04/17ab0871e4f4efb99378611ca4950e06.jpg" alt="缓存淘汰算法LRU和LFU"></p>
-<p>如上图，假设我们使用<strong>头插法</strong>，即最近访问的元素放在最前面，最晚的元素放在最后面，则实现LRU算法的步骤如下：</p>
-<ul>
-<li>1.初始化一个空列表，如上图，其容器为5。</li>
-<li>2.当执行查找（GET）操作时，需要遍历整个列表，找到key相同的元素，时间复杂度为O(n)</li>
-<li>3.当执行插入（PUT）操作时，有三种情况：</li>
-<li>3.1 <strong>遍历</strong>列表，如果元素的key存在，<strong>更新</strong>value的值，并把这个元素放到列表的<strong>最前面</strong>，从而保证最后面的元素是最晚访问的。</li>
-<li>3.2 遍历列表，如果元素的key不存在，且列表的容量未满，则把这个元素放到列表的最前面</li>
-<li>3.3 遍历列表，如果元素的key不存在，且列表的容量已满，删除最后的元素，并把新元素放到最前面</li>
-</ul>
-<h1 id="双向链表-哈希表的实现"><a href="#双向链表-哈希表的实现" class="headerlink" title="双向链表+哈希表的实现"></a>双向链表+哈希表的实现</h1><p>这应该是面试比较常考的点，面试官可能会问你，如果实现一个时间复杂度为O(1)的LRU缓存？</p>
-<p>这种实现的结构如下：</p>
-<p><img src="https://www.isolves.com/d/file/p/2020/11-04/6ddb864e98b5a996932319225d1973c8.jpg" alt="缓存淘汰算法LRU和LFU"></p>
-<p>上述LRUCache的m其实就是上图左边的HashMap，它的目的是为了实现查找的时间复杂度为O(1)。</p>
-<p>如果没有这个m，则查找元素的时候，需要遍历双向链表，时间复杂度为O(n)。</p>
-<p>而使用双向链表的原因主要是为了实现节点插入&#x2F;删除的时间复杂度为O(1)。</p>
-<p>那使用单链表不行吗？</p>
-<p><img src="https://www.isolves.com/d/file/p/2020/11-04/349d00130e19aa40b4f3b0b6e542369f.jpg" alt="缓存淘汰算法LRU和LFU"></p>
-<p>如上，使用单链表的话，可以实现头部快速插入新节点，尾部快速删除旧节点，时间复杂度都是O(1)。</p>
-<p>但是对于<strong>中间节点</strong>，比如我需要节点1的值由2更新为4，这时候除了更新值，还需要将其移动到最前面，而对于单链表，它只知道下一个元素，<strong>并不知道上一个元素</strong>，为了得到上一个元素，它必须遍历一次链表才知道，时间复杂度为O(n)，这就是为什么要用双向链表的原因。</p>
-<h3 id="一、LRU-算法设计"><a href="#一、LRU-算法设计" class="headerlink" title="一、LRU 算法设计"></a>一、LRU 算法设计</h3><p>分析上面的操作过程，要让 <code>put</code> 和 <code>get</code> 方法的时间复杂度为 O(1)，我们可以总结出 <code>cache</code> 这个数据结构必要的条件：</p>
-<p>1、显然 <code>cache</code> 中的元素必须有时序，以区分最近使用的和久未使用的数据，当容量满了之后要删除最久未使用的那个元素腾位置。</p>
-<p>2、我们要在 <code>cache</code> 中快速找某个 <code>key</code> 是否已存在并得到对应的 <code>val</code>；</p>
-<p>3、每次访问 <code>cache</code> 中的某个 <code>key</code>，需要将这个元素变为最近使用的，也就是说 <code>cache</code> 要支持在任意位置快速插入和删除元素。</p>
-<p>那么，什么数据结构同时符合上述条件呢？哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢。所以结合一下，形成一种新的数据结构：哈希链表 <code>LinkedHashMap</code>。</p>
-<p>LRU 缓存算法的核心数据结构就是哈希链表，双向链表和哈希表的结合体。这个数据结构长这样：</p>
-<p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/algo/images/LRU%E7%AE%97%E6%B3%95/4.jpg"><img src="https://labuladong.gitee.io/algo/images/LRU%e7%ae%97%e6%b3%95/4.jpg" alt="img"></a></p>
-<p>借助这个结构，我们来逐一分析上面的 3 个条件：</p>
-<p>1、如果我们每次默认从链表尾部添加元素，那么显然越靠尾部的元素就是最近使用的，越靠头部的元素就是最久未使用的。</p>
-<p>2、对于某一个 <code>key</code>，我们可以通过哈希表快速定位到链表中的节点，从而取得对应 <code>val</code>。</p>
-<p>3、链表显然是支持在任意位置快速插入和删除的，改改指针就行。只不过传统的链表无法按照索引快速访问某一个位置的元素，而这里借助哈希表，可以通过 <code>key</code> 快速映射到任意一个链表节点，然后进行插入和删除。</p>
-<p><strong>也许读者会问，为什么要是双向链表，单链表行不行？另外，既然哈希表中已经存了 <code>key</code>，为什么链表中还要存 <code>key</code> 和 <code>val</code> 呢，只存 <code>val</code> 不就行了</strong>？</p>
-<p>想的时候都是问题，只有做的时候才有答案。这样设计的原因，必须等我们亲自实现 LRU 算法之后才能理解，所以我们开始看代码吧～</p>
-<h3 id="二、代码实现"><a href="#二、代码实现" class="headerlink" title="二、代码实现"></a>二、代码实现</h3><p>很多编程语言都有内置的哈希链表或者类似 LRU 功能的库函数，但是为了帮大家理解算法的细节，我们先自己造轮子实现一遍 LRU 算法，然后再使用 Java 内置的 <code>LinkedHashMap</code> 来实现一遍。</p>
-<p>首先，我们把双链表的节点类写出来，为了简化，<code>key</code> 和 <code>val</code> 都认为是 int 类型：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> key, val;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(<span class="type">int</span> k, <span class="type">int</span> v)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.key = k;</span><br><span class="line">        <span class="built_in">this</span>.val = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后依靠我们的 <code>Node</code> 类型构建一个双链表，实现几个 LRU 算法必须的 API：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DoubleList</span> &#123;  </span><br><span class="line">    <span class="comment">// 头尾虚节点</span></span><br><span class="line">    <span class="keyword">private</span> Node head, tail;  </span><br><span class="line">    <span class="comment">// 链表元素数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DoubleList</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化双向链表的数据</span></span><br><span class="line">        head = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.prev = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在链表尾部添加节点 x，时间 O(1)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(Node x)</span> &#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除链表中的 x 节点（x 一定存在）</span></span><br><span class="line">    <span class="comment">// 由于是双链表且给的是目标 Node 节点，时间 O(1)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(Node x)</span> &#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 删除链表中第一个节点，并返回该节点，时间 O(1)</span></span><br><span class="line">    <span class="keyword">public</span> Node <span class="title function_">removeFirst</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.next == tail)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">first</span> <span class="operator">=</span> head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回链表长度，时间 O(1)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>到这里就能回答刚才「为什么必须要用双向链表」的问题了，因为我们需要删除操作。删除一个节点不光要得到该节点本身的指针，也需要操作其前驱节点的指针，而双向链表才能支持直接查找前驱，保证操作的时间复杂度 O(1)。</p>
-<p><strong>注意我们实现的双链表 API 只能从尾部插入，也就是说靠尾部的数据是最近使用的，靠头部的数据是最久未使用的</strong>。</p>
-<p>有了双向链表的实现，我们只需要在 LRU 算法中把它和哈希表结合起来即可，先搭出代码框架：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">    <span class="comment">// key -&gt; Node(key, val)</span></span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="comment">// Node(k1, v1) &lt;-&gt; Node(k2, v2)...</span></span><br><span class="line">    <span class="keyword">private</span> DoubleList cache;</span><br><span class="line">    <span class="comment">// 最大容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> cap;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> <span class="title class_">DoubleList</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>先不慌去实现 LRU 算法的 <code>get</code> 和 <code>put</code> 方法。由于我们要同时维护一个双链表 <code>cache</code> 和一个哈希表 <code>map</code>，很容易漏掉一些操作，比如说删除某个 <code>key</code> 时，在 <code>cache</code> 中删除了对应的 <code>Node</code>，但是却忘记在 <code>map</code> 中删除 <code>key</code>。</p>
-<p><strong>解决这种问题的有效方法是：在这两种数据结构之上提供一层抽象 API</strong>。</p>
-<p>说的有点玄幻，实际上很简单，就是尽量让 LRU 的主方法 <code>get</code> 和 <code>put</code> 避免直接操作 <code>map</code> 和 <code>cache</code> 的细节。我们可以先实现下面几个函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 将某个 key 提升为最近使用的 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">makeRecently</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">x</span> <span class="operator">=</span> map.get(key);</span><br><span class="line">    <span class="comment">// 先从链表中删除这个节点</span></span><br><span class="line">    cache.remove(x);</span><br><span class="line">    <span class="comment">// 重新插到队尾</span></span><br><span class="line">    cache.addLast(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加最近使用的元素 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">addRecently</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">x</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(key, val);</span><br><span class="line">    <span class="comment">// 链表尾部就是最近使用的元素</span></span><br><span class="line">    cache.addLast(x);</span><br><span class="line">    <span class="comment">// 别忘了在 map 中添加 key 的映射</span></span><br><span class="line">    map.put(key, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除某一个 key */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">deleteKey</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="type">Node</span> <span class="variable">x</span> <span class="operator">=</span> map.get(key);</span><br><span class="line">    <span class="comment">// 从链表中删除</span></span><br><span class="line">    cache.remove(x);</span><br><span class="line">    <span class="comment">// 从 map 中删除</span></span><br><span class="line">    map.remove(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除最久未使用的元素 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">removeLeastRecently</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 链表头部的第一个元素就是最久未使用的</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">deletedNode</span> <span class="operator">=</span> cache.removeFirst();</span><br><span class="line">    <span class="comment">// 同时别忘了从 map 中删除它的 key</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">deletedKey</span> <span class="operator">=</span> deletedNode.key;</span><br><span class="line">    map.remove(deletedKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里就能回答之前的问答题「为什么要在链表中同时存储 key 和 val，而不是只存储 val」，注意 <code>removeLeastRecently</code> 函数中，我们需要用 <code>deletedNode</code> 得到 <code>deletedKey</code>。</p>
-<p>也就是说，当缓存容量已满，我们不仅仅要删除最后一个 <code>Node</code> 节点，还要把 <code>map</code> 中映射到该节点的 <code>key</code> 同时删除，而这个 <code>key</code> 只能由 <code>Node</code> 得到。如果 <code>Node</code> 结构中只存储 <code>val</code>，那么我们就无法得知 <code>key</code> 是什么，就无法删除 <code>map</code> 中的键，造成错误。</p>
-<p>上述方法就是简单的操作封装，调用这些函数可以避免直接操作 <code>cache</code> 链表和 <code>map</code> 哈希表，下面我先来实现 LRU 算法的 <code>get</code> 方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!map.containsKey(key)) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将该数据提升为最近使用的</span></span><br><span class="line">    makeRecently(key);</span><br><span class="line">    <span class="keyword">return</span> map.get(key).val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>put</code> 方法稍微复杂一些，我们先来画个图搞清楚它的逻辑：</p>
-<p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/algo/images/LRU%E7%AE%97%E6%B3%95/put.jpg"><img src="https://labuladong.gitee.io/algo/images/LRU%e7%ae%97%e6%b3%95/put.jpg" alt="img"></a></p>
-<p>这样我们可以轻松写出 <code>put</code> 方法的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">        <span class="comment">// 删除旧的数据</span></span><br><span class="line">        deleteKey(key);</span><br><span class="line">        <span class="comment">// 新插入的数据为最近使用的数据</span></span><br><span class="line">        addRecently(key, val);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (cap == cache.size()) &#123;</span><br><span class="line">        <span class="comment">// 删除最久未使用的元素</span></span><br><span class="line">        removeLeastRecently();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 添加为最近使用的元素</span></span><br><span class="line">    addRecently(key, val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>至此，你应该已经完全掌握 LRU 算法的原理和实现了，我们最后用 Java 的内置类型 <code>LinkedHashMap</code> 来实现 LRU 算法，逻辑和之前完全一致，我就不过多解释了：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">    <span class="type">int</span> cap;</span><br><span class="line">    LinkedHashMap&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> capacity)</span> &#123; </span><br><span class="line">        <span class="built_in">this</span>.cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!cache.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将 key 变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (cache.containsKey(key)) &#123;</span><br><span class="line">            <span class="comment">// 修改 key 的值</span></span><br><span class="line">            cache.put(key, val);</span><br><span class="line">            <span class="comment">// 将 key 变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (cache.size() &gt;= <span class="built_in">this</span>.cap) &#123;</span><br><span class="line">            <span class="comment">// 链表头部就是最久未使用的 key</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">oldestKey</span> <span class="operator">=</span> cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 将新的 key 添加链表尾部</span></span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">makeRecently</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> cache.get(key);</span><br><span class="line">        <span class="comment">// 删除 key，重新插入到队尾</span></span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/DorwoningFish.github.io/assets/WeChat.png">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/DorwoningFish.github.io/assets/WeChat.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Drowning Fish
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/07/31/LRU/" title="LRU" target="_blank">https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/07/31/LRU/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://drowningfish123.github.io/DorwoningFish.github.io/2022/07/31/LRU/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/DorwoningFish.github.io/2022/08/02/java%E9%9B%86%E5%90%88%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java集合类、泛型
-        
-      </div>
-    </a>
   
   
-    <a href="/DorwoningFish.github.io/2022/07/31/Java%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java基础</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LRU"><span class="toc-number">1.</span> <span class="toc-text">LRU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFLRU%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">什么是LRU算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">列表+哈希表的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8-%E5%93%88%E5%B8%8C%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">双向链表+哈希表的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81LRU-%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.0.1.</span> <span class="toc-text">一、LRU 算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.0.2.</span> <span class="toc-text">二、代码实现</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -568,9 +298,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
