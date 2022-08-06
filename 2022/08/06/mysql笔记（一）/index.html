@@ -6,34 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://drowningfish123.github.io/DorwoningFish.github.io">
-  <title>JVM | 溺水的鱼的博客</title>
+  <title>mysql笔记（一） | 溺水的鱼的博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="要点:  内存 - 运行时数据区域(runtime data area)  jvm8 - 剔除永久代,使用metaspace[类&#x2F;方法的元信息,常量池,静态]替代 - 它直接从操作系统中分配，因此不受Java堆大小的限制 元空间在本地内存中分配，它并不是虚拟机运行时数据区的一部分  字符串常量池仍然是堆  栈和堆区别!  如何确定某个对象是垃圾对象  垃圾回收算法    7. JVM部">
+  <meta name="description" content="数据库介绍 按照一定的数据结构来组织,管理和存储数据的仓库 用仓库的方式来管理数据的.一个仓库下会有很多表.一个表由行和列构成.  数据的分类  关系型数据库  表格型数据库 - 有行和列来构成一张表,表中存放数据 常见的产品:MS-sqlserver,主流的免费的Oracle-mysql(中小型的应用),收费的Oracle-oracle(大型的应用)  nosql - 不仅仅是sql - 非关系">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM">
-<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/04/JVM/index.html">
+<meta property="og:title" content="mysql笔记（一）">
+<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="溺水的鱼的博客">
-<meta property="og:description" content="要点:  内存 - 运行时数据区域(runtime data area)  jvm8 - 剔除永久代,使用metaspace[类&#x2F;方法的元信息,常量池,静态]替代 - 它直接从操作系统中分配，因此不受Java堆大小的限制 元空间在本地内存中分配，它并不是虚拟机运行时数据区的一部分  字符串常量池仍然是堆  栈和堆区别!  如何确定某个对象是垃圾对象  垃圾回收算法    7. JVM部">
+<meta property="og:description" content="数据库介绍 按照一定的数据结构来组织,管理和存储数据的仓库 用仓库的方式来管理数据的.一个仓库下会有很多表.一个表由行和列构成.  数据的分类  关系型数据库  表格型数据库 - 有行和列来构成一张表,表中存放数据 常见的产品:MS-sqlserver,主流的免费的Oracle-mysql(中小型的应用),收费的Oracle-oracle(大型的应用)  nosql - 不仅仅是sql - 非关系">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/JVM.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/jvm8.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/jvm7.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/jvm7-堆.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/jvm8-堆.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/堆.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/GC-root.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/roots.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/标记清除.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/复制算法.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/note/imgs/标记整理.png">
-<meta property="article:published_time" content="2022-08-04T11:17:16.000Z">
-<meta property="article:modified_time" content="2022-08-04T11:20:33.200Z">
+<meta property="article:published_time" content="2022-08-06T00:46:29.000Z">
+<meta property="article:modified_time" content="2022-08-06T00:47:15.683Z">
 <meta property="article:author" content="Drowning Fish">
-<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:/苏州/dy-corejava-tech/note/imgs/JVM.png">
   
     <link rel="alternative" href="/DorwoningFish.github.io/atom.xml" title="溺水的鱼的博客" type="application/atom+xml">
   
@@ -216,14 +205,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JVM" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mysql笔记（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      JVM
+      mysql笔记（一）
     </h1>
   
 
@@ -235,8 +224,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/DorwoningFish.github.io/2022/08/04/JVM/" class="archive-article-date">
-        <time datetime="2022-08-04T11:17:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-04</time>
+<a href="/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+        <time datetime="2022-08-06T00:46:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-06</time>
 </a>
 
   
@@ -249,7 +238,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.8k字</span>
+      <span class="post-count">6.4k字</span>
     </span>
   </span>
 
@@ -258,7 +247,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">13分</span>
+      <span class="post-count">28分</span>
     </span>
   </span>
 </div>
@@ -269,160 +258,629 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <blockquote>
-<p><code>要点</code>:</p>
+    <h1 id="数据库介绍"><a href="#数据库介绍" class="headerlink" title="数据库介绍"></a>数据库介绍</h1><blockquote>
+<p>按照一定的数据结构来组织,管理和存储数据的仓库</p>
+<p>用仓库的方式来管理数据的.一个仓库下会有很多表.一个表由行和列构成.</p>
+</blockquote>
+<h2 id="数据的分类"><a href="#数据的分类" class="headerlink" title="数据的分类"></a>数据的分类</h2><blockquote>
 <ol>
-<li><p>内存 - 运行时数据区域(runtime data area)</p>
+<li><p>关系型数据库 </p>
+<p><code>表格型数据库 - 有行和列来构成一张表,表中存放数据</code></p>
+<p>常见的产品:MS-sqlserver,主流的免费的Oracle-mysql(中小型的应用),收费的Oracle-oracle(大型的应用)</p>
 </li>
-<li><p>jvm8 - 剔除永久代,使用metaspace[类&#x2F;方法的元信息,常量池,静态]替代 - <strong>它直接从操作系统中分配</strong>，<strong>因此不受Java堆大小的限制</strong></p>
-<p>元空间在本地内存中分配，它并不是虚拟机运行时数据区的一部分</p>
-</li>
-<li><p>字符串常量池仍然是堆</p>
-</li>
-<li><p>栈和堆区别!</p>
-</li>
-<li><p>如何确定某个对象是垃圾对象</p>
-</li>
-<li><p>垃圾回收算法</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="7-JVM部分"><a href="#7-JVM部分" class="headerlink" title="7. JVM部分"></a>7. JVM部分</h1><p><img src="D:/苏州/dy-corejava-tech/note/imgs/JVM.png"> </p>
-<h2 id="1-JVM内存模型"><a href="#1-JVM内存模型" class="headerlink" title="1. JVM内存模型"></a>1. JVM内存模型</h2><blockquote>
-<p>.class字节码文件 - 类加载器 - 解析引擎(jvm解释器) - 运行时数据区域(Runtime Area - 内存区域)</p>
-</blockquote>
-<blockquote>
-<ol>
-<li><p>JVM内存模型分为堆（heap）、元空间、栈、本地方法栈、程序计数器。<br><code>**JDK8的内存模型如下图⭐️⭐️⭐️**</code></p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/jvm8.png"> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">堆和元空间是线程共享的，在Java虚拟机中只有一个堆、一个元空间，并在JVM启动的时候就创建，JVM停止才销毁。</span><br><span class="line">栈、本地方法栈、程序计数器是每个线程私有的，随着线程的创建而创建，随着线程的结束而死亡。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JDK7的内存模型</p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/jvm7.png"></p>
-</li>
-</ol>
-</blockquote>
-<h2 id="2-JVM8模型和JVM7模型区别"><a href="#2-JVM8模型和JVM7模型区别" class="headerlink" title="2. JVM8模型和JVM7模型区别"></a>2. JVM8模型和JVM7模型区别</h2><p><code>JVM7</code></p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/jvm7-堆.png"></p>
-<p><code>JVM8</code></p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/jvm8-堆.png"> </p>
-<blockquote>
-<p><strong>JDK8使用元空间替换永久代</strong>，元空间的本质和永久代类似，都是对JVM规范中方法区的实现。之前永久代的内容：类元信息、字段、静态属性、方法、常量，还有运行时常量池等都移动至<strong>元空间</strong>，但是<strong>字符串常量移至堆内存</strong>。<br>元空间在本地内存中分配，它并不是<strong>虚拟机运行时数据区的一部分</strong>，<strong>也不是Java虚拟机规范中定义的内存区域</strong>，<strong>它直接从操作系统中分配</strong>，<strong>因此不受Java堆大小的限制</strong>，但是会受到本机总内存的大小及处理器寻址空间的限制，因此它也可能导致OutOfMemoryError异常出现。“元空间”的大小可以动态调整，通过以下参数来指定元空间大小.</p>
-</blockquote>
-<h2 id="3-JVM组成部分及其作用"><a href="#3-JVM组成部分及其作用" class="headerlink" title="3. JVM组成部分及其作用"></a>3. JVM组成部分及其作用</h2><blockquote>
-<ol>
-<li><p>本地方法栈 - 提供虚拟机使用到的本地Native方法服务。</p>
-<p><strong>被native关键字修饰的方法叫做本地方法</strong>，本地方法和其它方法不一样，本地方法意味着和平台有关，因此使用了native的程序可移植性都不太高。另外native方法在JVM中运行时数据区也和其它方法不一样，它有专门的本地方法栈。native方法主要用于加载文件和动态链接库，<strong>由于Java语言无法访问操作系统底层信息（比如：底层硬件设备等），这时候就需要借助C语言来完成了。被native修饰的方法可以被C语言重写.</strong></p>
-</li>
-<li><p>程序计数器(Program Counter Register)</p>
-<p><strong>最快的存储区</strong>，保存的是<strong>程序当前执行的指令地址</strong>，执行结束后，自动获取下一个指令，位于CPU处理器内部。数量极其有限，由编译器根据需求进行分配。java中，<strong>不能直接控制</strong>，也不能在程序中感觉到寄存器存在的任何迹象。</p>
-<p>每个线程在创建后，都会产生自己的程序计数器和栈。程序计数器是一块较小的内存空间。由于CPU时间片轮限制，众多线程在并发执行过程中，处理器只会执行某个线程中的一条指令，这样必然涉及线程的切换。<br>程序计数器用来存放下一个执行指令的行号。线程恢复要依赖程序计数器。此区域不会发生内存溢出异常。</p>
-</li>
-<li><p><strong>线程栈（Stack）&#x2F; 虚拟机栈 &#x2F; 栈 - 先进后出 ⭐️</strong></p>
-<p>JVM中的线程栈是描述Java方法执行的内存区域，<strong>它是线程私有的</strong>。每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
-<p>栈帧存储着局部变量、操作数栈、动态链接、方法出口等信息，局部变量存储方法内的局部变量，操作数栈用来计算时临时存放变量，动态链接存放方法的元信息等，方法出口记录如哪个方法的本方法等。通过javap -c XX.class查看字节码文件。</p>
-<p><code>如果线程请求的栈深度大于虚拟机所允许的深度，将会抛出stackoverflowError通常出现在递归方法中；  如果虚拟机可以动态扩展，但是无法申请到足够的内存时，就会抛出outOfMemoryError异常。</code></p>
-</li>
-<li><p>方法区（Method Area）</p>
-<p>方法区中存放已经被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<strong>是JDK7存在的一个概念.</strong></p>
-<p>方法区与堆（Java Heap）一样，是各个线程共享的内存区域。</p>
-</li>
-<li><p><strong>堆 - 线程共享,可以动态调整大小. ⭐️</strong></p>
-<p>Heap存储着几乎所有的对象及数组，JVM8中把静态变量（字符串常量池）也移到堆区进行存储.</p>
-<p>堆是OOM故障最主要的发源地，也是是垃圾回收的主要区域,所以也被称为GC堆。通常情况下，它占用的空间是所有内存区域中最大的，但如果无节制地创建大量对象，也容易消耗完所有的空间。<strong>堆的内存空间既可以固定大小，也可运行时动态地调整</strong>，通过如下参数设定初始值和最大值，<strong>比如-Xms256M. -Xmx1024M</strong>。其中-X表示它是JVM运行参数，ms是memorystart初始堆容量的简称 ，mx是memory max最大堆容量的简称。但是在通常情况下，服务器在运行过程中，堆空间不断地扩容与回缩，势必形成不必要的系统压力，所以在线上生产环境中，JVM的Xms和Xmx设置成一样大小，避免在GC后调整堆大小时带来的额外压力。</p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/堆.png"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">堆细分为新生代(<span class="number">1</span>/<span class="number">3</span>)和老年代(<span class="number">2</span>/<span class="number">3</span>).</span><br><span class="line">新生代按照<span class="number">8</span>:<span class="number">1</span>:<span class="number">1</span>的比例分成三个区域(伊甸园,From区域,To区域)</span><br><span class="line"></span><br><span class="line">①一开始创建的对象全部放入到Eden区域</span><br><span class="line">②程序running,GC后台守护线程,去检测,找出活着的对象 =&gt; From区域,死的对象直接由GC回收</span><br><span class="line">③From-&gt;To =&gt; 复制算法</span><br><span class="line">④GC检测From-&gt;To区域,经过<span class="number">15</span>次检测,发现这个对象还是活着的 -&gt; 对象放入到老年/生代</span><br><span class="line">⑤老生代 - 标记整理/压缩-适合存活率比较高的对象.</span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="7">
-<li><p><strong>元空间 ⭐️</strong></p>
-<p>JDK8使用元空间替换永久代，元空间的本质和永久代类似，都是对JVM规范中方法区的实现。之前永久代的内容：类元信息、字段、静态属性、方法、常量，还有运行时常量池等都移动至元空间，但是字符串常量移至堆内存。<br> 元空间在本地内存中分配，它并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域，它直接从操作系统中分配，因此不受Java堆大小的限制，但是会受到本机总内存的大小及处理器寻址空间的限制，因此它也可能导致OutOfMemoryError异常出现。“元空间”的大小可以动态调整，通过以下参数来指定元空间大小.</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="4-JVM优化"><a href="#4-JVM优化" class="headerlink" title="4. JVM优化"></a>4. JVM优化</h2><blockquote>
-<p> 参数</p>
-</blockquote>
-<h1 id="8-GC部分"><a href="#8-GC部分" class="headerlink" title="8. GC部分"></a>8. GC部分</h1><h2 id="5-什么是GC"><a href="#5-什么是GC" class="headerlink" title="5. 什么是GC"></a>5. 什么是GC</h2><blockquote>
-<p><em><strong>有了垃圾回收机制后，程序员只需要关心内存的申请即可，内存的释放由系统自动识别完成</strong></em>。换句话说，自动的垃圾回收的算法就会变得非常重要了，如果因为算法的不合理，导致内存资源一直没有释放，同样也可能会导致内存溢出的。</p>
-</blockquote>
-<h2 id="6-对象搜索法"><a href="#6-对象搜索法" class="headerlink" title="6. 对象搜索法"></a>6. 对象搜索法</h2><blockquote>
-<p>采用什么机制来确定某个对象是垃圾对象</p>
-</blockquote>
-<h3 id="6-1-引用计数"><a href="#6-1-引用计数" class="headerlink" title="6.1 引用计数"></a>6.1 引用计数</h3><blockquote>
-<p>引用计数法（Reference Counting）比较简单，对每一个<strong>对象</strong>保存一个整型的<strong>引用计数器属性</strong>。用于记录对象被引用的情况。<br>对于一个对象A，只要有任何一个对象引用了A，则A的引用计数器就加1；当引用失效时，引用计数器就减1。<strong>只要对象的引用计数器的值为0</strong>，即表示对象A不能在被使用，可进行回收。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();<span class="comment">// +1</span></span><br><span class="line"><span class="type">Student</span> <span class="variable">s1</span> <span class="operator">=</span> s;<span class="comment">//+1,对应的引用计数器属性值是2</span></span><br><span class="line">s = <span class="literal">null</span>;<span class="comment">// -1,最终为1 -&gt; 不是垃圾对象,不能被回收.</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>优点：实现简单，垃圾对象便于辨识；判定效率高，回收没有延迟性。</p>
-<p>缺点：</p>
+<li><p>nosql - 不仅仅是sql - 非关系型数据库</p>
 <ul>
-<li><p>它需要单独的字段存储计数器，这样的做法增加了<strong>存储空间的开销</strong>。</p>
+<li>键值对数据库 - redis</li>
+<li>文档型数据库 - mongodb</li>
+<li>列式数据库 - hbase</li>
+<li>图形数据库</li>
+</ul>
 </li>
-<li><p>每次赋值都需要更新计数器，伴随着加法和减法操作，这<strong>增加了时间开销</strong>。</p>
+</ol>
+</blockquote>
+<h2 id="数据库安装注意点"><a href="#数据库安装注意点" class="headerlink" title="数据库安装注意点"></a>数据库安装注意点</h2><blockquote>
+<ol>
+<li><p>server和client</p>
+<p>当我们安装好db之后,自带安装好了mysql-server端和mysql-client端</p>
+<p><code>db正常使用,一定要保障mysql-server端处于运行状态</code></p>
+<ul>
+<li><p>右击计算机 - 管理 - 服务 - 服务和应用程序 - 👉🏻右边窗口 - Mysql - 启动方式设置开启自启.</p>
 </li>
-<li><p>引用计数器还有一个严重的问题，<strong>即无法处理循环引用的问题，这是一条致命的缺陷</strong>，导致在Java回收的垃圾回收器中没有使用这类算法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyObject</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">MyObject</span> <span class="variable">re1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyObject</span>();<span class="comment">//re1-obj +1</span></span><br><span class="line">    <span class="type">MyObject</span> <span class="variable">re2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyObject</span>();<span class="comment">//re2-obj +1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//循环引用</span></span><br><span class="line">    re1.obj = re2;<span class="comment">// re2-obj +1   =&gt; 计数器2</span></span><br><span class="line">    re2.obj = re1;<span class="comment">// re1-obj +1   =&gt; 计数器2</span></span><br><span class="line"></span><br><span class="line">    re1 = <span class="literal">null</span>;<span class="comment">// re1-obj -1  =&gt; 计数器1</span></span><br><span class="line">    re2 = <span class="literal">null</span>;<span class="comment">// re2-obj -1  =&gt; 计数器1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//俩个对象虽然不是垃圾对象,但是此时已经办法使用了.</span></span><br><span class="line">    <span class="comment">//访问re1/re2 =&gt; null</span></span><br><span class="line">    <span class="comment">//re1.obj/re2.obj =&gt; null.obj/null.obj =&gt; 空指针</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>可以通过终端输入命令来启动mysql-server端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">net stop mysql</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>mysql-client客户端<ul>
+<li>第三方的收费navicat</li>
+<li>idea</li>
+<li>java代码</li>
+<li>自带的控制台</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h2><blockquote>
+<ol>
+<li><p>DB - DataBase 数据库</p>
+</li>
+<li><p>DBA - 数据库管理员(侧重于运维),DE - 数据库研发工程师</p>
+</li>
+<li><p>DBMS - 数据库管理系统,安装在操作系统.用户通过dbms来操作db,dba通过dbms来管理db,保证db在7*24h高效运转</p>
+<p><code>人 - dbms - db(os)</code></p>
+</li>
+<li><p>RDBMS - 关系型数据库管理系统 </p>
+</li>
+<li><p>DBS - 数据库系统,大的范畴,dbs &#x3D; dba+db+dbms</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><blockquote>
+<p><code>前提:mysql安装并且配置好了环境变量</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<p><code>修改密码</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">alter user &#x27;用户名&#x27;@&#x27;db所在主机ip&#x27; identified by &#x27;新的密码&#x27;;</span><br><span class="line"></span><br><span class="line">use mysql</span><br><span class="line"></span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;root&#x27;;</span><br><span class="line"></span><br><span class="line">-- 退出重新登录</span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="导入脚本"><a href="#导入脚本" class="headerlink" title="导入脚本"></a>导入脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">-- 1. 创建数据库  create dabatase 数据库名</span><br><span class="line">create database dy;</span><br><span class="line"></span><br><span class="line">-- 查看所有的db</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">-- 2. 使用数据库</span><br><span class="line">use dy</span><br><span class="line"></span><br><span class="line">-- 3. 导入脚本 - .sql为后缀的sql文件</span><br><span class="line">-- 3-1. 在dy数据库中生成5张表</span><br><span class="line">-- 3-2. 每张表中模拟一些数据</span><br><span class="line">source 脚本文件的绝对路径;</span><br><span class="line"></span><br><span class="line">-- 4. 查看该库下所有的表</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">+--------------+</span><br><span class="line">| Tables_in_dy |</span><br><span class="line">+--------------+</span><br><span class="line">| s_customer   |</span><br><span class="line">| s_dept       |</span><br><span class="line">| s_emp        |</span><br><span class="line">| s_ord        |</span><br><span class="line">| s_region     |</span><br><span class="line">+--------------+</span><br><span class="line"></span><br><span class="line">--5. 查看表结构</span><br><span class="line">desc s_emp</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置数据库编码"><a href="#设置数据库编码" class="headerlink" title="设置数据库编码"></a>设置数据库编码</h2><blockquote>
+<ol>
+<li><p>查看编码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;character_set%&#x27;;</span><br><span class="line"></span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| Variable_name            | Value                                                     |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| character_set_client     | utf8                                                      |</span><br><span class="line">| character_set_connection | utf8                                                      |</span><br><span class="line">| character_set_database   | utf8                                                      |</span><br><span class="line">| character_set_filesystem | binary                                                    |</span><br><span class="line">| character_set_results    | utf8                                                      |</span><br><span class="line">| character_set_server     | utf8                                                      |</span><br><span class="line">| character_set_system     | utf8                                                      |</span><br><span class="line">| character_sets_dir       | /usr/local/mysql-5.7.28-macos10.14-x86_64/share/charsets/ |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改编码</p>
+<p>2-1. 临时修改 - set命令 - 仅仅是对当前会话(一次连接,窗口)有效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set names utf8;</span><br></pre></td></tr></table></figure>
+
+<p>2-2. 永久生效 - 找到<strong>my.ini文件</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">character_set_server</span>=utf8</span><br></pre></td></tr></table></figure>
+
+<p>需要重启mysql-server(mysql服务器端),才能生效.</p>
+<ol>
+<li><p>通过gui方式</p>
+</li>
+<li><p>通过命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="SQL介绍"><a href="#SQL介绍" class="headerlink" title="SQL介绍"></a>SQL介绍</h2><blockquote>
+<p>SQL 是 Structured Query Language 的缩写，中文译为“结构化查询语言”。SQL 是一种计算机语言，用来存储、检索和修改关系型数据库中存储的数据。</p>
+<p>①mysql-client输入合法的sql语句,如果sql非法,直接报错</p>
+<p>②输入回车- 客户端将sql语句发送到mysql-server端,编译和解析sql语句的.</p>
+<p>③mysql-server将执行完sql语句的结果返回到mysql-client进行展示.</p>
+</blockquote>
+<h3 id="按照功能SQL分类"><a href="#按照功能SQL分类" class="headerlink" title="按照功能SQL分类"></a>按照功能SQL分类</h3><blockquote>
+<ol>
+<li><p>DDL(Data Definition Language) - 数据定义语言</p>
+<p>create drop alter truncate rename comment(注释)</p>
+</li>
+<li><p>DML(Data Manipulation Language) - 数据操纵语言</p>
+<p>update delete insert</p>
+</li>
+<li><p>DQL(Data Query Language) - 数据查询语言</p>
+<p>select</p>
+</li>
+<li><p>TCL&#x2F;DTL(Transaction Control Language):事务控制语言</p>
+<p>commit savepoint rollback</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h1><blockquote>
+<ol>
+<li><p>查询的本质</p>
+<ul>
+<li>到哪里查</li>
+<li>查什么</li>
+</ul>
+</li>
+<li><p>语法 - 关键字是大小写不敏感</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,..列n</span><br><span class="line"><span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="列取别名"><a href="#列取别名" class="headerlink" title="列取别名"></a>列取别名</h2><blockquote>
+<ol>
+<li><p>查询员工的名字,薪水以及职称.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary,title from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式一</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1 列别名,列名2 列别名,..列n</span><br><span class="line">FROM 表名;</span><br><span class="line"></span><br><span class="line">select first_name 名字,salary 薪水,title 职称 from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式二</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1 as 列别名,列名2 as 列别名,..列n</span><br><span class="line">FROM 表名;</span><br><span class="line"></span><br><span class="line">select first_name as 名字,salary as 薪水,title as 职称 from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式三</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列别名中间有空格,需要使用双引号来包裹格式</span><br><span class="line">select first_name &quot;名 字&quot;,salary &quot;薪 水&quot;,title as &quot;职 称&quot; from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询所有列*</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式化输出</span><br><span class="line">select * from s_emp;</span><br><span class="line"></span><br><span class="line">select * from s_emp \G;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="去重关键字"><a href="#去重关键字" class="headerlink" title="去重关键字"></a>去重关键字</h2><blockquote>
+<p>distinct</p>
+<ol>
+<li><p>查询员工表中所有的职称的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct title from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="列的计算"><a href="#列的计算" class="headerlink" title="列的计算"></a>列的计算</h2><blockquote>
+<p>列是允许计算的</p>
+<ol>
+<li><p>查询员工的名字,年薪(不带提成commission_pct)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*12 年薪 from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询员工的名字,年薪(带提成commission_pct)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+commission_pct/100)*12 年薪 from s_emp;</span><br><span class="line"></span><br><span class="line">查询出来只有5个人有年薪,原因是因为只有5个人有提成.其他人的提成都是null值</span><br><span class="line">mysql - null值计算的结果还是一个null值</span><br><span class="line"></span><br><span class="line">使用到mysql中提供的空值置换函数</span><br><span class="line">coalesce(m,n) - 如果m为null,返回n,否则返回m</span><br><span class="line"></span><br><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<ol>
+<li><p>找出员工的姓名,工资以及入职日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select last_name,first_name,salary,start_date from s_emp;</span><br><span class="line"></span><br><span class="line">-- 列的拼接 concat(m,n,a,b,c,..)</span><br><span class="line">-- mysql中的字符串统一使用单引号</span><br><span class="line">select concat(last_name,&#x27;  &#x27;,first_name) 姓名,salary,start_date from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出所有的客户名以及他的联系方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name,phone from s_customer;</span><br><span class="line"></span><br><span class="line">-- 查询姓名的时候</span><br><span class="line">-- 蔡根花 - 蔡**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出每个订单的费用,支付方式以及出货日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select total,payment_type,date_ordered from s_ord;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1,列名2,..列n</span><br><span class="line">FROM 表名</span><br><span class="line">WHERE 条件表达式;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p><code>比较运算符</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; &lt; &gt;= &lt;= != &lt;&gt; =</span><br></pre></td></tr></table></figure>
+
+<p><code>其他运算符</code></p>
+<blockquote>
+<ol>
+<li>between …  and ..  在…到…之间</li>
+<li>in(集合) - 在某个集合内</li>
+<li>not in(集合) - 不在某个集合内</li>
+<li>is - 判断是否为null,判断null值不能用&#x3D;</li>
+<li>is not - 判断是否不为null</li>
+</ol>
+</blockquote>
+<p><code>逻辑连接符</code></p>
+<blockquote>
+<ol>
+<li>and 条件同时成立,返回true</li>
+<li>or 有一个条件成立,就返回true</li>
+</ol>
+</blockquote>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>查询部门编号(dept_id)为41,42,45的员工找出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select first_name,dept_id from s_emp</span><br><span class="line">where dept_id=41 or dept_id=42 or dept_id=45;</span><br><span class="line"></span><br><span class="line">select first_name,dept_id from s_emp where dept_id in(41,42,45);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询没有提成的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,commission_pct from s_emp where commission_pct is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出工资在[1200,1500]之间的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary from s_emp where salary between 1200 and 1500;</span><br><span class="line"></span><br><span class="line">-- 更加灵活</span><br><span class="line">select first_name,salary from s_emp where salary&gt;=1200 and salary&lt;=1500;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找工资大于1500并且没有提成的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary from s_emp where salary&gt;1500 and commission_pct is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找年薪(包括提成)超过15000的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 _year from s_emp</span><br><span class="line">where salary*(1+coalesce(commission_pct,0)/100)*12&gt;15000;</span><br><span class="line"></span><br><span class="line">-- 给列取别名的意义</span><br><span class="line">-- 子查询 - 查询的结果作为虚拟表 - 子查询一定要放在()中</span><br><span class="line">select * from X where _year&gt;15000;</span><br><span class="line"></span><br><span class="line">查询的结果来替代X,子查询的结果作为表的话 - 需要给表取别名</span><br><span class="line">select * from (select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 _year from s_emp) core_ where _year&gt;15000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出除了41部门的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select first_name,dept_id from s_emp where dept_id &lt;&gt; 41;</span><br><span class="line"></span><br><span class="line">select first_name,dept_id from s_emp where dept_id not in(41);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出亚洲区域的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- mysql中采用单引号</span><br><span class="line">select * from s_region where name=&#x27;Asia&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><blockquote>
+<p>大小写不敏感的</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>关键字like</li>
+<li>占位符<ul>
+<li>% 代表的任意多个任意字符</li>
+<li>_ 代表的是任意单个字符</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><blockquote>
+<ul>
+<li><p>first_name名称正好包含了%或者_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update s_emp set first_name=&#x27;Mar%k&#x27; where id=4;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询first_name包含%的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 定义转义字符,默认的是\</span><br><span class="line">select first_name from s_emp where first_name like &#x27;%\%%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 自定义转义字符,用escape 新的转义字符</span><br><span class="line">select first_name from s_emp where first_name like &#x27;%?%%&#x27; escape &#x27;?&#x27;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </blockquote>
-<h3 id="6-2-可达性分析算法"><a href="#6-2-可达性分析算法" class="headerlink" title="6.2 可达性分析算法"></a>6.2 可达性分析算法</h3><blockquote>
-<p>现代虚拟机基本都是采用可达性分析算法来判断对象是否存活，可达性算法的原理是以一系列叫做  GC Root  的对象为起点出发，引出它们指向的下一个节点，再以下个节点为起点，引出此节点指向的下一个结点。这样通过 GC Root 串成的一条线就叫引用链），直到所有的结点都遍历完毕,如果相关对象不在任意一个以 GC Root 为起点的引用链中，则这些对象会被判断为垃圾对象,会被 GC 回收。</p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/GC-root.png"> </p>
-<p>如图示，如果用可达性算法即可解决上述循环引用的问题，因为从<strong>GC Root</strong> 出发没有到达 a,b,所以 a，b 可回收。</p>
-<p><code>a, b 对象可回收，就一定会被回收吗?</code></p>
-<p>并不是，对象的 finalize 方法给了对象一次垂死挣扎的机会，当对象不可达（可回收）时，当发生GC时，会先判断对象是否执行了 finalize 方法，如果未执行，则会先执行 finalize 方法，我们可以在此方法里将当前对象与 GC Roots 关联，这样执行 finalize 方法之后，GC 会再次判断对象是否可达，如果不可达，则会被回收，如果可达，则不回收！</p>
-<p><strong>注意：</strong> finalize 方法只会被执行一次，如果第一次执行 finalize 方法此对象变成了可达确实不会回收，但如果对象再次被 GC，则会忽略 finalize 方法，对象会被回收！这一点切记!</p>
-</blockquote>
-<h2 id="7-GC-Roots"><a href="#7-GC-Roots" class="headerlink" title="7. GC Roots"></a>7. GC Roots</h2><p><img src="D:/苏州/dy-corejava-tech/note/imgs/roots.png"> </p>
-<blockquote>
-<p><strong>GC Roots 到底是什么东西呢，哪些对象可以作为 GC Root 呢？</strong></p>
-<ul>
-<li><p>虚拟机栈（栈帧中的本地变量表）中引用的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">publicclass Test &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">			<span class="type">Test</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line"></span><br><span class="line">			a = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;	</span><br><span class="line">a 是栈帧中的本地变量，当 a = <span class="literal">null</span> 时，由于此时 a 充当了 GC Root 的作用，a 与原来指向的实例 <span class="keyword">new</span> <span class="title class_">Test</span>() 断开了连接，所以对象会被回收。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地方法栈中 JNI（即一般说的 Native 方法）引用的对象</p>
-</li>
-<li><p>方法区中类<strong>静态属性引用</strong>的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Test s; <span class="comment">// s =&gt; GCRoots</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">Test</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();<span class="comment">//a =&gt; GCRoots</span></span><br><span class="line">      a.s = <span class="keyword">new</span> <span class="title class_">Test</span>();<span class="comment">//a.s指向的这个对象不是一个垃圾对象</span></span><br><span class="line">      a = <span class="literal">null</span>;</span><br><span class="line">      <span class="comment">//System.out.println(s);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">当栈帧中的本地变量 a = <span class="literal">null</span> 时，由于 a 原来指向的对象与 GC <span class="title function_">Root</span> <span class="params">(变量 a)</span> 断开了连接，所以 a 原来指向的对象会被回收，而由于我们给 s 赋值了变量的引用，s 在此时是类静态属性引用，充当了 GC Root 的作用，它指向的对象依然存活!</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法区中<strong>常量引用</strong>的对象</p>
-<p>JDK8 - 元空间,保留了方法区的概念,实现的方式不一样而已.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">				<span class="keyword">public</span> <span class="keyword">final</span> <span class="type">Test</span> <span class="variable">s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();<span class="comment">//不是一个垃圾对象</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">            <span class="type">Test</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">            a = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">常量 s 指向的对象并不会因为 a 指向的对象被回收而回收</span><br></pre></td></tr></table></figure></li>
-</ul>
-</blockquote>
-<h2 id="8-GC回收算法"><a href="#8-GC回收算法" class="headerlink" title="8. GC回收算法"></a>8. GC回收算法</h2><blockquote>
-<p>简介:了解完垃圾是怎么找出来后，接下来看看它们是怎么被清除的。以下介绍几种清除的算法。</p>
-</blockquote>
-<p>###8.1 标记-清除算法</p>
-<p>1 - 当GC发现需要释放内存空间的时候,JVM正在执行的程序将会进入等待状态.</p>
-<p>2 - GC标注垃圾对象</p>
-<p>3 - GC再去清理这些垃圾对象</p>
-<p>4 - 清理完毕之后,JVM继续执行</p>
-<p>简介:标记-清除算法（Mark-Sweep）</p>
-<p>标记-清除，顾名思义，<strong>先标记垃圾，再清除</strong>。它是GC最基础的算法，<strong>后续很多算法都是基于它上面去改进的</strong>。<br>标记的过程在上面搜索GC对象已经介绍过了。被标记的对象，在统一GC的时候会把标记的对象清除掉。这个算法比较简单，不做过多赘述。</p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/标记清除.png"> </p>
-<p>这个算法有一个很明显的缺点，就是在垃圾回收后会<strong>产生大量不连续的碎片空间</strong>，导致程序要申请较大的对象时常无法找到合适的内存空间，迫使再次GC。</p>
-<h2 id="8-2-复制算法-标记"><a href="#8-2-复制算法-标记" class="headerlink" title="8.2 复制算法(标记)"></a>8.2 复制算法(标记)</h2><p>简介:这个算法有一个很明显的缺点，就是在垃圾回收后会产生大量不连续的碎片空间，导致程序要申请较大的对象时常无法找到合适的内存空间，迫使再次GC。</p>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/复制算法.png"> </p>
-<blockquote>
-<p>缺点：</p>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><blockquote>
 <ol>
-<li><strong>把内存可使用的空间减少了一半</strong>，造成空间的浪费。</li>
-<li>对象存活数量较多的时候，复制性能比较差</li>
+<li><p>查询first_name包含m的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;%m%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询以C开头的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;C%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询第三个字母是’e’的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;__e%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询入职时间是6月份的员工 - 模糊查询 - 不是正规的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,start_date from s_emp where start_date like &#x27;%-06-%&#x27;;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </blockquote>
-<h2 id="8-3-标记-整理-x2F-压缩算法"><a href="#8-3-标记-整理-x2F-压缩算法" class="headerlink" title="8.3 标记-整理&#x2F;压缩算法"></a>8.3 标记-整理&#x2F;压缩算法</h2><blockquote>
-<p>简介:标记-整理算法(mark-compact)</p>
-<p>针对复制算法的两个缺点，<strong>在老年代一般会用这种标记-整理算法。</strong></p>
-<p><strong>把存活的对象移到内存的一端，然后把剩余的空间全部清空掉。</strong></p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1,列名2,..列n</span><br><span class="line">FROM 表名</span><br><span class="line">WHERE 条件表达式</span><br><span class="line">ORDER By语句 [asc|desc]</span><br><span class="line"></span><br><span class="line">asc可以省略不写 - 升序</span><br><span class="line">desc必须要写 - 降序</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li><p>根据年薪降序排列</p>
+<p><code>方式一: order by 列名</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 from s_emp </span><br><span class="line">order by salary*(1+coalesce(commission_pct,0)/100)*12 desc;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式二:</code> order by 列别名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 年薪 desc;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式三: order by 列的序号</code>  列的序号从1开始 &#x3D;&gt; 推荐方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 2 desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据年薪降序排.如果年薪一样,则继续按照first_name升序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 2 desc,1;</span><br></pre></td></tr></table></figure></li>
+</ol>
 </blockquote>
-<p><img src="D:/苏州/dy-corejava-tech/note/imgs/标记整理.png"> </p>
-<h2 id="8-4-分代回收"><a href="#8-4-分代回收" class="headerlink" title="8.4 分代回收"></a>8.4 分代回收</h2><blockquote>
-<p>简介:也叫做分代回收算法</p>
-<p>分代算法并不是一个特定的算法，也没有什么新的内容。<strong>而是把内存分成多个区域，一般为新生代、老年代等</strong>。然后根据不同区域不同的特点，用不同回收算法去回收垃圾。</p>
-<p>例如新生代，**对象存活率低，比较适用复制算法(From,To)**。老年代存活率高，比较适用Mark-Compact算法。</p>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><h3 id="数字和字符串"><a href="#数字和字符串" class="headerlink" title="数字和字符串"></a>数字和字符串</h3><blockquote>
+<ol>
+<li><p>字符串转换成数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select &#x27;1&#x27;+0;</span><br><span class="line"></span><br><span class="line">mysql中字符数字遇到数字进行+,自动将字符转换成数字来进行计算.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数字转换成字符串 - concat函数 - 拼接删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select concat(1,2);  // 12</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="字符串和日期"><a href="#字符串和日期" class="headerlink" title="字符串和日期"></a>字符串和日期</h3><blockquote>
+<p>关于日期模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(在format字符串中可用标志符:  </span><br><span class="line">　%m 月名字(january……december)    </span><br><span class="line">　%w 星期名字(sunday……saturday)    </span><br><span class="line">　%d 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）    </span><br><span class="line">　%Y 年, 数字, 4 位    </span><br><span class="line">　%y 年, 数字, 2 位    </span><br><span class="line">　%a 缩写的星期名字(sun……sat)    </span><br><span class="line">　%d 月份中的天数, 数字(00……31)    </span><br><span class="line">　%e 月份中的天数, 数字(0……31)    </span><br><span class="line">　%m 月, 数字(01……12)    </span><br><span class="line">　%c 月, 数字(1……12)    </span><br><span class="line">　%b 缩写的月份名字(jan……dec)    </span><br><span class="line">　%j 一年中的天数(001……366)    </span><br><span class="line">　%H 24时制小时(00……23)    </span><br><span class="line">　%k 小时(0……23)    </span><br><span class="line">　%h 12时小时(01……12)    </span><br><span class="line">　%i 小时(01……12)    </span><br><span class="line">　%l 小时(1……12)    </span><br><span class="line">　%i 分钟, 数字(00……59)    </span><br><span class="line">　%r 时间,12 小时(hh:mm:ss [ap]m)    </span><br><span class="line">　%t 时间,24 小时(hh:mm:ss)    </span><br><span class="line">　%s 秒(00……59)       </span><br><span class="line">　%p am或pm    </span><br><span class="line">　%w 一个星期中的天数(0=sunday ……6=saturday ）  </span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>获取当前系统的日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select now();</span><br><span class="line"></span><br><span class="line">+---------------------+</span><br><span class="line">| now()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2022-08-05 11:09:49 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>日期转换成指定格式的字符串 - date_format(日期,模板)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">模板  %Y   %m    %d  %H  %i   %s</span><br><span class="line"></span><br><span class="line">select date_format(now(),&#x27;%Y/%m/%d %H:%i:%s&#x27;);</span><br><span class="line"></span><br><span class="line">select date_format(now(),&#x27;%Y年%m月%d日 %H时%i分%s秒&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串转成日期 - str_to_date(字符串,模板) - 字符串格式要和模板的格式匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 删除表</span><br><span class="line">drop table tt;</span><br><span class="line">-- 创建表</span><br><span class="line">create table tt(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  name varchar(20),</span><br><span class="line">  birthday date</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- date - 年月日</span><br><span class="line">-- 插入数据</span><br><span class="line">-- mysql中默认支持的格式 - 会将字符串自动转成date类型</span><br><span class="line">insert into tt values(1,&#x27;admin&#x27;,&#x27;2022-09-01&#x27;);//ok</span><br><span class="line">insert into tt values(2,&#x27;tom&#x27;,&#x27;2022/09/01&#x27;);//ok</span><br><span class="line">insert into tt values(3,&#x27;jack&#x27;,&#x27;20221001&#x27;);//ok</span><br><span class="line"></span><br><span class="line">-- 不支持的时候</span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,&#x27;aa&#x27;);</span><br><span class="line">ERROR 1292 (22007): Incorrect date value: &#x27;aa&#x27; for column &#x27;birthday&#x27; at row 1</span><br><span class="line"></span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,&#x27;01-05-2022&#x27;);</span><br><span class="line">ERROR 1292 (22007): Incorrect date value: &#x27;01-05-2022&#x27; for column &#x27;birthday&#x27; at row 1</span><br><span class="line"></span><br><span class="line">-- 非要使用&#x27;01-05-2022&#x27;字符串格式的,才需要使用str_to_date函数进行转换</span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,str_to_date(&#x27;01-05-2022&#x27;,&#x27;%d-%m-%Y&#x27;));</span><br></pre></td></tr></table></figure>
+
+<p><code>导入脚本的时候 - 失败场景 - 字符串日期格式不支持</code></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h1><blockquote>
+<ul>
+<li><p>select 函数(参数);</p>
+</li>
+<li><p>函数是可以应用在查询列上的.</p>
+</li>
+<li><p>函数是允许嵌套使用的.</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h2><blockquote>
+<ol>
+<li><p>instr(str,substr) - 返回字符串substr在字符串str第一次出现的位置(str不包含substr时返回0)</p>
+</li>
+<li><p>lpad(str,len,padstr) - 用字符串padstr填补str左端直到字串长度为len并返回 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select lpad(&#x27;ab&#x27;,5,&#x27;cd&#x27;);//cdcab</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rpad(str,len,padstr) - 用字符串padstr填补str右端直到字串长度为len并返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;ab&#x27;,5,&#x27;cd&#x27;);//abcdc   5代表的是总的长度</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>left(str,len) - 返回字符串str的左端len个字符 </p>
+</li>
+<li><p>right(str,len) - 返回字符串str的右端len个字符 </p>
+</li>
+<li><p>substring(str,pos,len) - 返回字符串str的位置pos起len个字符  </p>
+</li>
+<li><p>substring(str,pos) - 返回字符串str的位置pos起后面的子串 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">序号从1开始</span><br><span class="line">select substring(&#x27;mysql&#x27;,2);  //ysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ltrim(str) - 返回删除了左空格的字符串str  </p>
+</li>
+<li><p>rtrim(str)  - 返回删除了右空格的字符串str  </p>
+</li>
+<li><p>space(n) - 返回由n个空格字符组成的一个字符串  </p>
+</li>
+<li><p><em><strong>replace(str,from_str,to_str)  - 用字符串to_str替换字符串str中的子串from_str并返回</strong></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace(&#x27;i love java&#x27;,&#x27;java&#x27;,&#x27;mysql&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reverse(str) - 颠倒字符串str的字符顺序并返回</p>
+</li>
+<li><p>insert(str,pos,len,newstr) - 把字符串str由位置pos起len个字符长的子串替换为字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select insert(&#x27;xxxxx&#x27;,1,2,&#x27;**&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lower(str) - 返回小写的字符串str  </p>
+</li>
+<li><p>upper(str) - 返回大写的字符串str</p>
+</li>
+<li><p>char_length(str) -  不管汉字还是数字或者是字母都算是一个字符。</p>
+</li>
+<li><p>length(str);&#x2F;&#x2F;汉字占3个,其他占1个.</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="练习-3"><a href="#练习-3" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>配合表 - 将first_name全部转换成大写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,upper(first_name) from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>first_name  - 模拟银行账户显示,只显示首字母,其余每个字母用*表示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- substring和rpad</span><br><span class="line">select first_name,rpad(substring(first_name,1,1),char_length(first_name),&#x27;*&#x27;) from s_emp;</span><br><span class="line"></span><br><span class="line">-- concat + substring + rpad</span><br><span class="line">select first_name,concat(substring(first_name,1,1),rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;)) from s_emp;</span><br><span class="line"></span><br><span class="line">-- replace + substring + rpad</span><br><span class="line">select first_name,replace(first_name,substring(first_name,2),rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;))</span><br><span class="line">from s_emp;</span><br><span class="line"></span><br><span class="line">-- insert + rpad</span><br><span class="line">select first_name,insert(first_name,2,char_length(first_name)-1,rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;))</span><br><span class="line">from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="2-数字函数"><a href="#2-数字函数" class="headerlink" title="2. 数字函数"></a>2. 数字函数</h2><blockquote>
+<ol>
+<li>abs(n) - 求绝对值</li>
+<li>mod(n,m) - 取模运算,返回n被m除的余数(同%操作符)</li>
+<li><strong>floor(n) - 返回不大于n的最大整数值</strong> - 向下取整  </li>
+<li><strong>ceiling(n) - 返回不小于n的最小整数值</strong>  - 向上取整 </li>
+<li>round(n[,d]) - 返回n的四舍五入值,保留d位小数(d的默认值为0)</li>
+<li>pow(x,y) - 返回值x的y次幂  </li>
+<li>sqrt(n) - 返回非负数n的平方根</li>
+<li>pi() - 返回圆周率  </li>
+<li>rand() - 返回在范围[0到1.0)内的随机浮点值</li>
+<li>truncate(n,d) - 保留数字n的d位小数并返回  - 直接截取</li>
+</ol>
+</blockquote>
+<h2 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h2><blockquote>
+<p>查询当前系统的日期 - select now();</p>
+<ol>
+<li><p>dayofweek(date) - 返回日期date是星期几(1&#x3D;星期天,2&#x3D;星期一,……7&#x3D;星期六,odbc标准)  </p>
+</li>
+<li><p>weekday(date) - 返回日期date是星期几(0&#x3D;星期一,1&#x3D;星期二,……6&#x3D; 星期天)</p>
+</li>
+<li><p>year(date) - 返回date的年份(范围在1000到9999)    </p>
+</li>
+<li><p>month(date)  - 返回date中的月份数值   </p>
+</li>
+<li><p>dayofmonth(date) - 返回date是一月中的第几日(在1到31范围内)   </p>
+</li>
+<li><p>hour(time) - 返回time的小时数(范围是0到23)  </p>
+</li>
+<li><p>minute(time) - 返回time的分钟数(范围是0到59) </p>
+</li>
+<li><p>second(time) - 返回time的秒数(范围是0到59) </p>
+</li>
+<li><p>period_add(p,n) - 增加n个月到时期p并返回(p的格式yymm或yyyymm) </p>
+<p>mysql&gt;select period_add(‘202008’,3) ;</p>
+<p>注意:p可以是字符串,一定要满足一定的格式,或者可以直接使用date类型.</p>
+</li>
+<li><p>period_diff(p1,p2) - 返回在时期p1和p2之间月数(p1和p2的格式yymm或yyyymm)  p1-p2</p>
+</li>
+<li><p>curdate() - 以’yyyy-mm-dd’或yyyymmdd格式返回当前日期值(根据返回值所处上下文是字符串或数字) </p>
+</li>
+<li><p>curtime() - 以’hh:mm:ss’或hhmmss格式返回当前时间值(根据返回值所处上下文是字符串或数字)</p>
+</li>
+<li><p>now() - 以’yyyy-mm-dd hh:mm:ss’或yyyymmddhhmmss格式返回当前日期时间(根据返回值所处上下文是字符串或数字)     </p>
+</li>
+<li><p>last_day(date) - date日期所在月的最后一天是什么时候</p>
+</li>
+<li><p>datediff(d1,d2) - 两个日期d1,d2之间相差的天数</p>
+</li>
+<li><p>timestampdiff(type,d1,d2) - type是YEAR,d1和d2相差的年份,MONTH,月份</p>
+<p>d1,d2 - yyyymmdd</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-1-补充"><a href="#3-1-补充" class="headerlink" title="3-1. 补充"></a>3-1. 补充</h3><blockquote>
+<ul>
+<li><p>date_add(date,interval expr type)</p>
+</li>
+<li><p>date_sub(date,interval expr type)</p>
+</li>
+<li><p>关于type</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ype:</span><br><span class="line">year</span><br><span class="line">month</span><br><span class="line">day</span><br><span class="line">hour</span><br><span class="line">minute</span><br><span class="line">second</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<p>#关联查询 </p>
+<blockquote>
+<p>关联查询就是多表查询</p>
+</blockquote>
+<h2 id="错误的写法"><a href="#错误的写法" class="headerlink" title="错误的写法"></a>错误的写法</h2><blockquote>
+<p>s_emp表中25rows,s_dept表中12rows</p>
+<ol>
+<li><p>查询员工的名字以及这个员工的部门名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select first_name,name from s_emp,s_dept;</span><br><span class="line"></span><br><span class="line">300 rows </span><br><span class="line"></span><br><span class="line">发生了笛卡尔积 - 错误的结果</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="纠正-传统的写法"><a href="#纠正-传统的写法" class="headerlink" title="纠正 - 传统的写法"></a>纠正 - 传统的写法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">select first_name,name from s_emp,s_dept where dept_id=id;</span><br><span class="line"></span><br><span class="line">ERROR 1052 (23000): Column &#x27;id&#x27; in where clause is ambiguous</span><br><span class="line"></span><br><span class="line">多张表中出现同名的列,需要对表取别名</span><br><span class="line"></span><br><span class="line">正确的写法:</span><br><span class="line">select e.first_name,d.name from s_emp e,s_dept d where e.dept_id=d.id;</span><br><span class="line"></span><br><span class="line">-- 用来表示表与表之间的关系foreign key - 外键</span><br><span class="line"></span><br><span class="line">-- 查询这个员工的first_name以及这个员工所在的区域名.</span><br><span class="line">-- 一个区域对应多个部门,一个部门对应多个员工.</span><br><span class="line">select e.first_name,r.name from s_emp e,s_dept d,s_region r</span><br><span class="line">where d.region_id = r.id and e.dept_id = d.id;</span><br><span class="line"></span><br><span class="line">for( ...  s_emp e)&#123;</span><br><span class="line">	for(... s_dept d)&#123;</span><br><span class="line">	    if(e.dept_id==d.id)&#123;</span><br><span class="line">	      e+&quot;:&quot;+d</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="join和on写法"><a href="#join和on写法" class="headerlink" title="join和on写法"></a>join和on写法</h2><blockquote>
+<p>如果一条sql语句涉及到的表比较多的话,传统的写法,就不能很直观的看出来哪个表和哪个表之间有直接的关系.</p>
+<p>表 join 表 on 去除笛卡尔积</p>
+<p>外键一定是出现在多的一方</p>
+<p><em><strong>on 多的一方的外键 &#x3D; 一的一方主键</strong></em></p>
+<p><code>但是也不一定非要使用外键来去除笛卡尔积</code></p>
+</blockquote>
+<blockquote>
+<p>规则: 能够用join连接的表之间必须要有直接的关系.</p>
+</blockquote>
+<h3 id="练习-4"><a href="#练习-4" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>找出查询员工的名字以及这个员工的部门名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,d.name from s_emp e join s_dept d on e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出’Asia’区域上的所有的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,r.name from </span><br><span class="line">s_emp e join s_dept d</span><br><span class="line">on e.dept_id = d.id</span><br><span class="line">join s_region r</span><br><span class="line">on d.region_id = r.id</span><br><span class="line">where r.name=&#x27;Asia&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出客户的id,名称,联系方式以及这个客户的订单信息</p>
+<p>‘问题 - 15rows - [201,215]’</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.* from s_customer c</span><br><span class="line">join s_ord o on c.id = o.customer_id;</span><br><span class="line"></span><br><span class="line">查询出来的结果缺了id=207和215俩个客户,因为这俩个客户没有订单,所以这俩个客户没有查询出来.</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="连接的方式"><a href="#连接的方式" class="headerlink" title="连接的方式"></a>连接的方式</h2><blockquote>
+<ol>
+<li><p>内连接 - [inner] join</p>
+<p><code>如果join左边的表在右边的表中如果不存记录,则不会被查询出来.</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">inner join s_ord o on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>左连接 - left join</p>
+<p><code>以左边的表为基准表.即使左边的表在右边的表中没有记录,那么左边表中的这条记录也要能够被查询出来</code></p>
+<p><code>查询客户和订单信息,即使这个客户没有订单,那么这个客户也要能够被查询出来</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">left join s_ord o on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右连接 - right join</p>
+<p><code>以右边的表为基准表.即使右边的表在左边的表中没有记录,那么右边表中的这条记录也要能够被查询出来</code></p>
+<p><code>查询客户和订单信息,即使这个客户没有订单,那么这个客户也要能够被查询出来</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_ord o</span><br><span class="line">right join s_customer c on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交叉连接 - cross join - 不会使用的,产生的是一个错误的结果集 - 笛卡尔积</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">cross join s_ord o;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全连接 full outer join - mysql不支持</p>
+<p>全连接 &#x3D; 左连接 + 右连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">drop table t_user;</span><br><span class="line">drop table t_info;</span><br><span class="line">create table t_user(</span><br><span class="line">	id int primary key,</span><br><span class="line">  name varchar(20)</span><br><span class="line">);</span><br><span class="line">insert into t_user values(1,&#x27;admin&#x27;);</span><br><span class="line">insert into t_user values(2,&#x27;python&#x27;);</span><br><span class="line"></span><br><span class="line">create table t_info(</span><br><span class="line">	id int primary key,</span><br><span class="line">	remark varchar(20),</span><br><span class="line">	user_id int</span><br><span class="line">);</span><br><span class="line">insert into t_info values(1,&#x27;aaa&#x27;,1);</span><br><span class="line">insert into t_info values(2,&#x27;bbb&#x27;,3);</span><br><span class="line"></span><br><span class="line">-- 分析 - 左连接</span><br><span class="line">select u.*,info.* from t_user u left join t_info info on u.id = info.user_id;</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line">| id | name   | id   | remark | user_id |</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line">|  1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">|  2 | python | NULL | NULL   |    NULL |</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line"></span><br><span class="line">-- 右连接</span><br><span class="line">select info.*,u.* from t_user u right join t_info info on u.id = info.user_id;</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line">| id | remark | user_id | id   | name  |</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line">|  1 | aaa    |       1 |    1 | admin |</span><br><span class="line">|  2 | bbb    |       3 | NULL | NULL  |</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line"></span><br><span class="line">-- 全连接</span><br><span class="line">union - 两张表中的重复的结果保留了一条 </span><br><span class="line"></span><br><span class="line">union all - 两张表中的重复的结果都会展示出来 , 并集</span><br><span class="line"></span><br><span class="line">select u.*,info.* from t_user u left join t_info info on u.id = info.user_id</span><br><span class="line">union all</span><br><span class="line">select u.*,info.* from t_user u right join t_info info on u.id = info.user_id;</span><br><span class="line"></span><br><span class="line"> id   | name   | id   | remark | user_id |</span><br><span class="line">+------+--------+------+--------+---------+</span><br><span class="line">|    1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">|    2 | python | NULL | NULL   |    NULL |</span><br><span class="line">|    1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">| NULL | NULL   |    2 | bbb    |       3 |</span><br><span class="line">+------+--------+------+--------+---------+</span><br></pre></td></tr></table></figure>
+
+
+<p>select u.<em>,info.</em> from t_user u left join t_info info on u.id &#x3D; info.user_id<br>union<br>select u.<em>,info.</em> from t_user u right join t_info info on u.id &#x3D; info.user_id;</p>
+<p>+——+——–+——+——–+———+<br>| id   | name   | id   | remark | user_id |<br>+——+——–+——+——–+———+<br>|    1 | admin  |    1 | aaa    |       1 |<br>|    2 | python | NULL | NULL   |    NULL |<br>| NULL | NULL   |    2 | bbb    |       3 |<br>+——+——–+——+——–+———+</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="练习-5"><a href="#练习-5" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<p>查询员工的名称以及他对应的上司的名称,即使这个员工没有上司,那么也要查询出来 - 自关联</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select e1.first_name 员工,e2.first_name 上司</span><br><span class="line">from s_emp e1 left join s_emp e2 on e2.id = e1.manager_id;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="多行函数"><a href="#多行函数" class="headerlink" title="多行函数"></a>多行函数</h1><blockquote>
+<ol>
+<li><p>count - 统计个数,null值不会统计,重复的数据,有一个算一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from s_emp;</span><br><span class="line"></span><br><span class="line">select count(e.id) from s_emp e;</span><br><span class="line"></span><br><span class="line">select count(e.commission_pct) from s_emp;//5个</span><br><span class="line"></span><br><span class="line">-- 统计职称的个数,但是重复的职称只能算1个</span><br><span class="line">select count(distinct title) from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sum - 总和,忽略null值</p>
+</li>
+<li><p>avg,max,min</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h1><blockquote>
+<p><code>分组统计</code></p>
+</blockquote>
+<blockquote>
+<p><code>语法</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT 语句</span><br><span class="line">WHERE 语句</span><br><span class="line">GROUP BY 语句</span><br><span class="line">HAVING 语句</span><br><span class="line">ORDER BY 语句</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="练习-6"><a href="#练习-6" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<ol>
+<li><p>统计每个部门的员工的个数 - 单表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select e.dept_id,count(e.id) from s_emp e group by e.dept_id;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>统计部门的id,name以及这个部门的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- group by + d.id  --- ok   id是主键列 - 唯一性</span><br><span class="line">select d.id,d.name,count(e.id) from s_emp e</span><br><span class="line">join s_dept d on e.dept_id = d.id group by d.id;</span><br></pre></td></tr></table></figure>
+
+
+<p>select d.id,d.name,count(e.id) from s_emp e<br>join s_dept d on e.dept_id &#x3D; d.id group by d.name;<br>ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column ‘dy.d.id’ which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode&#x3D;only_full_group_by</p>
+<p>– 推荐select后面跟的列(除了组函数&#x2F;多行函数)应该和group by 跟的列保持一致<br>select d.id,d.name,count(e.id) from s_emp e<br>join s_dept d on e.dept_id &#x3D; d.id group by d.id,d.name;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3. 统计每个职称的人数</span><br><span class="line"></span><br><span class="line">   ~~~mysql</span><br><span class="line">   select title,count(*) from s_emp group by title;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计区域id,区域名,以及这个区域上的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select r.id,r.name,count(e.id) from s_region r join s_dept d</span><br><span class="line">on d.region_id = r.id join s_emp e on e.dept_id = d.id group by r.id,r.name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计客户的id,name以及这个客户的订单的数量,没有订单,则显示0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,count(o.id) from s_customer c left join s_ord o</span><br><span class="line">on o.customer_id = c.id group by c.id,c.name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计各年份入职的员工(年份,员工数量)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select year(start_date),count(e.id) from s_emp e</span><br><span class="line">group by year(start_date);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="having使用方式"><a href="#having使用方式" class="headerlink" title="having使用方式"></a>having使用方式</h3><blockquote>
+<p>having和where区别</p>
+<ol>
+<li>where条件筛选,但是分组之前,并且where不会跟组函数</li>
+<li>having分组之后的进一步过滤,使用组函数进行过滤的</li>
+</ol>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<ol>
+<li><p>查询出平均工资超过1300的部门 - 部门id,name,平均工资</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select d.id,d.name,avg(e.salary) from s_dept d join s_emp e</span><br><span class="line">on d.id = e.dept_id group by d.id,d.name having avg(e.salary)&gt;1300;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计除了’Asia’区域之外的各个区域的id,name和区域上的人数[大于3个],最后再根据区域的id进行降序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select r.id,r.name,count(e.id) from s_region r </span><br><span class="line">join s_dept d on r.id = d.region_id</span><br><span class="line">join s_emp e on e.dept_id = d.id</span><br><span class="line">where r.name&lt;&gt;&#x27;Asia&#x27;</span><br><span class="line">group by r.id,r.name</span><br><span class="line">having count(e.id)&gt;3</span><br><span class="line">order by 1 desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询没有订单的客户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,count(o.id) from s_customer c</span><br><span class="line">left join s_ord o on c.id = o.customer_id group by c.id,c.name having count(o.id)=0;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><blockquote>
+<p>子查询必须使用()括起来</p>
+<ul>
+<li>条件列</li>
+<li>查询列</li>
+<li>子查询的结果看做是”一张表”</li>
+</ul>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<ol>
+<li><p>查找和Mark工资一样的员工.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 分解 - mark工资 - 1450</span><br><span class="line">select salary from s_emp where first_name=&#x27;Mark&#x27;;</span><br><span class="line"></span><br><span class="line">-- 找出1450薪资的员工</span><br><span class="line">select first_name,salary from s_emp where salary = 1450 and first_name&lt;&gt;&#x27;Mark&#x27;;</span><br><span class="line"></span><br><span class="line">-- 整合</span><br><span class="line">-- 子查询出现在条件部分</span><br><span class="line">select first_name,salary from s_emp where salary = (select salary from s_emp where first_name=&#x27;Mark&#x27;)  and first_name&lt;&gt;&#x27;Mark&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计每个部门的id,name以及部门的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select d.id,d.name,(</span><br><span class="line">	select count(e.id) from s_emp e where e.dept_id = d.id</span><br><span class="line">) from s_dept d;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<p><code>练习2</code></p>
+<blockquote>
+<ol>
+<li>统计客户的id,name以及客户的订单数量</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;select c.id,c.name,(select count(o.id) from s_ord o where o.customer_id = c.id) from s_customer c;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>找出部门平均工资高于公司平均工资的部门信息</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;select dept_id,avg(salary) from s_emp group by dept_id having avg(salary)&gt;(select avg(salary) from s_emp);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>找出与’Ben’同部门的员工信息</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 方式一</span><br><span class="line">select first_name,dept_id from s_emp where dept_id=(select dept_id from s_emp where first_name=&#x27;Ben&#x27;)</span><br><span class="line">and first_name&lt;&gt;&#x27;Ben&#x27;;</span><br><span class="line"></span><br><span class="line">-- 方式二</span><br><span class="line">select e.first_name,(select e.dept_id from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id=e.dept_id) did from s_emp e where e.first_name&lt;&gt;&#x27;Ben&#x27;;</span><br><span class="line"></span><br><span class="line">-- 方式二整合 - 把子查询的结果作为一张表,必须要别名</span><br><span class="line">select * from (select e.first_name,(select e.dept_id from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id=e.dept_id) did from s_emp e where e.first_name&lt;&gt;&#x27;Ben&#x27;) core_</span><br><span class="line">where core_.did is not null;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<ol>
+<li><p>能用分组查询查询就不要使用子查询(嵌套越多,查询效率越低)</p>
+</li>
+<li><p>无关子查询(子查询可以独立运行)和相关子查询(子查询使用到了外部查询的东西)</p>
+<p>无关子查询&gt;相关子查询</p>
+</li>
+<li><p>子查询会比分组查询更加灵活.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="exists和not-exists"><a href="#exists和not-exists" class="headerlink" title="exists和not exists"></a>exists和not exists</h1><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT 语句</span><br><span class="line">WHERE exists (子查询)</span><br><span class="line"></span><br><span class="line">规则: 不关心子查询查到的内容是什么,子查询是否能够查询出结果.</span><br><span class="line">如果查询出结果,等同于where true</span><br><span class="line"></span><br><span class="line">select id,first_name from s_emp where exists(select 1 from s_emp where 1=1);</span><br></pre></td></tr></table></figure>
+
+<p><code>找出和&#39;Ben&#39;同一个部门的员工</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,e.dept_id from s_emp e </span><br><span class="line">where exists(</span><br><span class="line">select 1 from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id = e.dept_id</span><br><span class="line">) and e.first_name&lt;&gt;&#x27;Ben&#x27;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<p>找出各个部门工资排名前二的员工</p>
+<p>思路: 在’我’这个部门中,有人的工资比我高,但是数量不能超过1个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select e.id,e.salary,e.dept_id from s_emp e</span><br><span class="line">where exists(</span><br><span class="line">	select 1 from s_emp e1 where e1.dept_id = e.dept_id and</span><br><span class="line">e1.salary&gt;e.salary having count(*)&lt;=1</span><br><span class="line">) order by 3;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<p>找出每个部门中工资最高的那个人</p>
 </blockquote>
 
     
@@ -470,7 +928,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/04/JVM/" title="JVM" target="_blank">https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/04/JVM/</a>
+          <a href="https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/06/mysql笔记（一）/" title="mysql笔记（一）" target="_blank">https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/06/mysql笔记（一）/</a>
         </li>
         
         <li>
@@ -492,7 +950,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -548,7 +1010,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/04/JVM/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -563,18 +1025,9 @@
 
 <nav id="article-nav">
   
-    <a href="/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mysql笔记（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/DorwoningFish.github.io/2022/08/04/%E5%8F%8D%E5%B0%84and%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">反射and代理模式</div>
+    <a href="/DorwoningFish.github.io/2022/08/04/JVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -601,7 +1054,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#7-JVM%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">7. JVM部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1. JVM内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JVM8%E6%A8%A1%E5%9E%8B%E5%92%8CJVM7%E6%A8%A1%E5%9E%8B%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">2. JVM8模型和JVM7模型区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JVM%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">3. JVM组成部分及其作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-JVM%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">4. JVM优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-GC%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">8. GC部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BB%80%E4%B9%88%E6%98%AFGC"><span class="toc-number">2.1.</span> <span class="toc-text">5. 什么是GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AF%B9%E8%B1%A1%E6%90%9C%E7%B4%A2%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">6. 对象搜索法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">6.1 引用计数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">6.2 可达性分析算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-GC-Roots"><span class="toc-number">2.3.</span> <span class="toc-text">7. GC Roots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-GC%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">8. GC回收算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95-%E6%A0%87%E8%AE%B0"><span class="toc-number">2.5.</span> <span class="toc-text">8.2 复制算法(标记)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86-x2F-%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.</span> <span class="toc-text">8.3 标记-整理&#x2F;压缩算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6"><span class="toc-number">2.7.</span> <span class="toc-text">8.4 分代回收</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">数据库介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">数据的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">数据库安装注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.3.</span> <span class="toc-text">专业术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E8%84%9A%E6%9C%AC"><span class="toc-number">1.5.</span> <span class="toc-text">导入脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A0%81"><span class="toc-number">1.6.</span> <span class="toc-text">设置数据库编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.7.</span> <span class="toc-text">SQL介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%8A%9F%E8%83%BDSQL%E5%88%86%E7%B1%BB"><span class="toc-number">1.7.1.</span> <span class="toc-text">按照功能SQL分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.</span> <span class="toc-text">简单查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E5%8F%96%E5%88%AB%E5%90%8D"><span class="toc-number">2.1.</span> <span class="toc-text">列取别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%87%8D%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.2.</span> <span class="toc-text">去重关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">2.3.</span> <span class="toc-text">列的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">2.4.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.5.</span> <span class="toc-text">条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">2.5.1.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-1"><span class="toc-number">2.5.2.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.6.</span> <span class="toc-text">模糊查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">2.6.1.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-2"><span class="toc-number">2.6.2.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">2.7.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="toc-number">2.8.</span> <span class="toc-text">转换函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.8.1.</span> <span class="toc-text">数字和字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%97%A5%E6%9C%9F"><span class="toc-number">2.8.2.</span> <span class="toc-text">字符串和日期</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">单行函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">1. 字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-3"><span class="toc-number">3.1.1.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E5%AD%97%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">2. 数字函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">3. 日期函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E8%A1%A5%E5%85%85"><span class="toc-number">3.3.1.</span> <span class="toc-text">3-1. 补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">错误的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A0%E6%AD%A3-%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">3.4.1.</span> <span class="toc-text">纠正 - 传统的写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#join%E5%92%8Con%E5%86%99%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">join和on写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-4"><span class="toc-number">3.5.1.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.</span> <span class="toc-text">连接的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-5"><span class="toc-number">3.6.1.</span> <span class="toc-text">练习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">多行函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">5.</span> <span class="toc-text">分组查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-6"><span class="toc-number">5.1.</span> <span class="toc-text">练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#having%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">5.1.1.</span> <span class="toc-text">having使用方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">6.</span> <span class="toc-text">子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exists%E5%92%8Cnot-exists"><span class="toc-number">7.</span> <span class="toc-text">exists和not exists</span></a></li></ol>
                     </div>
                 </span>
             </div>

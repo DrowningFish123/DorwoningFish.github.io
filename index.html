@@ -206,6 +206,718 @@
             
 
   
+    <article id="post-mysql笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank">mysql笔记（一）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+        <time datetime="2022-08-06T00:46:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-06</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="数据库介绍"><a href="#数据库介绍" class="headerlink" title="数据库介绍"></a>数据库介绍</h1><blockquote>
+<p>按照一定的数据结构来组织,管理和存储数据的仓库</p>
+<p>用仓库的方式来管理数据的.一个仓库下会有很多表.一个表由行和列构成.</p>
+</blockquote>
+<h2 id="数据的分类"><a href="#数据的分类" class="headerlink" title="数据的分类"></a>数据的分类</h2><blockquote>
+<ol>
+<li><p>关系型数据库 </p>
+<p><code>表格型数据库 - 有行和列来构成一张表,表中存放数据</code></p>
+<p>常见的产品:MS-sqlserver,主流的免费的Oracle-mysql(中小型的应用),收费的Oracle-oracle(大型的应用)</p>
+</li>
+<li><p>nosql - 不仅仅是sql - 非关系型数据库</p>
+<ul>
+<li>键值对数据库 - redis</li>
+<li>文档型数据库 - mongodb</li>
+<li>列式数据库 - hbase</li>
+<li>图形数据库</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="数据库安装注意点"><a href="#数据库安装注意点" class="headerlink" title="数据库安装注意点"></a>数据库安装注意点</h2><blockquote>
+<ol>
+<li><p>server和client</p>
+<p>当我们安装好db之后,自带安装好了mysql-server端和mysql-client端</p>
+<p><code>db正常使用,一定要保障mysql-server端处于运行状态</code></p>
+<ul>
+<li><p>右击计算机 - 管理 - 服务 - 服务和应用程序 - 👉🏻右边窗口 - Mysql - 启动方式设置开启自启.</p>
+</li>
+<li><p>可以通过终端输入命令来启动mysql-server端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">net stop mysql</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>mysql-client客户端<ul>
+<li>第三方的收费navicat</li>
+<li>idea</li>
+<li>java代码</li>
+<li>自带的控制台</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h2 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h2><blockquote>
+<ol>
+<li><p>DB - DataBase 数据库</p>
+</li>
+<li><p>DBA - 数据库管理员(侧重于运维),DE - 数据库研发工程师</p>
+</li>
+<li><p>DBMS - 数据库管理系统,安装在操作系统.用户通过dbms来操作db,dba通过dbms来管理db,保证db在7*24h高效运转</p>
+<p><code>人 - dbms - db(os)</code></p>
+</li>
+<li><p>RDBMS - 关系型数据库管理系统 </p>
+</li>
+<li><p>DBS - 数据库系统,大的范畴,dbs &#x3D; dba+db+dbms</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><blockquote>
+<p><code>前提:mysql安装并且配置好了环境变量</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u用户名 -p密码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<p><code>修改密码</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">alter user &#x27;用户名&#x27;@&#x27;db所在主机ip&#x27; identified by &#x27;新的密码&#x27;;</span><br><span class="line"></span><br><span class="line">use mysql</span><br><span class="line"></span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;root&#x27;;</span><br><span class="line"></span><br><span class="line">-- 退出重新登录</span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="导入脚本"><a href="#导入脚本" class="headerlink" title="导入脚本"></a>导入脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">-- 1. 创建数据库  create dabatase 数据库名</span><br><span class="line">create database dy;</span><br><span class="line"></span><br><span class="line">-- 查看所有的db</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">-- 2. 使用数据库</span><br><span class="line">use dy</span><br><span class="line"></span><br><span class="line">-- 3. 导入脚本 - .sql为后缀的sql文件</span><br><span class="line">-- 3-1. 在dy数据库中生成5张表</span><br><span class="line">-- 3-2. 每张表中模拟一些数据</span><br><span class="line">source 脚本文件的绝对路径;</span><br><span class="line"></span><br><span class="line">-- 4. 查看该库下所有的表</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">+--------------+</span><br><span class="line">| Tables_in_dy |</span><br><span class="line">+--------------+</span><br><span class="line">| s_customer   |</span><br><span class="line">| s_dept       |</span><br><span class="line">| s_emp        |</span><br><span class="line">| s_ord        |</span><br><span class="line">| s_region     |</span><br><span class="line">+--------------+</span><br><span class="line"></span><br><span class="line">--5. 查看表结构</span><br><span class="line">desc s_emp</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置数据库编码"><a href="#设置数据库编码" class="headerlink" title="设置数据库编码"></a>设置数据库编码</h2><blockquote>
+<ol>
+<li><p>查看编码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;character_set%&#x27;;</span><br><span class="line"></span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| Variable_name            | Value                                                     |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br><span class="line">| character_set_client     | utf8                                                      |</span><br><span class="line">| character_set_connection | utf8                                                      |</span><br><span class="line">| character_set_database   | utf8                                                      |</span><br><span class="line">| character_set_filesystem | binary                                                    |</span><br><span class="line">| character_set_results    | utf8                                                      |</span><br><span class="line">| character_set_server     | utf8                                                      |</span><br><span class="line">| character_set_system     | utf8                                                      |</span><br><span class="line">| character_sets_dir       | /usr/local/mysql-5.7.28-macos10.14-x86_64/share/charsets/ |</span><br><span class="line">+--------------------------+-----------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改编码</p>
+<p>2-1. 临时修改 - set命令 - 仅仅是对当前会话(一次连接,窗口)有效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set names utf8;</span><br></pre></td></tr></table></figure>
+
+<p>2-2. 永久生效 - 找到<strong>my.ini文件</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">character_set_server</span>=utf8</span><br></pre></td></tr></table></figure>
+
+<p>需要重启mysql-server(mysql服务器端),才能生效.</p>
+<ol>
+<li><p>通过gui方式</p>
+</li>
+<li><p>通过命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="SQL介绍"><a href="#SQL介绍" class="headerlink" title="SQL介绍"></a>SQL介绍</h2><blockquote>
+<p>SQL 是 Structured Query Language 的缩写，中文译为“结构化查询语言”。SQL 是一种计算机语言，用来存储、检索和修改关系型数据库中存储的数据。</p>
+<p>①mysql-client输入合法的sql语句,如果sql非法,直接报错</p>
+<p>②输入回车- 客户端将sql语句发送到mysql-server端,编译和解析sql语句的.</p>
+<p>③mysql-server将执行完sql语句的结果返回到mysql-client进行展示.</p>
+</blockquote>
+<h3 id="按照功能SQL分类"><a href="#按照功能SQL分类" class="headerlink" title="按照功能SQL分类"></a>按照功能SQL分类</h3><blockquote>
+<ol>
+<li><p>DDL(Data Definition Language) - 数据定义语言</p>
+<p>create drop alter truncate rename comment(注释)</p>
+</li>
+<li><p>DML(Data Manipulation Language) - 数据操纵语言</p>
+<p>update delete insert</p>
+</li>
+<li><p>DQL(Data Query Language) - 数据查询语言</p>
+<p>select</p>
+</li>
+<li><p>TCL&#x2F;DTL(Transaction Control Language):事务控制语言</p>
+<p>commit savepoint rollback</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h1><blockquote>
+<ol>
+<li><p>查询的本质</p>
+<ul>
+<li>到哪里查</li>
+<li>查什么</li>
+</ul>
+</li>
+<li><p>语法 - 关键字是大小写不敏感</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名<span class="number">1</span>,列名<span class="number">2</span>,..列n</span><br><span class="line"><span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="列取别名"><a href="#列取别名" class="headerlink" title="列取别名"></a>列取别名</h2><blockquote>
+<ol>
+<li><p>查询员工的名字,薪水以及职称.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary,title from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式一</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1 列别名,列名2 列别名,..列n</span><br><span class="line">FROM 表名;</span><br><span class="line"></span><br><span class="line">select first_name 名字,salary 薪水,title 职称 from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式二</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1 as 列别名,列名2 as 列别名,..列n</span><br><span class="line">FROM 表名;</span><br><span class="line"></span><br><span class="line">select first_name as 名字,salary as 薪水,title as 职称 from s_emp;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式三</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">列别名中间有空格,需要使用双引号来包裹格式</span><br><span class="line">select first_name &quot;名 字&quot;,salary &quot;薪 水&quot;,title as &quot;职 称&quot; from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询所有列*</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式化输出</span><br><span class="line">select * from s_emp;</span><br><span class="line"></span><br><span class="line">select * from s_emp \G;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="去重关键字"><a href="#去重关键字" class="headerlink" title="去重关键字"></a>去重关键字</h2><blockquote>
+<p>distinct</p>
+<ol>
+<li><p>查询员工表中所有的职称的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct title from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="列的计算"><a href="#列的计算" class="headerlink" title="列的计算"></a>列的计算</h2><blockquote>
+<p>列是允许计算的</p>
+<ol>
+<li><p>查询员工的名字,年薪(不带提成commission_pct)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*12 年薪 from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询员工的名字,年薪(带提成commission_pct)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+commission_pct/100)*12 年薪 from s_emp;</span><br><span class="line"></span><br><span class="line">查询出来只有5个人有年薪,原因是因为只有5个人有提成.其他人的提成都是null值</span><br><span class="line">mysql - null值计算的结果还是一个null值</span><br><span class="line"></span><br><span class="line">使用到mysql中提供的空值置换函数</span><br><span class="line">coalesce(m,n) - 如果m为null,返回n,否则返回m</span><br><span class="line"></span><br><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<ol>
+<li><p>找出员工的姓名,工资以及入职日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select last_name,first_name,salary,start_date from s_emp;</span><br><span class="line"></span><br><span class="line">-- 列的拼接 concat(m,n,a,b,c,..)</span><br><span class="line">-- mysql中的字符串统一使用单引号</span><br><span class="line">select concat(last_name,&#x27;  &#x27;,first_name) 姓名,salary,start_date from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出所有的客户名以及他的联系方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select name,phone from s_customer;</span><br><span class="line"></span><br><span class="line">-- 查询姓名的时候</span><br><span class="line">-- 蔡根花 - 蔡**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出每个订单的费用,支付方式以及出货日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select total,payment_type,date_ordered from s_ord;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1,列名2,..列n</span><br><span class="line">FROM 表名</span><br><span class="line">WHERE 条件表达式;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p><code>比较运算符</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; &lt; &gt;= &lt;= != &lt;&gt; =</span><br></pre></td></tr></table></figure>
+
+<p><code>其他运算符</code></p>
+<blockquote>
+<ol>
+<li>between …  and ..  在…到…之间</li>
+<li>in(集合) - 在某个集合内</li>
+<li>not in(集合) - 不在某个集合内</li>
+<li>is - 判断是否为null,判断null值不能用&#x3D;</li>
+<li>is not - 判断是否不为null</li>
+</ol>
+</blockquote>
+<p><code>逻辑连接符</code></p>
+<blockquote>
+<ol>
+<li>and 条件同时成立,返回true</li>
+<li>or 有一个条件成立,就返回true</li>
+</ol>
+</blockquote>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>查询部门编号(dept_id)为41,42,45的员工找出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select first_name,dept_id from s_emp</span><br><span class="line">where dept_id=41 or dept_id=42 or dept_id=45;</span><br><span class="line"></span><br><span class="line">select first_name,dept_id from s_emp where dept_id in(41,42,45);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询没有提成的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,commission_pct from s_emp where commission_pct is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出工资在[1200,1500]之间的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary from s_emp where salary between 1200 and 1500;</span><br><span class="line"></span><br><span class="line">-- 更加灵活</span><br><span class="line">select first_name,salary from s_emp where salary&gt;=1200 and salary&lt;=1500;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找工资大于1500并且没有提成的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary from s_emp where salary&gt;1500 and commission_pct is null;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找年薪(包括提成)超过15000的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 _year from s_emp</span><br><span class="line">where salary*(1+coalesce(commission_pct,0)/100)*12&gt;15000;</span><br><span class="line"></span><br><span class="line">-- 给列取别名的意义</span><br><span class="line">-- 子查询 - 查询的结果作为虚拟表 - 子查询一定要放在()中</span><br><span class="line">select * from X where _year&gt;15000;</span><br><span class="line"></span><br><span class="line">查询的结果来替代X,子查询的结果作为表的话 - 需要给表取别名</span><br><span class="line">select * from (select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 _year from s_emp) core_ where _year&gt;15000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出除了41部门的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select first_name,dept_id from s_emp where dept_id &lt;&gt; 41;</span><br><span class="line"></span><br><span class="line">select first_name,dept_id from s_emp where dept_id not in(41);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出亚洲区域的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- mysql中采用单引号</span><br><span class="line">select * from s_region where name=&#x27;Asia&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><blockquote>
+<p>大小写不敏感的</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>关键字like</li>
+<li>占位符<ul>
+<li>% 代表的任意多个任意字符</li>
+<li>_ 代表的是任意单个字符</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><blockquote>
+<ul>
+<li><p>first_name名称正好包含了%或者_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update s_emp set first_name=&#x27;Mar%k&#x27; where id=4;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询first_name包含%的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 定义转义字符,默认的是\</span><br><span class="line">select first_name from s_emp where first_name like &#x27;%\%%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 自定义转义字符,用escape 新的转义字符</span><br><span class="line">select first_name from s_emp where first_name like &#x27;%?%%&#x27; escape &#x27;?&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>查询first_name包含m的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;%m%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询以C开头的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;C%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询第三个字母是’e’的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name from s_emp where first_name like &#x27;__e%&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询入职时间是6月份的员工 - 模糊查询 - 不是正规的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,start_date from s_emp where start_date like &#x27;%-06-%&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1,列名2,..列n</span><br><span class="line">FROM 表名</span><br><span class="line">WHERE 条件表达式</span><br><span class="line">ORDER By语句 [asc|desc]</span><br><span class="line"></span><br><span class="line">asc可以省略不写 - 升序</span><br><span class="line">desc必须要写 - 降序</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li><p>根据年薪降序排列</p>
+<p><code>方式一: order by 列名</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 from s_emp </span><br><span class="line">order by salary*(1+coalesce(commission_pct,0)/100)*12 desc;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式二:</code> order by 列别名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 年薪 desc;</span><br></pre></td></tr></table></figure>
+
+<p><code>方式三: order by 列的序号</code>  列的序号从1开始 &#x3D;&gt; 推荐方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 2 desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据年薪降序排.如果年薪一样,则继续按照first_name升序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select first_name,salary*(1+coalesce(commission_pct,0)/100)*12 年薪 from s_emp </span><br><span class="line">order by 2 desc,1;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><h3 id="数字和字符串"><a href="#数字和字符串" class="headerlink" title="数字和字符串"></a>数字和字符串</h3><blockquote>
+<ol>
+<li><p>字符串转换成数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select &#x27;1&#x27;+0;</span><br><span class="line"></span><br><span class="line">mysql中字符数字遇到数字进行+,自动将字符转换成数字来进行计算.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数字转换成字符串 - concat函数 - 拼接删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select concat(1,2);  // 12</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="字符串和日期"><a href="#字符串和日期" class="headerlink" title="字符串和日期"></a>字符串和日期</h3><blockquote>
+<p>关于日期模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(在format字符串中可用标志符:  </span><br><span class="line">　%m 月名字(january……december)    </span><br><span class="line">　%w 星期名字(sunday……saturday)    </span><br><span class="line">　%d 有英语前缀的月份的日期(1st, 2nd, 3rd, 等等。）    </span><br><span class="line">　%Y 年, 数字, 4 位    </span><br><span class="line">　%y 年, 数字, 2 位    </span><br><span class="line">　%a 缩写的星期名字(sun……sat)    </span><br><span class="line">　%d 月份中的天数, 数字(00……31)    </span><br><span class="line">　%e 月份中的天数, 数字(0……31)    </span><br><span class="line">　%m 月, 数字(01……12)    </span><br><span class="line">　%c 月, 数字(1……12)    </span><br><span class="line">　%b 缩写的月份名字(jan……dec)    </span><br><span class="line">　%j 一年中的天数(001……366)    </span><br><span class="line">　%H 24时制小时(00……23)    </span><br><span class="line">　%k 小时(0……23)    </span><br><span class="line">　%h 12时小时(01……12)    </span><br><span class="line">　%i 小时(01……12)    </span><br><span class="line">　%l 小时(1……12)    </span><br><span class="line">　%i 分钟, 数字(00……59)    </span><br><span class="line">　%r 时间,12 小时(hh:mm:ss [ap]m)    </span><br><span class="line">　%t 时间,24 小时(hh:mm:ss)    </span><br><span class="line">　%s 秒(00……59)       </span><br><span class="line">　%p am或pm    </span><br><span class="line">　%w 一个星期中的天数(0=sunday ……6=saturday ）  </span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>获取当前系统的日期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select now();</span><br><span class="line"></span><br><span class="line">+---------------------+</span><br><span class="line">| now()               |</span><br><span class="line">+---------------------+</span><br><span class="line">| 2022-08-05 11:09:49 |</span><br><span class="line">+---------------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>日期转换成指定格式的字符串 - date_format(日期,模板)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">模板  %Y   %m    %d  %H  %i   %s</span><br><span class="line"></span><br><span class="line">select date_format(now(),&#x27;%Y/%m/%d %H:%i:%s&#x27;);</span><br><span class="line"></span><br><span class="line">select date_format(now(),&#x27;%Y年%m月%d日 %H时%i分%s秒&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串转成日期 - str_to_date(字符串,模板) - 字符串格式要和模板的格式匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- 删除表</span><br><span class="line">drop table tt;</span><br><span class="line">-- 创建表</span><br><span class="line">create table tt(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  name varchar(20),</span><br><span class="line">  birthday date</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- date - 年月日</span><br><span class="line">-- 插入数据</span><br><span class="line">-- mysql中默认支持的格式 - 会将字符串自动转成date类型</span><br><span class="line">insert into tt values(1,&#x27;admin&#x27;,&#x27;2022-09-01&#x27;);//ok</span><br><span class="line">insert into tt values(2,&#x27;tom&#x27;,&#x27;2022/09/01&#x27;);//ok</span><br><span class="line">insert into tt values(3,&#x27;jack&#x27;,&#x27;20221001&#x27;);//ok</span><br><span class="line"></span><br><span class="line">-- 不支持的时候</span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,&#x27;aa&#x27;);</span><br><span class="line">ERROR 1292 (22007): Incorrect date value: &#x27;aa&#x27; for column &#x27;birthday&#x27; at row 1</span><br><span class="line"></span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,&#x27;01-05-2022&#x27;);</span><br><span class="line">ERROR 1292 (22007): Incorrect date value: &#x27;01-05-2022&#x27; for column &#x27;birthday&#x27; at row 1</span><br><span class="line"></span><br><span class="line">-- 非要使用&#x27;01-05-2022&#x27;字符串格式的,才需要使用str_to_date函数进行转换</span><br><span class="line">insert into tt values(4,&#x27;jack&#x27;,str_to_date(&#x27;01-05-2022&#x27;,&#x27;%d-%m-%Y&#x27;));</span><br></pre></td></tr></table></figure>
+
+<p><code>导入脚本的时候 - 失败场景 - 字符串日期格式不支持</code></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h1><blockquote>
+<ul>
+<li><p>select 函数(参数);</p>
+</li>
+<li><p>函数是可以应用在查询列上的.</p>
+</li>
+<li><p>函数是允许嵌套使用的.</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h2><blockquote>
+<ol>
+<li><p>instr(str,substr) - 返回字符串substr在字符串str第一次出现的位置(str不包含substr时返回0)</p>
+</li>
+<li><p>lpad(str,len,padstr) - 用字符串padstr填补str左端直到字串长度为len并返回 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select lpad(&#x27;ab&#x27;,5,&#x27;cd&#x27;);//cdcab</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rpad(str,len,padstr) - 用字符串padstr填补str右端直到字串长度为len并返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;ab&#x27;,5,&#x27;cd&#x27;);//abcdc   5代表的是总的长度</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>left(str,len) - 返回字符串str的左端len个字符 </p>
+</li>
+<li><p>right(str,len) - 返回字符串str的右端len个字符 </p>
+</li>
+<li><p>substring(str,pos,len) - 返回字符串str的位置pos起len个字符  </p>
+</li>
+<li><p>substring(str,pos) - 返回字符串str的位置pos起后面的子串 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">序号从1开始</span><br><span class="line">select substring(&#x27;mysql&#x27;,2);  //ysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ltrim(str) - 返回删除了左空格的字符串str  </p>
+</li>
+<li><p>rtrim(str)  - 返回删除了右空格的字符串str  </p>
+</li>
+<li><p>space(n) - 返回由n个空格字符组成的一个字符串  </p>
+</li>
+<li><p><em><strong>replace(str,from_str,to_str)  - 用字符串to_str替换字符串str中的子串from_str并返回</strong></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace(&#x27;i love java&#x27;,&#x27;java&#x27;,&#x27;mysql&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reverse(str) - 颠倒字符串str的字符顺序并返回</p>
+</li>
+<li><p>insert(str,pos,len,newstr) - 把字符串str由位置pos起len个字符长的子串替换为字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select insert(&#x27;xxxxx&#x27;,1,2,&#x27;**&#x27;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lower(str) - 返回小写的字符串str  </p>
+</li>
+<li><p>upper(str) - 返回大写的字符串str</p>
+</li>
+<li><p>char_length(str) -  不管汉字还是数字或者是字母都算是一个字符。</p>
+</li>
+<li><p>length(str);&#x2F;&#x2F;汉字占3个,其他占1个.</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="练习-3"><a href="#练习-3" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>配合表 - 将first_name全部转换成大写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select first_name,upper(first_name) from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>first_name  - 模拟银行账户显示,只显示首字母,其余每个字母用*表示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- substring和rpad</span><br><span class="line">select first_name,rpad(substring(first_name,1,1),char_length(first_name),&#x27;*&#x27;) from s_emp;</span><br><span class="line"></span><br><span class="line">-- concat + substring + rpad</span><br><span class="line">select first_name,concat(substring(first_name,1,1),rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;)) from s_emp;</span><br><span class="line"></span><br><span class="line">-- replace + substring + rpad</span><br><span class="line">select first_name,replace(first_name,substring(first_name,2),rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;))</span><br><span class="line">from s_emp;</span><br><span class="line"></span><br><span class="line">-- insert + rpad</span><br><span class="line">select first_name,insert(first_name,2,char_length(first_name)-1,rpad(&#x27;*&#x27;,char_length(first_name)-1,&#x27;*&#x27;))</span><br><span class="line">from s_emp;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="2-数字函数"><a href="#2-数字函数" class="headerlink" title="2. 数字函数"></a>2. 数字函数</h2><blockquote>
+<ol>
+<li>abs(n) - 求绝对值</li>
+<li>mod(n,m) - 取模运算,返回n被m除的余数(同%操作符)</li>
+<li><strong>floor(n) - 返回不大于n的最大整数值</strong> - 向下取整  </li>
+<li><strong>ceiling(n) - 返回不小于n的最小整数值</strong>  - 向上取整 </li>
+<li>round(n[,d]) - 返回n的四舍五入值,保留d位小数(d的默认值为0)</li>
+<li>pow(x,y) - 返回值x的y次幂  </li>
+<li>sqrt(n) - 返回非负数n的平方根</li>
+<li>pi() - 返回圆周率  </li>
+<li>rand() - 返回在范围[0到1.0)内的随机浮点值</li>
+<li>truncate(n,d) - 保留数字n的d位小数并返回  - 直接截取</li>
+</ol>
+</blockquote>
+<h2 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h2><blockquote>
+<p>查询当前系统的日期 - select now();</p>
+<ol>
+<li><p>dayofweek(date) - 返回日期date是星期几(1&#x3D;星期天,2&#x3D;星期一,……7&#x3D;星期六,odbc标准)  </p>
+</li>
+<li><p>weekday(date) - 返回日期date是星期几(0&#x3D;星期一,1&#x3D;星期二,……6&#x3D; 星期天)</p>
+</li>
+<li><p>year(date) - 返回date的年份(范围在1000到9999)    </p>
+</li>
+<li><p>month(date)  - 返回date中的月份数值   </p>
+</li>
+<li><p>dayofmonth(date) - 返回date是一月中的第几日(在1到31范围内)   </p>
+</li>
+<li><p>hour(time) - 返回time的小时数(范围是0到23)  </p>
+</li>
+<li><p>minute(time) - 返回time的分钟数(范围是0到59) </p>
+</li>
+<li><p>second(time) - 返回time的秒数(范围是0到59) </p>
+</li>
+<li><p>period_add(p,n) - 增加n个月到时期p并返回(p的格式yymm或yyyymm) </p>
+<p>mysql&gt;select period_add(‘202008’,3) ;</p>
+<p>注意:p可以是字符串,一定要满足一定的格式,或者可以直接使用date类型.</p>
+</li>
+<li><p>period_diff(p1,p2) - 返回在时期p1和p2之间月数(p1和p2的格式yymm或yyyymm)  p1-p2</p>
+</li>
+<li><p>curdate() - 以’yyyy-mm-dd’或yyyymmdd格式返回当前日期值(根据返回值所处上下文是字符串或数字) </p>
+</li>
+<li><p>curtime() - 以’hh:mm:ss’或hhmmss格式返回当前时间值(根据返回值所处上下文是字符串或数字)</p>
+</li>
+<li><p>now() - 以’yyyy-mm-dd hh:mm:ss’或yyyymmddhhmmss格式返回当前日期时间(根据返回值所处上下文是字符串或数字)     </p>
+</li>
+<li><p>last_day(date) - date日期所在月的最后一天是什么时候</p>
+</li>
+<li><p>datediff(d1,d2) - 两个日期d1,d2之间相差的天数</p>
+</li>
+<li><p>timestampdiff(type,d1,d2) - type是YEAR,d1和d2相差的年份,MONTH,月份</p>
+<p>d1,d2 - yyyymmdd</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-1-补充"><a href="#3-1-补充" class="headerlink" title="3-1. 补充"></a>3-1. 补充</h3><blockquote>
+<ul>
+<li><p>date_add(date,interval expr type)</p>
+</li>
+<li><p>date_sub(date,interval expr type)</p>
+</li>
+<li><p>关于type</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ype:</span><br><span class="line">year</span><br><span class="line">month</span><br><span class="line">day</span><br><span class="line">hour</span><br><span class="line">minute</span><br><span class="line">second</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<p>#关联查询 </p>
+<blockquote>
+<p>关联查询就是多表查询</p>
+</blockquote>
+<h2 id="错误的写法"><a href="#错误的写法" class="headerlink" title="错误的写法"></a>错误的写法</h2><blockquote>
+<p>s_emp表中25rows,s_dept表中12rows</p>
+<ol>
+<li><p>查询员工的名字以及这个员工的部门名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select first_name,name from s_emp,s_dept;</span><br><span class="line"></span><br><span class="line">300 rows </span><br><span class="line"></span><br><span class="line">发生了笛卡尔积 - 错误的结果</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="纠正-传统的写法"><a href="#纠正-传统的写法" class="headerlink" title="纠正 - 传统的写法"></a>纠正 - 传统的写法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">select first_name,name from s_emp,s_dept where dept_id=id;</span><br><span class="line"></span><br><span class="line">ERROR 1052 (23000): Column &#x27;id&#x27; in where clause is ambiguous</span><br><span class="line"></span><br><span class="line">多张表中出现同名的列,需要对表取别名</span><br><span class="line"></span><br><span class="line">正确的写法:</span><br><span class="line">select e.first_name,d.name from s_emp e,s_dept d where e.dept_id=d.id;</span><br><span class="line"></span><br><span class="line">-- 用来表示表与表之间的关系foreign key - 外键</span><br><span class="line"></span><br><span class="line">-- 查询这个员工的first_name以及这个员工所在的区域名.</span><br><span class="line">-- 一个区域对应多个部门,一个部门对应多个员工.</span><br><span class="line">select e.first_name,r.name from s_emp e,s_dept d,s_region r</span><br><span class="line">where d.region_id = r.id and e.dept_id = d.id;</span><br><span class="line"></span><br><span class="line">for( ...  s_emp e)&#123;</span><br><span class="line">	for(... s_dept d)&#123;</span><br><span class="line">	    if(e.dept_id==d.id)&#123;</span><br><span class="line">	      e+&quot;:&quot;+d</span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="join和on写法"><a href="#join和on写法" class="headerlink" title="join和on写法"></a>join和on写法</h2><blockquote>
+<p>如果一条sql语句涉及到的表比较多的话,传统的写法,就不能很直观的看出来哪个表和哪个表之间有直接的关系.</p>
+<p>表 join 表 on 去除笛卡尔积</p>
+<p>外键一定是出现在多的一方</p>
+<p><em><strong>on 多的一方的外键 &#x3D; 一的一方主键</strong></em></p>
+<p><code>但是也不一定非要使用外键来去除笛卡尔积</code></p>
+</blockquote>
+<blockquote>
+<p>规则: 能够用join连接的表之间必须要有直接的关系.</p>
+</blockquote>
+<h3 id="练习-4"><a href="#练习-4" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<ol>
+<li><p>找出查询员工的名字以及这个员工的部门名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,d.name from s_emp e join s_dept d on e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出’Asia’区域上的所有的员工</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,r.name from </span><br><span class="line">s_emp e join s_dept d</span><br><span class="line">on e.dept_id = d.id</span><br><span class="line">join s_region r</span><br><span class="line">on d.region_id = r.id</span><br><span class="line">where r.name=&#x27;Asia&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找出客户的id,名称,联系方式以及这个客户的订单信息</p>
+<p>‘问题 - 15rows - [201,215]’</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.* from s_customer c</span><br><span class="line">join s_ord o on c.id = o.customer_id;</span><br><span class="line"></span><br><span class="line">查询出来的结果缺了id=207和215俩个客户,因为这俩个客户没有订单,所以这俩个客户没有查询出来.</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="连接的方式"><a href="#连接的方式" class="headerlink" title="连接的方式"></a>连接的方式</h2><blockquote>
+<ol>
+<li><p>内连接 - [inner] join</p>
+<p><code>如果join左边的表在右边的表中如果不存记录,则不会被查询出来.</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">inner join s_ord o on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>左连接 - left join</p>
+<p><code>以左边的表为基准表.即使左边的表在右边的表中没有记录,那么左边表中的这条记录也要能够被查询出来</code></p>
+<p><code>查询客户和订单信息,即使这个客户没有订单,那么这个客户也要能够被查询出来</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">left join s_ord o on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右连接 - right join</p>
+<p><code>以右边的表为基准表.即使右边的表在左边的表中没有记录,那么右边表中的这条记录也要能够被查询出来</code></p>
+<p><code>查询客户和订单信息,即使这个客户没有订单,那么这个客户也要能够被查询出来</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_ord o</span><br><span class="line">right join s_customer c on c.id = o.customer_id;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交叉连接 - cross join - 不会使用的,产生的是一个错误的结果集 - 笛卡尔积</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,c.phone,o.id from s_customer c</span><br><span class="line">cross join s_ord o;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全连接 full outer join - mysql不支持</p>
+<p>全连接 &#x3D; 左连接 + 右连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">drop table t_user;</span><br><span class="line">drop table t_info;</span><br><span class="line">create table t_user(</span><br><span class="line">	id int primary key,</span><br><span class="line">  name varchar(20)</span><br><span class="line">);</span><br><span class="line">insert into t_user values(1,&#x27;admin&#x27;);</span><br><span class="line">insert into t_user values(2,&#x27;python&#x27;);</span><br><span class="line"></span><br><span class="line">create table t_info(</span><br><span class="line">	id int primary key,</span><br><span class="line">	remark varchar(20),</span><br><span class="line">	user_id int</span><br><span class="line">);</span><br><span class="line">insert into t_info values(1,&#x27;aaa&#x27;,1);</span><br><span class="line">insert into t_info values(2,&#x27;bbb&#x27;,3);</span><br><span class="line"></span><br><span class="line">-- 分析 - 左连接</span><br><span class="line">select u.*,info.* from t_user u left join t_info info on u.id = info.user_id;</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line">| id | name   | id   | remark | user_id |</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line">|  1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">|  2 | python | NULL | NULL   |    NULL |</span><br><span class="line">+----+--------+------+--------+---------+</span><br><span class="line"></span><br><span class="line">-- 右连接</span><br><span class="line">select info.*,u.* from t_user u right join t_info info on u.id = info.user_id;</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line">| id | remark | user_id | id   | name  |</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line">|  1 | aaa    |       1 |    1 | admin |</span><br><span class="line">|  2 | bbb    |       3 | NULL | NULL  |</span><br><span class="line">+----+--------+---------+------+-------+</span><br><span class="line"></span><br><span class="line">-- 全连接</span><br><span class="line">union - 两张表中的重复的结果保留了一条 </span><br><span class="line"></span><br><span class="line">union all - 两张表中的重复的结果都会展示出来 , 并集</span><br><span class="line"></span><br><span class="line">select u.*,info.* from t_user u left join t_info info on u.id = info.user_id</span><br><span class="line">union all</span><br><span class="line">select u.*,info.* from t_user u right join t_info info on u.id = info.user_id;</span><br><span class="line"></span><br><span class="line"> id   | name   | id   | remark | user_id |</span><br><span class="line">+------+--------+------+--------+---------+</span><br><span class="line">|    1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">|    2 | python | NULL | NULL   |    NULL |</span><br><span class="line">|    1 | admin  |    1 | aaa    |       1 |</span><br><span class="line">| NULL | NULL   |    2 | bbb    |       3 |</span><br><span class="line">+------+--------+------+--------+---------+</span><br></pre></td></tr></table></figure>
+
+
+<p>select u.<em>,info.</em> from t_user u left join t_info info on u.id &#x3D; info.user_id<br>union<br>select u.<em>,info.</em> from t_user u right join t_info info on u.id &#x3D; info.user_id;</p>
+<p>+——+——–+——+——–+———+<br>| id   | name   | id   | remark | user_id |<br>+——+——–+——+——–+———+<br>|    1 | admin  |    1 | aaa    |       1 |<br>|    2 | python | NULL | NULL   |    NULL |<br>| NULL | NULL   |    2 | bbb    |       3 |<br>+——+——–+——+——–+———+</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="练习-5"><a href="#练习-5" class="headerlink" title="练习"></a>练习</h3><blockquote>
+<p>查询员工的名称以及他对应的上司的名称,即使这个员工没有上司,那么也要查询出来 - 自关联</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select e1.first_name 员工,e2.first_name 上司</span><br><span class="line">from s_emp e1 left join s_emp e2 on e2.id = e1.manager_id;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="多行函数"><a href="#多行函数" class="headerlink" title="多行函数"></a>多行函数</h1><blockquote>
+<ol>
+<li><p>count - 统计个数,null值不会统计,重复的数据,有一个算一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from s_emp;</span><br><span class="line"></span><br><span class="line">select count(e.id) from s_emp e;</span><br><span class="line"></span><br><span class="line">select count(e.commission_pct) from s_emp;//5个</span><br><span class="line"></span><br><span class="line">-- 统计职称的个数,但是重复的职称只能算1个</span><br><span class="line">select count(distinct title) from s_emp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sum - 总和,忽略null值</p>
+</li>
+<li><p>avg,max,min</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h1><blockquote>
+<p><code>分组统计</code></p>
+</blockquote>
+<blockquote>
+<p><code>语法</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT 语句</span><br><span class="line">WHERE 语句</span><br><span class="line">GROUP BY 语句</span><br><span class="line">HAVING 语句</span><br><span class="line">ORDER BY 语句</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="练习-6"><a href="#练习-6" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<ol>
+<li><p>统计每个部门的员工的个数 - 单表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select e.dept_id,count(e.id) from s_emp e group by e.dept_id;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>统计部门的id,name以及这个部门的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- group by + d.id  --- ok   id是主键列 - 唯一性</span><br><span class="line">select d.id,d.name,count(e.id) from s_emp e</span><br><span class="line">join s_dept d on e.dept_id = d.id group by d.id;</span><br></pre></td></tr></table></figure>
+
+
+<p>select d.id,d.name,count(e.id) from s_emp e<br>join s_dept d on e.dept_id &#x3D; d.id group by d.name;<br>ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column ‘dy.d.id’ which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode&#x3D;only_full_group_by</p>
+<p>– 推荐select后面跟的列(除了组函数&#x2F;多行函数)应该和group by 跟的列保持一致<br>select d.id,d.name,count(e.id) from s_emp e<br>join s_dept d on e.dept_id &#x3D; d.id group by d.id,d.name;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3. 统计每个职称的人数</span><br><span class="line"></span><br><span class="line">   ~~~mysql</span><br><span class="line">   select title,count(*) from s_emp group by title;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计区域id,区域名,以及这个区域上的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select r.id,r.name,count(e.id) from s_region r join s_dept d</span><br><span class="line">on d.region_id = r.id join s_emp e on e.dept_id = d.id group by r.id,r.name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计客户的id,name以及这个客户的订单的数量,没有订单,则显示0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,count(o.id) from s_customer c left join s_ord o</span><br><span class="line">on o.customer_id = c.id group by c.id,c.name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计各年份入职的员工(年份,员工数量)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select year(start_date),count(e.id) from s_emp e</span><br><span class="line">group by year(start_date);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="having使用方式"><a href="#having使用方式" class="headerlink" title="having使用方式"></a>having使用方式</h3><blockquote>
+<p>having和where区别</p>
+<ol>
+<li>where条件筛选,但是分组之前,并且where不会跟组函数</li>
+<li>having分组之后的进一步过滤,使用组函数进行过滤的</li>
+</ol>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<ol>
+<li><p>查询出平均工资超过1300的部门 - 部门id,name,平均工资</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select d.id,d.name,avg(e.salary) from s_dept d join s_emp e</span><br><span class="line">on d.id = e.dept_id group by d.id,d.name having avg(e.salary)&gt;1300;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计除了’Asia’区域之外的各个区域的id,name和区域上的人数[大于3个],最后再根据区域的id进行降序排列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select r.id,r.name,count(e.id) from s_region r </span><br><span class="line">join s_dept d on r.id = d.region_id</span><br><span class="line">join s_emp e on e.dept_id = d.id</span><br><span class="line">where r.name&lt;&gt;&#x27;Asia&#x27;</span><br><span class="line">group by r.id,r.name</span><br><span class="line">having count(e.id)&gt;3</span><br><span class="line">order by 1 desc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询没有订单的客户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select c.id,c.name,count(o.id) from s_customer c</span><br><span class="line">left join s_ord o on c.id = o.customer_id group by c.id,c.name having count(o.id)=0;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><blockquote>
+<p>子查询必须使用()括起来</p>
+<ul>
+<li>条件列</li>
+<li>查询列</li>
+<li>子查询的结果看做是”一张表”</li>
+</ul>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<ol>
+<li><p>查找和Mark工资一样的员工.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- 分解 - mark工资 - 1450</span><br><span class="line">select salary from s_emp where first_name=&#x27;Mark&#x27;;</span><br><span class="line"></span><br><span class="line">-- 找出1450薪资的员工</span><br><span class="line">select first_name,salary from s_emp where salary = 1450 and first_name&lt;&gt;&#x27;Mark&#x27;;</span><br><span class="line"></span><br><span class="line">-- 整合</span><br><span class="line">-- 子查询出现在条件部分</span><br><span class="line">select first_name,salary from s_emp where salary = (select salary from s_emp where first_name=&#x27;Mark&#x27;)  and first_name&lt;&gt;&#x27;Mark&#x27;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计每个部门的id,name以及部门的员工的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select d.id,d.name,(</span><br><span class="line">	select count(e.id) from s_emp e where e.dept_id = d.id</span><br><span class="line">) from s_dept d;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<p><code>练习2</code></p>
+<blockquote>
+<ol>
+<li>统计客户的id,name以及客户的订单数量</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;select c.id,c.name,(select count(o.id) from s_ord o where o.customer_id = c.id) from s_customer c;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>找出部门平均工资高于公司平均工资的部门信息</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;select dept_id,avg(salary) from s_emp group by dept_id having avg(salary)&gt;(select avg(salary) from s_emp);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>找出与’Ben’同部门的员工信息</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 方式一</span><br><span class="line">select first_name,dept_id from s_emp where dept_id=(select dept_id from s_emp where first_name=&#x27;Ben&#x27;)</span><br><span class="line">and first_name&lt;&gt;&#x27;Ben&#x27;;</span><br><span class="line"></span><br><span class="line">-- 方式二</span><br><span class="line">select e.first_name,(select e.dept_id from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id=e.dept_id) did from s_emp e where e.first_name&lt;&gt;&#x27;Ben&#x27;;</span><br><span class="line"></span><br><span class="line">-- 方式二整合 - 把子查询的结果作为一张表,必须要别名</span><br><span class="line">select * from (select e.first_name,(select e.dept_id from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id=e.dept_id) did from s_emp e where e.first_name&lt;&gt;&#x27;Ben&#x27;) core_</span><br><span class="line">where core_.did is not null;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<ol>
+<li><p>能用分组查询查询就不要使用子查询(嵌套越多,查询效率越低)</p>
+</li>
+<li><p>无关子查询(子查询可以独立运行)和相关子查询(子查询使用到了外部查询的东西)</p>
+<p>无关子查询&gt;相关子查询</p>
+</li>
+<li><p>子查询会比分组查询更加灵活.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="exists和not-exists"><a href="#exists和not-exists" class="headerlink" title="exists和not exists"></a>exists和not exists</h1><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT 语句</span><br><span class="line">WHERE exists (子查询)</span><br><span class="line"></span><br><span class="line">规则: 不关心子查询查到的内容是什么,子查询是否能够查询出结果.</span><br><span class="line">如果查询出结果,等同于where true</span><br><span class="line"></span><br><span class="line">select id,first_name from s_emp where exists(select 1 from s_emp where 1=1);</span><br></pre></td></tr></table></figure>
+
+<p><code>找出和&#39;Ben&#39;同一个部门的员工</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select e.first_name,e.dept_id from s_emp e </span><br><span class="line">where exists(</span><br><span class="line">select 1 from s_emp e1 where e1.first_name=&#x27;Ben&#x27; and e1.dept_id = e.dept_id</span><br><span class="line">) and e.first_name&lt;&gt;&#x27;Ben&#x27;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<p>找出各个部门工资排名前二的员工</p>
+<p>思路: 在’我’这个部门中,有人的工资比我高,但是数量不能超过1个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select e.id,e.salary,e.dept_id from s_emp e</span><br><span class="line">where exists(</span><br><span class="line">	select 1 from s_emp e1 where e1.dept_id = e.dept_id and</span><br><span class="line">e1.salary&gt;e.salary having count(*)&lt;=1</span><br><span class="line">) order by 3;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>练习</code></p>
+<blockquote>
+<p>找出每个部门中工资最高的那个人</p>
+</blockquote>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/DorwoningFish.github.io/2022/08/06/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-JVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -627,36 +1339,36 @@
 <li><p><em>Integer-&gt;int String-&gt;varchar double-&gt;double</em></p>
 </li>
 <li><p><em>判断加了MyId注解的字段后面拼接primary key</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line">     </span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line">     </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyEntity &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line">     </span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line">     </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:25</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTable &#123;</span><br><span class="line">    String <span class="title function_">tablename</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line">     </span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line">     </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:28</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.FIELD&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyId &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line">     </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@MyEntity</span></span><br><span class="line"><span class="meta">@MyTable(tablename = &quot;t_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@MyId</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span>  String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br></pre></td></tr></table></figure>
-
-
-<p>import java.lang.reflect.Field;</p>
-<p>&#x2F;**</p>
-<ul>
-<li><p>@Description &#x2F;&#x2F;TODO</p>
-</li>
-<li><p>@Date 2022&#x2F;8&#x2F;4 18:35</p>
-</li>
-<li><p>@Author lonng<br> **&#x2F;<br>public class MybatisGenerate {<br> public static void generate(){<br> StringBuilder stringBuilder&#x3D;new StringBuilder();<br> Class<?> c=User.class;
- Field[] fields= c.getDeclaredFields();
- if(c.isAnnotationPresent(MyEntity.class)&&c.isAnnotationPresent(MyTable.class)){
-     stringBuilder.append("drop table ");
-     MyTable myTable=c.getDeclaredAnnotation(MyTable.class);
-     stringBuilder.append(myTable.tablename());
-     stringBuilder.append("\n"+"create table "+myTable.tablename()+"(\n");
-     for (Field f:fields) {
-         String name = f.getName();
-         stringBuilder.append(name);
-         Class<?> type &#x3D; f.getType();<br>         if (type &#x3D;&#x3D; int.class || type &#x3D;&#x3D; Integer.class) {<br>             stringBuilder.append(“ int”);<br>         } else if (type &#x3D;&#x3D; String.class) {<br>             stringBuilder.append(“ varchar”);<br>         } else if (type &#x3D;&#x3D; Double.class &amp;&amp; type &#x3D;&#x3D; double.class) {<br>             stringBuilder.append(“ varchar”);<br>         }else stringBuilder.append(“ “+type.getSimpleName());<br>         if(f.isAnnotationPresent(MyId.class)){<br>             stringBuilder.append(“ primary key”);<br>         }<br>         stringBuilder.append(“\n”);<br>     }<br>     stringBuilder.append(“)”);<br> }else System.out.println(“没有注解”);<br> System.out.println(stringBuilder);<br> }</p>
-<p> public static void main(String[] args) {<br> generate();<br> }</p>
-</li>
-</ul>
-<p>}</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># *代理设计模式*</span><br><span class="line"></span><br><span class="line">*定义:由于某些原因需要给某对象提供一个代理以控制该对象的访问.*</span><br><span class="line"></span><br><span class="line">*犯人   -&gt; 律师(无罪释放+法律知识) -&gt;   警察*</span><br><span class="line"></span><br><span class="line">*房东(核心功能) -&gt; 中介(核心功能+吹牛-增强) -&gt; 租户*</span><br><span class="line"></span><br><span class="line">*优点:*</span><br><span class="line"></span><br><span class="line">1. *在客户端与目标对象之间起到一个中介作用(保护目标对象的作业)*</span><br><span class="line">2. *代理对象可以**扩展目标对象的功能***</span><br><span class="line">3. *将客户端和目标对象进行分离.在一定程度上降低了系统的耦合.*</span><br><span class="line"></span><br><span class="line">## *静态代理*</span><br><span class="line"></span><br><span class="line">*代理类和被代理类都需要实现同一个接口的.所谓静态的含义:在编译期间,真实的存在这个代理类.*</span><br><span class="line"></span><br><span class="line">*`弊端:`*</span><br><span class="line"></span><br><span class="line">*造成代理类比较繁多.*</span><br><span class="line"></span><br><span class="line">## *动态代理*</span><br><span class="line"></span><br><span class="line">*在编译期间是不会出现代理类的,是程序的运行期间生成目标对象的代理类*</span><br><span class="line"></span><br><span class="line">*jdk动态代理 - 规则 - 只能代理接口*</span><br><span class="line"></span><br><span class="line">*`核心代码`*</span><br><span class="line"></span><br><span class="line">~~~java</span><br><span class="line">public class ProxyHandler implements InvocationHandler &#123;</span><br><span class="line"></span><br><span class="line">   //代理一切接口</span><br><span class="line">   private Object obj;</span><br><span class="line"></span><br><span class="line">   public ProxyHandler(Object obj)&#123;</span><br><span class="line">       this.obj = obj;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    *</span><br><span class="line">    *</span><br><span class="line">    * @param proxy 反射创建的代理对象</span><br><span class="line">    * @param method 代理对象访问的接口的中的方法对应的method实例</span><br><span class="line">    * @param args 如果参数,调用方法传入的参数</span><br><span class="line">    * @return</span><br><span class="line">    * @throws Throwable</span><br><span class="line">    */</span><br><span class="line">   @Override</span><br><span class="line">   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">       //System.out.println(proxy.getClass());</span><br><span class="line">       //</span><br><span class="line">       //System.out.println(method);</span><br><span class="line">       //</span><br><span class="line">       //System.out.println(Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">       //在此处统一进行功能的扩展</span><br><span class="line">       System.out.println(&quot;log-before&quot;);</span><br><span class="line"></span><br><span class="line">       //调用目标对象的核心方法</span><br><span class="line">       Object result = method.invoke(obj,args);</span><br><span class="line"></span><br><span class="line">       System.out.println(&quot;log-after&quot;);</span><br><span class="line"></span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyEntity &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:25</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTable &#123;</span><br><span class="line">    String <span class="title function_">tablename</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:28</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.FIELD&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyId &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:21</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@MyEntity</span></span><br><span class="line"><span class="meta">@MyTable(tablename = &quot;t_user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@MyId</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span>  String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"><span class="keyword">package</span> tech.aistr.day14.homework;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> //TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022/8/4 18:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> lonng</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisGenerate</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">generate</span><span class="params">()</span>&#123;</span><br><span class="line">        StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        Class&lt;?&gt; c=User.class;</span><br><span class="line">        Field[] fields= c.getDeclaredFields();</span><br><span class="line">        <span class="type">int</span> size=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(c.isAnnotationPresent(MyEntity.class)&amp;&amp;c.isAnnotationPresent(MyTable.class))&#123;</span><br><span class="line">            stringBuilder.append(<span class="string">&quot;drop table &quot;</span>);</span><br><span class="line">            MyTable myTable=c.getDeclaredAnnotation(MyTable.class);</span><br><span class="line">            stringBuilder.append(myTable.tablename());</span><br><span class="line">            stringBuilder.append(<span class="string">&quot;\n&quot;</span>+<span class="string">&quot;create table &quot;</span>+myTable.tablename()+<span class="string">&quot;(;\n&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (Field f:fields) &#123;</span><br><span class="line">                size++;</span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> f.getName();</span><br><span class="line">                stringBuilder.append(name);</span><br><span class="line">                Class&lt;?&gt; type = f.getType();</span><br><span class="line">                <span class="keyword">if</span> (type == <span class="type">int</span>.class || type == Integer.class) &#123;</span><br><span class="line">                    stringBuilder.append(<span class="string">&quot; int&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == String.class) &#123;</span><br><span class="line">                    stringBuilder.append(<span class="string">&quot; varchar&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == Double.class &amp;&amp; type == <span class="type">double</span>.class) &#123;</span><br><span class="line">                    stringBuilder.append(<span class="string">&quot; varchar&quot;</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span> stringBuilder.append(<span class="string">&quot; &quot;</span>+type.getSimpleName());</span><br><span class="line">                <span class="keyword">if</span>(f.isAnnotationPresent(MyId.class))&#123;</span><br><span class="line">                    stringBuilder.append(<span class="string">&quot; primary key&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(size!= fields.length)&#123;</span><br><span class="line">                    stringBuilder.append(<span class="string">&quot;,\n&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> stringBuilder.append(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            stringBuilder.append(<span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> System.out.println(<span class="string">&quot;没有注解&quot;</span>);</span><br><span class="line">        System.out.println(stringBuilder);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        generate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ol>
 </blockquote>
+<h1 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a><em>代理设计模式</em></h1><blockquote>
+<p><em>定义:由于某些原因需要给某对象提供一个代理以控制该对象的访问.</em></p>
+<p><em>犯人   -&gt; 律师(无罪释放+法律知识) -&gt;   警察</em></p>
+<p><em>房东(核心功能) -&gt; 中介(核心功能+吹牛-增强) -&gt; 租户</em></p>
+</blockquote>
+<blockquote>
+<p><em>优点:</em></p>
+<ol>
+<li><em>在客户端与目标对象之间起到一个中介作用(保护目标对象的作业)</em></li>
+<li><em>代理对象可以<strong>扩展目标对象的功能</strong></em></li>
+<li><em>将客户端和目标对象进行分离.在一定程度上降低了系统的耦合.</em></li>
+</ol>
+</blockquote>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a><em>静态代理</em></h2><blockquote>
+<p><em>代理类和被代理类都需要实现同一个接口的.所谓静态的含义:在编译期间,真实的存在这个代理类.</em></p>
+<p><em><code>弊端:</code></em></p>
+<p><em>造成代理类比较繁多.</em></p>
+</blockquote>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a><em>动态代理</em></h2><blockquote>
+<p><em>在编译期间是不会出现代理类的,是程序的运行期间生成目标对象的代理类</em></p>
+<p><em>jdk动态代理 - 规则 - 只能代理接口</em></p>
+</blockquote>
+<p><em><code>核心代码</code></em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProxyHandler</span> <span class="keyword">implements</span> <span class="title class_">InvocationHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//代理一切接口</span></span><br><span class="line">    <span class="keyword">private</span> Object obj;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ProxyHandler</span><span class="params">(Object obj)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> proxy 反射创建的代理对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> method 代理对象访问的接口的中的方法对应的method实例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args 如果参数,调用方法传入的参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="comment">//System.out.println(proxy.getClass());</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">//System.out.println(method);</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">//System.out.println(Arrays.toString(args));</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//在此处统一进行功能的扩展</span></span><br><span class="line">        System.out.println(<span class="string">&quot;log-before&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用目标对象的核心方法</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> method.invoke(obj,args);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;log-after&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="静态代理和装饰器的区别"><a href="#静态代理和装饰器的区别" class="headerlink" title="静态代理和装饰器的区别"></a><em>静态代理和装饰器的区别</em></h2><blockquote>
 <p><em>一定是要从功能的角度去理解它们的区别!</em></p>
 <ul>
@@ -4784,567 +5496,6 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
 
 
   
-    <article id="post-Java基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/DorwoningFish.github.io/2022/07/31/Java%E5%9F%BA%E7%A1%80/" target="_blank">Java基础</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/DorwoningFish.github.io/2022/07/31/Java%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-        <time datetime="2022-07-31T14:21:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-31</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <ul>
-<li>为甚要环境变量配置</li>
-</ul>
-<blockquote>
-<ol>
-<li><p>win+r  输入 notepad </p>
-</li>
-<li><p>查找用户主目录 - notepad.exe 是否存在</p>
-</li>
-<li><p>接着输入 success</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">报错 - 不是内部或者外部的命令</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>继续查找C盘WINDOWS目录中找notepad.exe&#x2F;NOTEPAD.exe</p>
-</li>
-</ol>
-</blockquote>
-<pre><code>&gt;    是存在的
-&gt;
-&gt; 5. win+r - 终端 -&gt; 查看PATH的路径
-</code></pre>
-<blockquote>
-</blockquote>
-<pre><code>&gt;    发现WINDOWS在其中
-&gt;
-&gt;    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path</span><br></pre></td></tr></table></figure>
-&gt;
-&gt; 6. windows执行命令的顺序=&gt; 先到当前盘符下去查找是否存在这个命令.如果存在,则直接执行.否则会继续查找Path中配置的路径.
-
-# jdk环境变量配置
-
-&gt; 1. 解压到非中文的路径下,不能带有非法字符
-&gt;
-&gt; 2. 右击计算机 - 属性 - 高级系统设置 - 环境变量设置
-</code></pre>
-<blockquote>
-</blockquote>
-<pre><code>&gt;    &gt; 定位到系统变量
-&gt;    &gt;
-&gt;    &gt; 1. 新建变量名:JAVA_HOME
-&gt;    &gt;
-&gt;    &gt;    变量值:解压的根目录
-</code></pre>
-<blockquote>
-<blockquote>
-<ol start="2">
-<li><p>定位到内置的系统变量名PATH</p>
-<p>编辑-添加-%JAVA_HOME%\bin</p>
-</li>
-</ol>
-</blockquote>
-<ol start="3">
-<li><p>检测是否配置成功</p>
-<p>win+r - 终端,直接输入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">            </span><br><span class="line">admindeMacBook-Pro:~ admin$ java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_66&quot;</span></span><br><span class="line">Java(TM) SE Runtime <span class="title function_">Environment</span> <span class="params">(build <span class="number">1.8</span><span class="number">.0_66</span>-b17)</span></span><br><span class="line">Java <span class="title function_">HotSpot</span><span class="params">(TM)</span> <span class="number">64</span>-Bit Server <span class="title function_">VM</span> <span class="params">(build <span class="number">25.66</span>-b17, mixed mode)</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<h1 id="java执行原理"><a href="#java执行原理" class="headerlink" title="java执行原理"></a>java执行原理</h1><blockquote>
-<ol>
-<li>.java是源文件的后缀</li>
-<li>.class是字节码文件的后缀</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>新建了一个Test.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<ol>
-<li><p>编译这个文件 - <code>必须通过终端进入到Test.java所在的位置</code></p>
-<p>编译完之后出现一个Test.class文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac Test.java</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行这个文件  - 实际上就是运行的就是Test.class文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java Test</span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<blockquote>
-<p>结论:**java是属于解释型语言!**C语言才是编译型语言!</p>
-<p><strong>.java原文件经过jdk中的编译器编译成.class字节码文件,然后经过jvm中的解释器,解释成机器语言.</strong></p>
-<p>java - 爪哇 - **特点java语言是跨平台[**os平台],但是jvm是不跨平台的 - 1995年5月23日</p>
-<p>java之父 - james gosling 詹姆斯高斯林 - sun[太阳]公司 - 2010年10月被oracle公司收购了.</p>
-<p>IBM公司比较看好sun公司-java  &#x3D;&gt; IDE-eclipse[日食]</p>
-<p><a target="_blank" rel="noopener" href="http://www.oracle.com/">www.oracle.com</a></p>
-<p>java-app &#x3D;&gt; jvm执行 &#x3D;&gt; 操作系统</p>
-</blockquote>
-<h1 id="jdk和jre以及jvm"><a href="#jdk和jre以及jvm" class="headerlink" title="jdk和jre以及jvm"></a>jdk和jre以及jvm</h1><blockquote>
-<ol>
-<li><p>jvm - java virtual machine - java虚拟机</p>
-</li>
-<li><p>jre - java runtime environment - java运行时环境</p>
-<p>包含java程序运行需要的一些核心的内库.    jre是包含jvm</p>
-<p>如果仅仅是想要在计算机中去执行一个java程序的话,仅仅只需要安装jre即可.</p>
-</li>
-<li><p>jdk - java development kit - java开发工具包,包含一些开发工具.比如java.exe和javac.exe,javadoc.exe,javap.exe</p>
-<p>包含jre</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<p><strong>jdk8.x和jdk11.x和jdk17.x</strong></p>
-</blockquote>
-<h1 id="类名的命名规则"><a href="#类名的命名规则" class="headerlink" title="类名的命名规则"></a>类名的命名规则</h1><blockquote>
-<ol>
-<li>文件名和类名高度保持一致.</li>
-<li>类名必须是由字母,数字,_,$组成,但是不能以数字开头</li>
-<li>推荐使用大驼峰命名规则.   </li>
-<li>不能是java关键字 - public class static void int float double boolean …</li>
-<li>不能是以下三个字面量 - null,true,false</li>
-<li>不能是java中的保留关键字 - goto , const</li>
-<li>不推荐使用中文 - 防止出现中文乱码问题.</li>
-<li>严禁使用中文拼音</li>
-<li>建议还是参考阿里的开发手册</li>
-</ol>
-</blockquote>
-<h1 id="包package"><a href="#包package" class="headerlink" title="包package"></a>包package</h1><blockquote>
-<p>包是用来管理类的.</p>
-<ol>
-<li><p>推荐全部采用小写字母组成,可以出现数字</p>
-</li>
-<li><p>多个单词之间用.隔开</p>
-</li>
-<li><p>包名推荐使用公司域名倒置的写法 - 唯一性.</p>
-<p>com.baidu  tech.aistar.项目代号</p>
-</li>
-<li><p>不允许使用java或者javax开头</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="关于注释"><a href="#关于注释" class="headerlink" title="关于注释"></a>关于注释</h1><blockquote>
-<ol>
-<li>单行注释</li>
-<li>多行注释</li>
-<li>文档注释 - 类或者方法</li>
-</ol>
-</blockquote>
-<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="定义变量的语法"><a href="#定义变量的语法" class="headerlink" title="定义变量的语法"></a>定义变量的语法</h2><blockquote>
-<p>数据类型 变量名 [&#x3D; 初始值];</p>
-</blockquote>
-<blockquote>
-<p>byte-short-int-long</p>
-<p>char</p>
-<p>boolean</p>
-<p>float - double</p>
-</blockquote>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 在JVM的栈中开辟一块区域,区域大小由数据类型决定[4个字节,32bit,-2^31~2^31-1]</span></span><br><span class="line"><span class="comment">//内存大小一旦确定,不能够改变</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 将一个字面量,整数10,放入到这个区域中.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 给区域进行了重新命名 - 给使用者访问这个区域中的数据使用的.</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="数据类型的转换"><a href="#数据类型的转换" class="headerlink" title="数据类型的转换"></a>数据类型的转换</h2><blockquote>
-<p>小的数据类型和大的数据类型在进行计算的时候,计算的结果是偏向类型大的一方.</p>
-</blockquote>
-<blockquote>
-<ol>
-<li><p>强制类型转化 - 大的数据类型转成小的数据类型时候,需要强制类型转换.</p>
-</li>
-<li><p>自动类型转换 - 小的数据类型&#x3D;&gt;大的数据类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">byte</span>-&gt;<span class="type">short</span>-&gt;<span class="type">int</span>-&gt;<span class="type">long</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>-&gt;<span class="type">int</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>-&gt;<span class="type">float</span>   错误</span><br><span class="line"><span class="type">int</span>-&gt;<span class="type">double</span>  阔以</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>隐式转换</p>
-<p>3-1. L&#x2F;l</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="variable">o</span> <span class="operator">=</span> <span class="number">123L</span>;<span class="comment">//int-&gt;long</span></span><br><span class="line">思考</span><br><span class="line"><span class="type">long</span> <span class="variable">o1</span> <span class="operator">=</span> <span class="number">123</span>;<span class="comment">//ok</span></span><br><span class="line">            </span><br><span class="line">未来学习java.util.Date类型,构造函数</span><br><span class="line">Date(<span class="type">long</span> time);<span class="comment">//1658126857417</span></span><br></pre></td></tr></table></figure>
-
-<p>3-2. F&#x2F;f</p>
-<p>3-3. D&#x2F;d</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="方法的定义和使用"><a href="#方法的定义和使用" class="headerlink" title="方法的定义和使用"></a>方法的定义和使用</h1><blockquote>
-<ol>
-<li>main方法必须提供 - 主入口</li>
-<li>方法中是不能够再去定义方法的.</li>
-<li>方法是用来封装一段业务逻辑的,提高代码的复用性.</li>
-</ol>
-</blockquote>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法返回类型 方法名([参数列表])&#123;</span><br><span class="line">  方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<ol>
-<li><p>修饰符</p>
-<p>1-1. 访问修饰符 - public</p>
-<p>1-2. <strong>其他修饰符 - static</strong> </p>
-<blockquote>
-<p>用static修饰的方法 - 静态方法,否则叫做非静态方法 - <strong>决定了这个方法的调用方式</strong></p>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li>返回类型 - 可以是八种基本数据类型,可以是对象类型[无数种].</li>
-<li>方法名 - 参考变量名 - 参考类名[小驼峰]</li>
-<li></li>
-</ol>
-</blockquote>
-<h3 id="demo1"><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day01;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 方法的定义和使用</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/7/18 3:07 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MethodTest</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//原则:属于谁,就会被谁调用.</span></span><br><span class="line">        <span class="comment">//static修饰的成员member[属性/方法],初始化的时机</span></span><br><span class="line">        <span class="comment">//当jvm加载类进内存的时候,就会立即给所有的静态的成员分配空间以及初始化.并且仅仅只会初始化一次.</span></span><br><span class="line">        <span class="comment">//因此static修饰的成员是属于类的.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//非静态的属性是何时分配空间和初始化的呢?</span></span><br><span class="line">        <span class="comment">//只要每次创建对象的时候,就会对这个对象中的非静态的成员分配空间以及初始化</span></span><br><span class="line">        <span class="comment">//非静态的成员是属于对象拥有的.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//方法的调用</span></span><br><span class="line">        <span class="comment">//静态方法 - 通过类名调用</span></span><br><span class="line">        MethodTest.add2();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//非静态方法 - 必须要创建一个类的对象</span></span><br><span class="line">        <span class="comment">//什么类 = 方法所在类</span></span><br><span class="line">        <span class="comment">//类名 对象名 = new 类名();</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//本质:</span></span><br><span class="line">        <span class="comment">//①通过new关键字在jvm的堆空间创建了一个区域,创建了一个对象,</span></span><br><span class="line">        <span class="comment">//②并且进行初始化</span></span><br><span class="line">        <span class="comment">//③将这个对象在堆空间中的内存地址赋值给了一个引用变量m,存储在JVM的栈中.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//真实的顺序,经过jvm的指令优化</span></span><br><span class="line">        <span class="comment">//①通过new关键字在jvm的堆空间创建了一个区域,创建了一个对象,</span></span><br><span class="line">        <span class="comment">//②将这个对象在堆空间中的内存地址赋值给了一个引用变量m,存储在JVM的栈中.</span></span><br><span class="line">        <span class="comment">//③并且进行初始化</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//所以m是引用,引用保存的是地址</span></span><br><span class="line">        <span class="type">MethodTest</span> <span class="variable">m</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MethodTest</span>();</span><br><span class="line">        <span class="comment">//System.out.println(m);//tech.aistar.day01.MethodTest@330bedb4</span></span><br><span class="line">        m.add();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义一个公开的无返回类型的并且没有参数的方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;add...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义一个公开的静态的无返回类型的并且没有参数的方法</span></span><br><span class="line">    <span class="comment">//修饰符之间是没有顺序的</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">add2</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;add2...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="细节-关于方法的调用"><a href="#细节-关于方法的调用" class="headerlink" title="细节-关于方法的调用"></a>细节-关于方法的调用</h2><blockquote>
-<ol>
-<li>非静态方法中可以直接调用非静态方法&#x2F;静态方法</li>
-<li>静态方法中只能直接调用静态方法</li>
-</ol>
-</blockquote>
-<h2 id="return语句"><a href="#return语句" class="headerlink" title="return语句"></a>return语句</h2><blockquote>
-<ol>
-<li>void - return仅仅使用来结束整个方法</li>
-<li>带有返回类型 - return + 值; &#x2F;&#x2F; 返回方法的执行的结果;用来结束方法.</li>
-</ol>
-</blockquote>
-<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><blockquote>
-<ol>
-<li>固定</li>
-<li>可变长 - 数组</li>
-</ol>
-</blockquote>
-<h2 id="参数传递的方式"><a href="#参数传递的方式" class="headerlink" title="参数传递的方式"></a>参数传递的方式</h2><blockquote>
-<p>java中只有值传递,没有地址传递.</p>
-</blockquote>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><blockquote>
-<p>移位操作是性能最高的方式</p>
-<p><code>请你用最高性能的方式计算出2的3次方</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> &lt;&lt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; &gt;&gt;&gt;</span><br><span class="line"></span><br><span class="line">-<span class="number">10</span> &gt;&gt;&gt; <span class="number">2</span></span><br><span class="line"></span><br><span class="line">负数的二进制 - 补码 = 反码 + <span class="number">1</span></span><br><span class="line">反码 = 原码(符号位不变,其余位按位取反)</span><br><span class="line"></span><br><span class="line">-<span class="number">10</span>=~<span class="number">9</span>   -(x+<span class="number">1</span>) = ~x</span><br><span class="line"></span><br><span class="line">-<span class="number">10</span>原码</span><br><span class="line"><span class="number">10000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00001010</span></span><br><span class="line"></span><br><span class="line">-<span class="number">10</span>反码</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11110101</span></span><br><span class="line">                           +<span class="number">1</span>  </span><br><span class="line">------------------------------------</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11110110</span></span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00001001</span></span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11110110</span> =&gt; -<span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11110110</span> &gt;&gt;&gt; <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">0011111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">111101</span> = <span class="number">1073741821</span>  </span><br><span class="line"></span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11110110</span> &gt;&gt; <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">1111111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">111101</span>  取反    =&gt; ~<span class="number">2</span> = -<span class="number">3</span></span><br><span class="line"><span class="number">0000000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">000010</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h1><blockquote>
-<p><strong>解答题:方法的重载overload和方法的重写override有什么区别?</strong></p>
-</blockquote>
-<blockquote>
-<p>前提:<strong>重载的方法一定是出现在同一个类中.</strong></p>
-<p>作用:简化api,方便程序员进行方法的调用.</p>
-</blockquote>
-<blockquote>
-<p>特点:</p>
-<ol>
-<li>重载的方法名一致.</li>
-<li>如果参数的个数是相同的,那么类型一定不同.</li>
-<li>如果参数的个数是不同的,那么就不需要关心它的类型.</li>
-<li>重载的方法的返回类型可以不一样.</li>
-</ol>
-</blockquote>
-<h1 id="java-lang-Math"><a href="#java-lang-Math" class="headerlink" title="java.lang.Math"></a>java.lang.Math</h1><blockquote>
-<p>java中提供的一个关于数学计算的工具类.大部分的方法是static修饰的.</p>
-<p>Math - 内置的对象</p>
-</blockquote>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day02;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 数学计算的工具类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/7/19 8:51 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MathDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//求绝对值</span></span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> Math.abs(-<span class="number">10</span>);</span><br><span class="line">        System.out.println(result);<span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//求次幂</span></span><br><span class="line">        System.out.println(Math.pow(<span class="number">2</span>,<span class="number">3</span>));<span class="comment">//8.0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//求根</span></span><br><span class="line">        System.out.println(Math.sqrt(<span class="number">9</span>));<span class="comment">//3.0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//面试题</span></span><br><span class="line">        <span class="comment">//static double	floor(double a)</span></span><br><span class="line">        <span class="comment">//返回小于或等于参数的最大（最接近正无穷大） double值，等于一个数学整数。</span></span><br><span class="line">        System.out.println(Math.floor(-<span class="number">3.5</span>));<span class="comment">//-4.0</span></span><br><span class="line">        System.out.println(Math.floor(-<span class="number">4.0</span>));<span class="comment">//-4.0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//static long round(double a)</span></span><br><span class="line">        <span class="comment">//返回参数中最接近的 long ，其中long四舍五入为正无穷大</span></span><br><span class="line">        <span class="comment">//round(a) = floor(a + 1/2)</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">3.5</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//求俩者最大值/最小值</span></span><br><span class="line">        System.out.println(Math.max(<span class="number">10</span>,<span class="number">20</span>));<span class="comment">//20</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//求随机数</span></span><br><span class="line">        <span class="comment">//double random();// [0.0,1.0)之间的随机小数</span></span><br><span class="line">        System.out.println(Math.random());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//目标:计算任意俩个数之间的随机整数 - 伪随机</span></span><br><span class="line">        <span class="comment">//求1-100之间的随机整数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> (<span class="type">int</span>) (Math.random()*<span class="number">100</span>+<span class="number">1</span>);</span><br><span class="line">        System.out.println(n);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3-5之间的随机整数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (<span class="type">int</span>) (Math.random()*<span class="number">3</span>+<span class="number">3</span>);</span><br><span class="line">        System.out.println(m);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="递归算法"><a href="#递归算法" class="headerlink" title="递归算法"></a>递归算法</h1><blockquote>
-<p>应用场景:大量的需要重复运算的业务.</p>
-</blockquote>
-<blockquote>
-<ol>
-<li>必须要指定递归出口</li>
-<li>方法中调用自己</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>掌握用循环算法再去分别实现一遍.</p>
-<p>递归的劣势 - 递归算法性能极其低下.递归的过程中,每次都会在内存中保存它的临时结果.</p>
-<p>如果因为递归太深,而又没有递归出口,那么机会抛出堆栈溢出异常 -java.lang.StackOverflowError</p>
-</blockquote>
-<blockquote>
-<ol>
-<li>斐波那契数列 1 1 2 3 5 8 13 …</li>
-<li>阶乘</li>
-<li>杨辉三角</li>
-</ol>
-</blockquote>
-<h1 id="循环语句练习"><a href="#循环语句练习" class="headerlink" title="循环语句练习"></a>循环语句练习</h1><blockquote>
-<ol>
-<li>switch(变量)  -&gt; 变量的类型只能是 - byte short int char enum String Byte Short Integer Character </li>
-<li>用一个for实现九九乘法表 - for循环的复合形态</li>
-<li>传入一个数字,返回这个数字是几位数</li>
-<li>将一个数字逆序输出</li>
-<li>求俩个数的最大公约数和最小公倍数</li>
-<li>输入一个正整数,返回这个正整数的二进制.比如传入数字10,返回1010</li>
-<li>有一个三位数.由数字1,2,3,4组成.但是不能出现重复的数字.打印所有的组合,并且每6个换一行.</li>
-</ol>
-</blockquote>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><blockquote>
-<p>属于一种数据结构.特点:在内存中是一块连续的空间,并且数组的大小一旦确定了,将不能够改变.</p>
-</blockquote>
-<h2 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h2><blockquote>
-<p>数组本身就是属于对象类型</p>
-</blockquote>
-<blockquote>
-<p>元素类型[] 对象 &#x3D; new 元素类型[数组长度];</p>
-<p>元素类型可以是基本数据类型或者对象类型[内置对象类型&#x2F;自定义对象类型]</p>
-<ol>
-<li><p>元素类型决定了数组中可以存放的数据的类型.</p>
-</li>
-<li><p>数组的长度决定了数组中可以存储的元素的个数.</p>
-</li>
-<li><p>如果仅仅是初始化了一个数组,没有手动赋值的时候,系统会默认分配默认值.</p>
-<blockquote>
-<p>byte,short,int,long -&gt; 0</p>
-<p>float,double -&gt; 0.0</p>
-<p>boolean -&gt; false</p>
-<p>char -&gt; 空格</p>
-<p>对象类型 -&gt; null</p>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol>
-<li><p>初始化一个数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义数组的同时进行赋值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>先定义一个数组,然后通过下标一一赋值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">10</span>];</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">10</span>;</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">20</span>;</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以通过普通for循环进行赋值</p>
-</li>
-<li><p>通过数组工具类java.util.Arrays提供的重载方法fill</p>
-</li>
-</ol>
-</blockquote>
-<h2 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h2><blockquote>
-<ol>
-<li>通过下标一一访问,注意下标的范围[0,数组长度-1],否则会抛出java.lang.ArrayIndexOutOfBoundsException数组下标越界异常.</li>
-<li>通过普通for循环进行遍历</li>
-<li>通过jdk5.x提供的foreach语句&#x2F;增强for循环 - 只读的循环</li>
-<li>通过java.util.Arrays提供的String toString();</li>
-</ol>
-</blockquote>
-<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//arr的数据类型是什么? int[]   整数型数组</span></span><br><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line">元素类型[] 对象 = <span class="keyword">new</span> 元素类型[数组长度];</span><br><span class="line"><span class="type">int</span>[][] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>][<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="数组练习"><a href="#数组练习" class="headerlink" title="数组练习"></a>数组练习</h2><blockquote>
-<ol>
-<li><p>长度为5的数组,存储的数据是[1~6]之间的随机整数.但是要求不能重复.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">  <span class="comment">//定义一个数组</span></span><br><span class="line">  <span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">//for进行赋值操作 - 随机数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="comment">//随机数</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> (<span class="type">int</span>) (Math.random()*<span class="number">6</span>+<span class="number">1</span>);</span><br><span class="line">    arr[i] = n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断arr[i]是否在[0,i-1]之前出现过</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(arr[i] == arr[j])&#123;</span><br><span class="line">        i--;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  System.out.println(Arrays.toString(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从数组中删除指定的元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>随机打乱一个数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根据下标进行删除</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               </span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="5">
-<li><p>二维数组的练习 - 横诗变竖诗</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">String[][] arr = &#123;&#123;<span class="string">&quot;白&quot;</span>,<span class="string">&quot;日&quot;</span>,<span class="string">&quot;依&quot;</span>,<span class="string">&quot;山&quot;</span>,<span class="string">&quot;尽&quot;</span>&#125;,&#123;<span class="string">&quot;黄&quot;</span>,<span class="string">&quot;河&quot;</span>,<span class="string">&quot;入&quot;</span>,<span class="string">&quot;海&quot;</span>,<span class="string">&quot;流&quot;</span>&#125;,&#123;<span class="string">&quot;欲&quot;</span>,<span class="string">&quot;穷&quot;</span>,<span class="string">&quot;千&quot;</span>,<span class="string">&quot;里&quot;</span>,<span class="string">&quot;目&quot;</span>&#125;,&#123;<span class="string">&quot;更&quot;</span>,<span class="string">&quot;上&quot;</span>,<span class="string">&quot;一&quot;</span>,<span class="string">&quot;层&quot;</span>,<span class="string">&quot;楼&quot;</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">package</span> tech.aistar.day02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.SQLOutput;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 二维数组练习</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2022/7/19 2:38 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TwoArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//printArr();</span></span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] arr1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">        <span class="type">int</span>[] arr2 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">        System.out.println(arr1);</span><br><span class="line">        System.out.println(arr2);</span><br><span class="line">        System.out.println(arr1 == arr2);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//数组值的比较</span></span><br><span class="line">        System.out.println(Arrays.equals(arr1, arr2));<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">        <span class="type">char</span>[] c = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;;</span><br><span class="line">        System.out.println(c);<span class="comment">//abc  字符串的本质就是字符数组</span></span><br><span class="line"></span><br><span class="line">        String[][] arr = &#123;&#123;<span class="string">&quot;白&quot;</span>,<span class="string">&quot;日&quot;</span>,<span class="string">&quot;依&quot;</span>,<span class="string">&quot;山&quot;</span>,<span class="string">&quot;尽&quot;</span>&#125;,&#123;<span class="string">&quot;黄&quot;</span>,<span class="string">&quot;河&quot;</span>,<span class="string">&quot;入&quot;</span>,<span class="string">&quot;海&quot;</span>,<span class="string">&quot;流&quot;</span>&#125;,&#123;<span class="string">&quot;欲&quot;</span>,<span class="string">&quot;穷&quot;</span>,<span class="string">&quot;千&quot;</span>,<span class="string">&quot;里&quot;</span>,<span class="string">&quot;目&quot;</span>&#125;,&#123;<span class="string">&quot;更&quot;</span>,<span class="string">&quot;上&quot;</span>,<span class="string">&quot;一&quot;</span>,<span class="string">&quot;层&quot;</span>,<span class="string">&quot;楼&quot;</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">        poemMath(arr);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printArr</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span>[][] arr = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>&#125;&#125;;</span><br><span class="line">        <span class="comment">//for (int i = 0; i &lt; arr.length; i++) &#123;</span></span><br><span class="line">        <span class="comment">//    for (int j = 0; j &lt; arr[i].length; j++) &#123;</span></span><br><span class="line">        <span class="comment">//        System.out.print(arr[i][j]+&quot;\t&quot;);</span></span><br><span class="line">        <span class="comment">//    &#125;</span></span><br><span class="line">        <span class="comment">//    System.out.println();</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">        System.out.println(Arrays.deepToString(arr));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">poem</span><span class="params">(String[][] arr)</span>&#123;</span><br><span class="line">        <span class="comment">//定义一个新的数组-竖着的</span></span><br><span class="line">        String[][] temp = <span class="keyword">new</span> <span class="title class_">String</span>[arr[<span class="number">0</span>].length][arr.length];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历arr</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; arr[i].length; j++) &#123;</span><br><span class="line">                temp[j][i] = arr[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历temp</span></span><br><span class="line">        <span class="comment">//System.out.println(Arrays.deepToString(temp));</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; temp.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; temp[i].length; j++) &#123;</span><br><span class="line">                System.out.print(temp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">poemMath</span><span class="params">(String[][] arr)</span>&#123;</span><br><span class="line">        <span class="comment">//所有的数据放入到一维数组中.</span></span><br><span class="line">        String[] temp = <span class="keyword">new</span> <span class="title class_">String</span>[arr[<span class="number">0</span>].length*arr.length];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//下标计数器</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; arr[i].length; j++) &#123;</span><br><span class="line">               temp[pos++]  = arr[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//白, 日, 依, 山, 尽, 黄, 河, 入, 海, 流, 欲, 穷, 千, 里, 目, 更, 上, 一, 层, 楼</span></span><br><span class="line">        <span class="comment">//白黄欲更  第一行  0   5    10   15</span></span><br><span class="line">        <span class="comment">//日河穷上  第二行  1   6    11   16</span></span><br><span class="line">        <span class="comment">//System.out.println(Arrays.toString(temp));</span></span><br><span class="line">        String[][] tt = <span class="keyword">new</span> <span class="title class_">String</span>[arr[<span class="number">0</span>].length][arr.length];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; tt.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; tt[i].length; j++) &#123;</span><br><span class="line">                tt[i][j] = temp[<span class="number">5</span>*j+i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; tt.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; tt[i].length; j++) &#123;</span><br><span class="line">                System.out.print(tt[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>有一个数组长度是15.存放[1,5]之间的随机整数.然后统计每个随机数出现的次数.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>&#125;</span><br><span class="line">temp = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line"><span class="type">int</span>[][] arr = <span class="keyword">new</span> <span class="title class_">int</span>[temp.length][<span class="number">2</span>];</span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<h1 id="数组的拷贝"><a href="#数组的拷贝" class="headerlink" title="数组的拷贝"></a>数组的拷贝</h1><blockquote>
-<ol>
-<li>java.util.Arrays - public static <T> T[] copyOf(T[] original, int newLength)</li>
-</ol>
-</blockquote>
-<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><blockquote>
-<ol>
-<li><p>插入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] add(<span class="type">int</span>[] arr,<span class="type">int</span> pos,<span class="type">int</span> target)&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>英文题</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h1><blockquote>
-<p>api: java.util.Date</p>
-</blockquote>
-<blockquote>
-<p>api手册中查找构造函数&#x2F;方法 - 决定了构造的方式,构造方法中如何传参 - 通过new关键字</p>
-<p>这是一个过时的类,提供了大量的过时的方法,之所以仍然在使用的原因是老的项目中还是在大量使用.如果剔除,则编译不通过.</p>
-</blockquote>
-<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><blockquote>
-<ol>
-<li><p>Date();&#x2F;&#x2F;获取当前系统的日期对象</p>
-</li>
-<li><p>Date(long date);&#x2F;&#x2F;利用毫秒数来构建一个Date对象</p>
-</li>
-<li><p>Date(int year,int month,int date);&#x2F;&#x2F;利用年月日来构建指定的日期对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> year-<span class="number">1900</span></span><br><span class="line"><span class="number">2.</span> month的范围是在[<span class="number">0</span>,<span class="number">11</span>]</span><br></pre></td></tr></table></figure></li>
-</ol>
-</blockquote>
-<h2 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
-<ol>
-<li>int getYear();&#x2F;&#x2F;获取年份</li>
-<li>int getMonth();&#x2F;&#x2F;获取月份</li>
-<li>int getDate();&#x2F;&#x2F;获取今天是几号</li>
-<li>int getDay();&#x2F;&#x2F;周日是0,周1-&gt;1</li>
-<li>long getTime();&#x2F;&#x2F;获取毫秒数 - 1970</li>
-<li>void setTime(long time);&#x2F;&#x2F;利用毫秒数构建日期</li>
-<li>void setXXX(参数);&#x2F;&#x2F;设置</li>
-</ol>
-</blockquote>
-<h1 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h1><blockquote>
-<p>api: java.util.Calendar  替代 Date使用.</p>
-</blockquote>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Calendar</span>&#123;&#125;</span><br><span class="line">这个类是一个抽象的类 - 特点,不能被实例化的,不能被<span class="keyword">new</span></span><br><span class="line">因为抽象类天生就是用来被子类去继承的.</span><br><span class="line"></span><br><span class="line">OO - 多态的应用 - 面向父类编程 - 重要的特点之一 </span><br><span class="line">对象的编译时类型写成父类,对象的运行时类型写成子类</span><br><span class="line"></span><br><span class="line">父类 对象 = <span class="keyword">new</span> 子类();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GregorianCalendar</span> <span class="keyword">extends</span> <span class="title class_">Calendar</span> &#123;..&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>如何构建Calendar对象</code></p>
-<ol>
-<li>Calendar cal &#x3D; new GregorianCalendar();</li>
-<li>Calendar cal &#x3D; Calendar.getInstance();&#x2F;&#x2F;简单工厂设计模式-并不属于23种设计模式</li>
-</ol>
-</blockquote>
-<h2 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
-<ol>
-<li>void set(int field,int value);&#x2F;&#x2F;将value设置到日历的指定字段上去.</li>
-<li>int get(int field);&#x2F;&#x2F;获取指定日历字段的值</li>
-<li>void set(int year,int month,int date);&#x2F;&#x2F;统一进行赋值</li>
-<li>Date getTime();&#x2F;&#x2F;Calendar &#x3D;&gt; Date</li>
-<li>void setTime(Date d);&#x2F;&#x2F;利用日期对象来构建一个Calendar</li>
-</ol>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<ol>
-<li>long &#x3D;&gt; Date之间的相互转换</li>
-<li>Calendar &#x3D;&gt; Date之间的相互转换</li>
-</ol>
-</blockquote>
-<h1 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h1><blockquote>
-<ol>
-<li>java.text.SimpleDateFormat</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>构造:SimpleDateFormat(String pattern);&#x2F;&#x2F;日期模板,一定是合法的.</p>
-</blockquote>
-<blockquote>
-<p>父类DateFormat提供的方法</p>
-<ol>
-<li>String format(Date date);&#x2F;&#x2F;将日期类型按照模板格式化成字符串对象.</li>
-<li>Date parse(String str);&#x2F;&#x2F;将字符串解析成日期 - 注意点:pattern的格式一定要和字符串的格式高度保持一致</li>
-</ol>
-</blockquote>
-<h1 id="数组的拷贝-1"><a href="#数组的拷贝-1" class="headerlink" title="数组的拷贝"></a>数组的拷贝</h1><blockquote>
-<ol>
-<li><p>java.util.Arrays提供的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] copyOf(T[] original, <span class="type">int</span> newLength) &#123;</span><br><span class="line">       <span class="keyword">return</span> (T[]) copyOf(original, newLength, original.getClass());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>java.lang.System提供的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">arraycopy</span><span class="params">(Object src,  <span class="type">int</span>  srcPos,</span></span><br><span class="line"><span class="params">                                        Object dest, <span class="type">int</span> destPos,</span></span><br><span class="line"><span class="params">                                        <span class="type">int</span> length)</span>;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>java.lang.Object是所有的类的根类,超类,基类,父类 - 多态的特征 - 面向父类编程特点 - 方法的参数类型写成父类,传入这个父类的任何一个子类对象.  自定义的数组属于对象类型,它的父类也是Object</p>
-<ol>
-<li>src - 原数组对象</li>
-<li>srcPos - 拷贝的起始的索引</li>
-<li>dest - 目标数组</li>
-<li>destPos - 从目标数组的第几个位置开始放</li>
-<li>length - 拷贝的数量</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/DorwoningFish.github.io/categories/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/DorwoningFish.github.io/2022/07/31/Java%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/DorwoningFish.github.io/page/2/">2</a><a class="extend next" rel="next" href="/DorwoningFish.github.io/page/2/">Next &amp;raquo;</a>
@@ -5499,6 +5650,10 @@ public String NullPointerExceptionHandler(Model model, Exception e) &#123;
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
             
             <div class="clearfix"></div>
