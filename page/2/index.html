@@ -206,6 +206,138 @@
             
 
   
+    <article id="post-java集合类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/DorwoningFish.github.io/2022/08/02/java%E9%9B%86%E5%90%88%E7%B1%BB/" target="_blank">java集合类、泛型</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/DorwoningFish.github.io/2022/08/02/java%E9%9B%86%E5%90%88%E7%B1%BB/" class="archive-article-date">
+        <time datetime="2022-08-02T11:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-02</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><blockquote>
+<p>就是一个内存中的”容器”,用来存储数据.实际开发中用来替代数组的使用</p>
+<p>不同的集合框架底层使用到的数据结构不一样.</p>
+</blockquote>
+<blockquote>
+<p>api包:java.util</p>
+<ol>
+<li><p>Collection[I]</p>
+<ul>
+<li><p>List[I]  - 有序,可重复</p>
+<ul>
+<li><p>ArrayList[C] - “底层就是动态数组 - 内存中是连续的,有序的 - 便于使用下标来访问元素.但是增删效率略低”</p>
+</li>
+<li><p>LinkedList[C] - “底层是一个双向链表,访问比ArrayList慢,但是增删效率高”</p>
+<p>适合解决栈列和队列的业务 - 贪吃蛇</p>
+</li>
+<li><p>Vector[C] - 线程安全的,使用方式和ArrayList一致.</p>
+</li>
+</ul>
+</li>
+<li><p>Set[I] - 无序,不可重复</p>
+<ul>
+<li><p>HashSet[C] - “底层使用的哈希算法,底层就是HashMap”</p>
+</li>
+<li><p>SortedSet[I]</p>
+<ul>
+<li><p>TreeSet[C] - “可以使用可比较接口或者比较器接口来实现排序的功能,但是仍然是不可重复的”</p>
+<p>“底层是TreeMap”</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Map[I] - 采用key-value键值对形式来存储数据</p>
+<ul>
+<li>HashMap[C] - 针对key无序不可重复</li>
+<li>Hashtable[C]<ul>
+<li>Properties[C] - .properties属性文件在内存中映射的那个对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+    
+    <a class="article-more-a" href="/DorwoningFish.github.io/2022/08/02/java%E9%9B%86%E5%90%88%E7%B1%BB/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/DorwoningFish.github.io/2022/08/02/java%E9%9B%86%E5%90%88%E7%B1%BB/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
     <article id="post-LRU" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -781,6 +913,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">B+树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
