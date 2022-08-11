@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20220728/949290762_1658971165882/d98e1aea8fdf1e69d051777d019034a1.jpeg">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20220728/949290762_1658971165883/4725bbd620fad732245c385048fbc063.png">
 <meta property="article:published_time" content="2022-08-11T00:19:17.000Z">
-<meta property="article:modified_time" content="2022-08-11T00:21:53.631Z">
+<meta property="article:modified_time" content="2022-08-11T00:28:42.814Z">
 <meta property="article:author" content="Drowning Fish">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="MySQL">
@@ -275,6 +275,8 @@
     
     <h1 id="了解B-树吗-怎么进行查询的"><a href="#了解B-树吗-怎么进行查询的" class="headerlink" title="了解B+树吗,怎么进行查询的?"></a>了解B+树吗,怎么进行查询的?</h1><p>B+树是一种平衡树数据结构,他保持数据排序；在进行搜索、顺序访问、插入和删除的复杂度是	O（log n）且B+树只在叶子结点中存放数据，消除了一些B树的缺陷。B+树中非叶节点，仅仅保存了key值[索引列，主键列值],没有保存数据.每个非叶节点可以保存更多的key。B+树中索引的所有的数据都放在了叶子节点中,而且是按照顺序排列的。页与页之间是双向链表结构，叶节点中的每个数据节点是单向链表。</p>
 <p>如果通过 B+ 树的索引查询行记录，首先是从 B+ 树的根开始，逐层检索，直到找到叶子节点，也就是找到对应的数据页为止，将数据页加载到内存中，页目录中的槽（slot）采用二分查找的方式先找到一个粗略的记录分组，然后再在分组中通过链表遍历的方式查找记录。</p>
+<span id="more"></span>
+
 <h1 id="一、sql优化"><a href="#一、sql优化" class="headerlink" title="一、sql优化"></a>一、sql优化</h1><h1 id="1、查询SQL尽量不要使用select-，而是select具体字段。"><a href="#1、查询SQL尽量不要使用select-，而是select具体字段。" class="headerlink" title="1、查询SQL尽量不要使用select *，而是select具体字段。"></a>1、查询SQL尽量不要使用select *，而是select具体字段。</h1><p>反例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from employee;</span><br></pre></td></tr></table></figure>
 
