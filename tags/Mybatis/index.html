@@ -6,35 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://drowningfish123.github.io/DorwoningFish.github.io">
-  <title>索引B+树 | 溺水的鱼的博客</title>
+  <title>Tag: Mybatis | 溺水的鱼的博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="索引底层原理 解释底层的索引的数据结构 - b+树  B+树 InnoDB 存储引擎中的 B+ 树索引。要介绍 B+ 树索引，就不得不提二叉查找树， 平衡二叉树和 B 树这三种数据结构。B+ 树就是从他们仨演化来的。 索引文件和数据文件 - innodb中 - 合二为一的 - 只有1个文件 索引文件和数据文件 - myisam中 - 分开独立的 - 俩个文件 二叉树   节点(每个圆圈圈)中存储了">
-<meta property="og:type" content="article">
-<meta property="og:title" content="索引B+树">
-<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/09/%E7%B4%A2%E5%BC%95B-%E6%A0%91/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="溺水的鱼的博客">
+<meta property="og:url" content="https://drowningfish123.github.io/DorwoningFish.github.io/tags/Mybatis/index.html">
 <meta property="og:site_name" content="溺水的鱼的博客">
-<meta property="og:description" content="索引底层原理 解释底层的索引的数据结构 - b+树  B+树 InnoDB 存储引擎中的 B+ 树索引。要介绍 B+ 树索引，就不得不提二叉查找树， 平衡二叉树和 B 树这三种数据结构。B+ 树就是从他们仨演化来的。 索引文件和数据文件 - innodb中 - 合二为一的 - 只有1个文件 索引文件和数据文件 - myisam中 - 分开独立的 - 俩个文件 二叉树   节点(每个圆圈圈)中存储了">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/二叉树.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/link.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/diff.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/n.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/b.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/B+.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/jusearch.jpg">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/x.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/y.png">
-<meta property="og:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/z.png">
-<meta property="article:published_time" content="2022-08-09T13:25:17.000Z">
-<meta property="article:modified_time" content="2022-08-11T00:15:17.244Z">
 <meta property="article:author" content="Drowning Fish">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="B+树">
-<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:/苏州/dy-corejava-tech/dy_mysql_2022_note/imgs/二叉树.jpg">
   
     <link rel="alternative" href="/DorwoningFish.github.io/atom.xml" title="溺水的鱼的博客" type="application/atom+xml">
   
@@ -217,479 +199,116 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-索引B-树" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/DorwoningFish.github.io/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/DorwoningFish.github.io/2022/08/23/mybatis%E8%A7%A3%E7%AD%94%E9%A2%98/" class="archive-article-date">
+        <time datetime="2022-08-23T00:22:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-23</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/DorwoningFish.github.io/2022/08/23/mybatis%E8%A7%A3%E7%AD%94%E9%A2%98/" target="_blank">mybatis解答题</a>
   
-    <h1 class="article-title" itemprop="name">
-      索引B+树
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/DorwoningFish.github.io/2022/08/09/%E7%B4%A2%E5%BC%95B-%E6%A0%91/" class="archive-article-date">
-        <time datetime="2022-08-09T13:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-09</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.9k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">10分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="索引底层原理"><a href="#索引底层原理" class="headerlink" title="索引底层原理"></a>索引底层原理</h1><blockquote>
-<p>解释底层的索引的数据结构 - b+树</p>
-</blockquote>
-<h1 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h1><p> InnoDB 存储引擎中的 <em><strong>B+ 树索引</strong></em>。要介绍 B+ 树索引，就不得不提二叉查找树，</p>
-<p>平衡二叉树和 B 树这三种数据结构。B+ 树就是从他们仨演化来的。</p>
-<p><strong>索引文件和数据文件 - innodb中 - 合二为一的 - 只有1个文件</strong></p>
-<p><strong>索引文件和数据文件 - myisam中 - 分开独立的 - 俩个文件</strong></p>
-<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\二叉树.jpg">  </p>
-<p><em><strong>节点(每个圆圈圈)中存储了键（key - 主键索引列）和数据（data - 每一个行记录）</strong></em>。<strong>键对应 user 表中的 id</strong>，<strong>数据对应 user 表中的行数据。</strong></p>
-<p>二叉查找树的特点就是任何节点的<strong>左子节点的键值都小于当前节点的键值</strong>，<strong>右子节点的键值都大于当前节点的键值</strong>。顶端的节点我们称为<strong>根节点</strong>，<strong>没有子节点的节点我们称之为<em>叶节点</em>。</strong></p>
-<blockquote>
-<p>如果我们需要查找 id&#x3D;12 的用户信息，利用我们创建的二叉查找树索引，查找流程如下：</p>
-<ol>
-<li><p>id&#x3D;12先和根节点[只有一个]key&#x3D;10,发现id&#x3D;12&gt;id&#x3D;10 - 顺利向着根节点的右边去匹配</p>
-</li>
-<li><p>id&#x3D;12和非叶节点id&#x3D;13的进行匹配,顺利执行id&#x3D;13的左边</p>
-</li>
-<li><p>id&#x3D;12和id&#x3D;12比较 - 两者是相同的.由于每个节点除了保存key还保存了value[行记录 - 行真实的行数据]</p>
-<p>直接将这个节点的value直接取出来了.</p>
-</li>
-</ol>
-<p>总结 - <strong>总共匹配了3次就可以顺利找到我们的数据.</strong></p>
-<p><strong>如果没有创建二叉树索引.查找id&#x3D;12,必然会进行全表扫描.从表的第一行向下找.最好的状态也得找6次</strong></p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h1><h2 id="二叉树带来的弊端"><a href="#二叉树带来的弊端" class="headerlink" title="二叉树带来的弊端"></a>二叉树带来的弊端</h2><blockquote>
-<p>二叉查找树的特点就是任何</p>
-<p>的<strong>左子节点的键值都小于当前节点的键值</strong>，<strong>右子节点的键值都大于当前节点的键值</strong></p>
-<p>二叉树在极端的场景下有可能成为一个链表的结构[链表的查询效率很低很低的.]</p>
-<p>查找id&#x3D;12,”链表结构”,只能从链表的头节点开始查找,最佳状态也得寻找找了5次.</p>
-</blockquote>
-<blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\link.jpg"> </p>
-</blockquote>
-<h2 id="AVL"><a href="#AVL" class="headerlink" title="AVL"></a>AVL</h2><p>为了解决这个问题[<strong>防止二叉树变成了链表结构导致查询效率依然低下</strong>]，我们需要保证二叉查找树一直保持平衡，就需要用到平衡二叉树.</p>
-<p><strong>平衡二叉树又称 AVL 树</strong>，在满足二叉查找树特性的基础上，要求<strong>每个节点的左右子树的高度差不能超过 1。</strong> </p>
-<p>下面是平衡二叉树和非平衡二叉树的对比：</p>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\diff.png"> </p>
-<p><code>只要找到任何一个节点的左右子树高度差的绝对值大于1 - 非平衡二叉树</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">节点45 - 左子树高度 = 左边的子节点的个数 = 2</span><br><span class="line">			- 右子树高度 = 右边没有节点 = 0</span><br><span class="line">			- |高度差|=2&gt;1</span><br></pre></td></tr></table></figure>
-
-<h1 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h1><blockquote>
-<p><strong>平衡二叉树暴露出来了一些缺点:</strong></p>
-<p>每个<strong>节点仅仅保存一个key-value键值对[每个节点可保存的键值对数据太少了]</strong>.每次进行查询的时候,实际上都是需要从磁盘中读取数据的.</p>
-<p><strong>那我们每查找一次数据就需要从磁盘中读取一个节点，也就是我们说的一个磁盘块</strong></p>
-<p>由于每个节点可保存的数据不多,仅仅保存了一个key-value.在查找数据的过程中,它就不断去和磁盘进行IO交互.</p>
-<p>导致平衡二叉树的节点比较多.也就导致了平衡二叉树的高度比较高 - 导致比较的次数比较多 - 频繁和IO进行交互 - 查询效率低下.</p>
-</blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\n.jpg"> </p>
-<blockquote>
-<p>为了解决平衡二叉树的高度太高问题.B树登场了.</p>
-<p>B树特点</p>
-<ol>
-<li><p>根节点[第一页] - 永驻内存.</p>
-</li>
-<li><p>每个节点可以保存多个key-value - 导致子节点也会增多.B树又矮又胖.</p>
-</li>
-<li><p>没有子节点的节点 - 叶节点,有子节点的节点 - 非叶节点</p>
-</li>
-<li><p>B树的m阶 - m值就是看它最大的子节点的个数 - 3 , 下面的图代表的就是3阶b树.</p>
-<p>如果有10亿条数据,<strong>只需要和磁盘进行交互2次.把磁盘块中的一页数据[16kb]全部加载到内存中.</strong></p>
-</li>
-<li><p>页page的概念 - 那我们每查找一次数据就需要从磁盘中读取一个节点，也就是我们说的一个磁盘块</p>
-<p>读取的单位是 - 页 - 1页的磁盘块的数据大小是<strong>16kb</strong>,每个节点可以更多的key-value</p>
-</li>
-<li><p><strong>页与也之间是一个链表的结构</strong></p>
-</li>
-<li><p>查找id&#x3D;28的数据 - 磁盘交互了3次</p>
-<p>①id&#x3D;28到第一页中进行匹配,发现id&#x3D;28在17和35之间,获取p2指针.p2指向到页3</p>
-<p>②定位到页3,发现id&#x3D;28在26~30之间,继续拿到p2指针,p2指向的是页8</p>
-<p>③定位到页8,顺利匹配查找到id&#x3D;28这条数据</p>
-</li>
-</ol>
-</blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\b.jpg"> </p>
-<h1 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h1><blockquote>
-<p>是Innodb和myisam存储引擎中索引底层的数据结构 - B+树</p>
-<p>B树中每个节点中不仅仅存储key[索引列值,主键列值],还存储了数据.因为数据库中的页的大小是固定的[Innodb默认是16kb],</p>
-<p>导致每个节点的存储资源有点浪费了.</p>
-</blockquote>
-<blockquote>
-<p>B+树和B树的重要区别就是</p>
-<ol>
-<li><p><strong>B+树中非叶节点,仅仅保存了key值[索引列,主键列值],没有保存数据.每个非叶节点可以保存更多的key</strong></p>
-</li>
-<li><p>B+树中索引的所有的数据都放在了叶子节点中,而且是<strong>按照顺序排列的.</strong></p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li>**页与页之间是双向链表结构,**叶节点中的每个数据节点单向链表</li>
-<li>下面这个图展示的是Innodb中的索引的结构.并不是Myisam中索引的结构</li>
-<li>以下图示本质上就是<strong>聚簇索引[主键列索引]的方式 - key - 主键列</strong></li>
-</ol>
-</blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\B+.jpg"> </p>
-<h1 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h1><p>在上节介绍 B+ 树索引的时候，我们提到了图中的索引其实是聚集索引的实现方式。</p>
-<p>那什么是聚集索引呢？在 MySQL 中，B+ 树索引按照存储方式的不同分为聚集索引和非聚集索引。</p>
-<p>这里我们着重介绍 InnoDB 中的聚集索引和非聚集索引：</p>
-<ul>
-<li><p>聚集索引（聚簇索引）：<em><strong>以 InnoDB 作为存储引擎的表，表中的数据都会有一个主键，即使你不创建主键，系统也会帮你创建一个隐式的主键。</strong></em></p>
-<p>这是因为 InnoDB 是把数据存放在 B+ 树中的，而 B+ 树的键值就是主键，<strong>在 B+ 树的叶子节点中，存储了表中所有的数据。</strong></p>
-<p><strong>这种以主键作为 B+ 树索引的键值而构建的 B+ 树索引，我们称之为聚集索引。</strong></p>
-</li>
-<li><p>非聚集索引（非聚簇索引）：以主键以外的列值作为键值构建的 B+ 树索引，我们称之为非聚集索引。</p>
-<p>非聚集索引与聚集索引的区别在于<em><strong>非聚集索引的叶子节点不存储表中的数据，而是存储该列对应的主键</strong></em>，想要<strong>查找数据我们还需要根据主键再去聚集索引中进行查找</strong>，这个再根据聚集索引查找数据的过程，我们称为<em><strong>回表</strong></em>。</p>
-</li>
-</ul>
-<h2 id="聚簇索引存储和查找"><a href="#聚簇索引存储和查找" class="headerlink" title="聚簇索引存储和查找"></a>聚簇索引存储和查找</h2><blockquote>
-<ol>
-<li>先到非叶节点找到索引列所在的页位置</li>
-<li>根据页位置定位到叶节点的位置</li>
-<li>叶节点中根据索引列的值找出数据</li>
-</ol>
-</blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\jusearch.jpg"> </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from xx where id&gt;=18 and id&lt;41;</span><br><span class="line">-- 聚簇索引的查找方式 - 根据主键列id列进行查找的流程</span><br><span class="line">1. 先从页1中看id的区间,定位到p2-&gt;页3</span><br><span class="line">2. 定位到页3,定位到p1-&gt;页8[叶节点-单向链表 - 查找必须从头节点开始找]</span><br><span class="line">3. 依次按照链表的顺序一致找到id开始&lt;41的这个节点.满足条件的叶节点中的数据全部查出来 [叶节点中保存了真实的数据]</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="非聚簇索引存储和查找"><a href="#非聚簇索引存储和查找" class="headerlink" title="非聚簇索引存储和查找"></a>非聚簇索引存储和查找</h2><blockquote>
-<p>B+树的结构</p>
-<p>表结构:<strong>id</strong> age <strong>name</strong></p>
-<p>id - 主键列 - 默认是聚簇索引列 - 主键列</p>
-<p>name - <strong>非聚簇索引列 - 索引列 - 辅助索引</strong></p>
-</blockquote>
-<blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\x.png"> </p>
-</blockquote>
-<blockquote>
-<p>非聚簇索引 - 非主键列索引 - <strong>name列创建了索引</strong> - 辅助索引.</p>
-</blockquote>
-<blockquote>
-<p>结构:</p>
-<ol>
-<li><p>根节点 - 一页数据 - 非聚簇索引列值 - name</p>
-</li>
-<li><p>非叶节点 - 非聚簇索引列值</p>
-</li>
-<li><p><strong>页节点存储的东西 - name索引列以及该列对应的主键列值.</strong> - <strong>这是和聚簇索引最大的一个不同点</strong></p>
-<p>它和聚簇索引最大的区别是页节点中没有存储最终的数据.而是存储的是键值对x-y</p>
-<p>x就是非聚簇索引列值,y是对应的主键列值.</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>非聚簇索引的查找方式:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xxx where name=&#x27;Bob&#x27;;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<ol>
-<li><p>按照B+树的查找流程 - 确认name&#x3D;’Bob’的具体位置</p>
-</li>
-<li><p>由于非聚簇索引的结构中叶节点仅仅保存了name-主键列值</p>
-</li>
-<li><p>先根据name&#x3D;’Bob’这个条件找到对应的主键列值id&#x3D;15</p>
-</li>
-<li><p><strong>要进行”回表操作”</strong></p>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\y.png"></p>
-</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<ol start="5">
-<li><p>继续拿着主键列id&#x3D;15到索引的结构中继续查找一次 - “一次回表查找”.</p>
-<p>id也是聚簇索引 - B+树的结构 - 叶子节点中存储的就是数据.</p>
-<p>根据聚簇索引列的查找方式 - id&#x3D;15的叶节点 - 拿到里面的数据</p>
-</li>
-</ol>
-</blockquote>
-</blockquote>
-<h2 id="非聚簇索引列查找一定会回表"><a href="#非聚簇索引列查找一定会回表" class="headerlink" title="非聚簇索引列查找一定会回表?????"></a>非聚簇索引列查找一定会回表?????</h2><blockquote>
-<p><strong>未必</strong> - 因为非叶节点中存储的就是索引列值.</p>
-<p>查询</p>
-<p>select id from xxx where name&#x3D;’Bob’;<br>select name from xxx where name&#x3D;’Bob’;</p>
-<p>不需要回表了.这条语句查询的结果name已经在非聚簇索引的非叶节点中保存了.</p>
-</blockquote>
-<blockquote>
-<p>回表 </p>
-<ol>
-<li><p>根据一个非聚簇索引列查找 - 优先先到非聚簇索引的B+树中找到该列对应的主键列值[聚簇索引列值]</p>
-</li>
-<li><p>再拿着这个聚簇索引列的值再去到聚簇索引列的B+树中再查找一次</p>
-</li>
-</ol>
-</blockquote>
-<h1 id="myisam中的索引特点"><a href="#myisam中的索引特点" class="headerlink" title="myisam中的索引特点"></a>myisam中的索引特点</h1><blockquote>
-<p>索引的本质就是一个键值对key-value</p>
-<p><strong>key - 索引列值,value - 数据行的物理地址.</strong></p>
-<p>主键列索引&#x2F;辅助索引 -&gt; 两颗独立的B+树,都是索引列值对应的行记录的物理地址.</p>
-</blockquote>
-<blockquote>
-<ol>
-<li><p>innodb中索引和数据合并到一个文件中</p>
-</li>
-<li><p>myisam中索引和数据是单独的俩个文件,分别是索引文件和数据文件.</p>
-</li>
-<li><p>myisam中采用的是”非聚集的方式”</p>
-</li>
-<li><p>无论是聚簇索引还是非聚簇索引,查找方式是一样.</p>
-</li>
-<li><p>采用的也是B+树的结构**.只是叶节点中存储的是索引的列值以及该对应的行记录的地址.**</p>
-<p>需要再根据行记录地址到表中进行定位[回表]</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<p><img src="D:\苏州\dy-corejava-tech\dy_mysql_2022_note\imgs\z.png"> </p>
-</blockquote>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">主键列 - key是不允许重复的</span><br><span class="line">非主键列 - key是允许重复的.</span><br><span class="line">select * from xxx where id=5;</span><br><span class="line"></span><br><span class="line">1. 先到B+树找到找到id=5对应的节点 - 取出里面的行记录的物理地址0x6a</span><br><span class="line">2. 回表 - 直接根据行记录的物理地址直接定位到具体的一行.</span><br></pre></td></tr></table></figure>
-</blockquote>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/DorwoningFish.github.io/assets/WeChat.png">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/DorwoningFish.github.io/assets/WeChat.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Drowning Fish
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/09/索引B-树/" title="索引B+树" target="_blank">https://drowningfish123.github.io/DorwoningFish.github.io/DorwoningFish.github.io/2022/08/09/索引B-树/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">B+树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://drowningfish123.github.io/DorwoningFish.github.io/2022/08/09/%E7%B4%A2%E5%BC%95B-%E6%A0%91/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
   
-    <a href="/DorwoningFish.github.io/2022/08/11/sql%E8%A1%A5%E5%85%85/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          sql补充
-        
-      </div>
-    </a>
-  
-  
-    <a href="/DorwoningFish.github.io/2022/08/07/sql%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">sql经典面试题</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/DorwoningFish.github.io/2022/08/19/Mybatis/" class="archive-article-date">
+        <time datetime="2022-08-19T06:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-19</time>
+</a>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">索引底层原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-%E6%A0%91"><span class="toc-number">2.</span> <span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">3.</span> <span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">4.</span> <span class="toc-text">平衡二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%BC%8A%E7%AB%AF"><span class="toc-number">4.1.</span> <span class="toc-text">二叉树带来的弊端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL"><span class="toc-number">4.2.</span> <span class="toc-text">AVL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text">B树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-%E6%A0%91-1"><span class="toc-number">6.</span> <span class="toc-text">B+树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95"><span class="toc-number">7.</span> <span class="toc-text">聚簇索引和非聚簇索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E6%89%BE"><span class="toc-number">7.1.</span> <span class="toc-text">聚簇索引存储和查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%AD%98%E5%82%A8%E5%92%8C%E6%9F%A5%E6%89%BE"><span class="toc-number">7.2.</span> <span class="toc-text">非聚簇索引存储和查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%88%97%E6%9F%A5%E6%89%BE%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%9B%9E%E8%A1%A8"><span class="toc-number">7.3.</span> <span class="toc-text">非聚簇索引列查找一定会回表?????</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#myisam%E4%B8%AD%E7%9A%84%E7%B4%A2%E5%BC%95%E7%89%B9%E7%82%B9"><span class="toc-number">8.</span> <span class="toc-text">myisam中的索引特点</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
+    	 
+  
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/DorwoningFish.github.io/2022/08/19/Mybatis/" target="_blank">Mybatis</a>
+  
+    </h1>
+  
+
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+          
+
         </div>
-        
-    </div>
-</aside>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -730,9 +349,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
